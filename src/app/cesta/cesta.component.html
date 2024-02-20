@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div id="container" *ngIf="isLoggedIn">
+  <div id="box-contenido">
+    <p>Precio total de: {{preuTotal}}</p>
+    <p>Por favor, lea y acepte las condiciones de compra antes de continuar.</p>
+    <form action="" method="post">
+      <label>
+        <input type="checkbox" name="aceptar_condiciones" value="1">
+        Acepto las condiciones de compra
+      </label>
+      <br>
+      <input class="boton2" type="button" value="Comprar" (click)="comprarProductos()">
+    </form>
+  </div>
+  <br>
+  <div id="box-productos">
+    <div *ngFor="let arrayProductos of productos">
+      <div class="producto" *ngFor="let producto of arrayProductos">
+        <div class="imagen">
+          <img [src]="producto.rutaImagen" alt="">
+        </div>
+        <div class="contenido">
+          <p class="descripcion">{{ producto.prodName }}</p>
+          <p class="cantidad">Cantida producto: {{ producto.cantidadProducto }}</p>
+          <p class="precio">{{ producto.prodPreu }}</p>
+          <button class="boton" (click)="quitarProducto(producto.prodName)">Quitar producto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="containerError" *ngIf="!isLoggedIn">
+  <div id="error">
+    <p>Has d'iniciar sessio per veure la teva cesta!</p>
+    <img ngSrc="./assets/rana-confundida.png" height="300" width="346">
+  </div>
+</div>
+</body>
+</html>

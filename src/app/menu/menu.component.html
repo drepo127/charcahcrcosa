@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<header style="background-image: url('assets/fondo_ranas_corazones.jpg');">
+  <img src="assets/pejelagarto.png">
+  <div class="boxTitulo"><h1 class="titulohead"> JOGO DO MANKETILLA </h1></div>
+</header>
+<menu style="background-image: url('assets/sage_green_cow_print_aesthetic_pattern_hd_sage_green.jpg');">
+  <div *ngIf="isLoggedIn" class="registro">
+    <div class="dropdown">
+      <button class="dropbtn">{{storedNom}}</button>
+      <div class="dropdown-content">
+        <button routerLink="usuario" >Usuari</button>
+        <button (click)="clearLogInData()" >Desconnectar-se</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isLoggedIn" class="registro">
+    <a routerLink="formulari" class="regist">Registra't</a>
+  </div>
+  <div id="menu">
+    <a routerLink="inici">Inici</a>
+    <a routerLink="tienda">Catàleg</a>
+    <a routerLink="cesta">Cistella</a>
+    <a routerLink="condicions">Condicions</a>
+    <a routerLink="contacte">Contacte</a>
+  </div>
+  <div id="buscador">
+    <form action="#" method="get">
+      <input class="busqueda" type="text" id="busqueda" name="q">
+      <input class="buquedaB" type="submit" value="Buscar">
+    </form>
+  </div>
+</menu>
+</body>
+
+</html>

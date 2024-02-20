@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div id="content" style="background-image: url(assets/fondopaginaweb.jpg); background-repeat: no-repeat; background-position: center; background-size: cover;">
+  <aside>
+    <form action="#" method="get" (ngSubmit)="filtrar()" id="filtre">
+      <p>Preu maxim</p>
+      <div class="slidecontainer">
+        <p>0€</p>
+        <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+        <p>100€</p>
+      </div>
+
+      <div>
+        <input type="checkbox" class="check_filtro" id="roba" value="roba">
+        <label for="roba">Roba i accesioris</label>
+      </div>
+      <div>
+        <input type="checkbox" class="check_filtro" id="alimentacio" value="alimentacio">
+        <label for="alimentacio">Alimentacio</label>
+      </div>
+
+      <input class="button_filtre" type="submit" value="Filtrar">
+    </form>
+  </aside>
+  <article>
+    <div class="titol1"><p class="titol1">PRODUCTE DESTACAT</p></div>
+    <div class="prod_dest" style="background-image: url('assets/palomitas-de-maiz-dulces.jpg'); background-repeat: no-repeat; background-position: center; background-size: cover;">
+      <p class="prod_dest_name">Jogo Do Manketilla</p>
+      <p class="prod_dest_desc">Us presentem Jogo Do Manketilla, la nostra obra maestra, el motiu per el cual vam fundar aquest grup, es un Videojoc Rogue-Like basat en la historia del nostre protagonista, una rana a la que li han robat les seves crispetes, i ha de recuperarles entrenant i derrotant a l'eser sense alma que se les va robar.</p>
+      <div class="prod_dest_preu_div">
+        <p class="prod_dest_preu">10,99€</p><p class="prod_dest_iva">/iva inclos</p>
+      </div>
+      <button class="prod_dest_button">COMPRAR</button>
+    </div>
+
+    <div class="prod" *ngIf="mostrarropa">
+      <div id="camiseta" style="background-image: url('assets/pejelagarto_camiseta.png')">
+        <p class="prod_name">Camiseta do Peixelagarto</p>
+        <div class="prod_preu_div">
+          <p class="prod_preu">10,99€</p><p class="prod_iva">/iva inclos</p>
+        </div>
+      </div>
+      <p class="prod_desc">Camiseta unisex 100% algodón con el logo de La Charca Del Pejelagarto.</p>
+      <input type="number" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto1">
+      <button (click)="isLoggedIn ? comprar('Camiseta do Peixelagarto', 10.99, cantidadProducto1, 'assets/pejelagarto_camiseta.png') : errorMsg() " class="prod_dest_button">COMPRAR</button>
+    </div>
+
+    <div class="prod" *ngIf="mostrarcomida">
+      <div id="vi" style="background-image: url('assets/vino-lagartoo.png')">
+        <p class="prod_name">Vi do Peixelagarto</p>
+        <div class="prod_preu_div">
+          <p class="prod_preu">15,99€</p><p class="prod_iva">/iva inclòs</p>
+        </div>
+      </div>
+      <p class="prod_desc">Ampolla de vino Peixelagarto, cosecha especial con aroma y sabor únicos.</p>
+      <input type="number" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto2">
+      <button (click)="isLoggedIn ? comprar('Vi do Peixelagarto', 15.99, cantidadProducto2, 'assets/vino-lagartoo.png') : errorMsg() " class="prod_dest_button">COMPRAR</button>
+    </div>
+
+    <div class="prod" *ngIf="mostrarropa">
+      <div id="calcetin" style="background-image: url('assets/michopeix.jpg')">
+        <p class="prod_name">Mitjó do Peixelagarto</p>
+        <div class="prod_preu_div">
+          <p class="prod_preu">5,99€</p><p class="prod_iva">/iva inclòs</p>
+        </div>
+      </div>
+      <p class="prod_desc">Calcetines suaves y cómodos con el logotipo de La Charca Del Pejelagarto, disponibles en varias tallas.</p>
+      <input type="number" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto3">
+      <button (click)="isLoggedIn ? comprar('Mitjó do Peixelagarto', 5.99, cantidadProducto3, 'assets/michopeix.jpg') : errorMsg() " class="prod_dest_button">COMPRAR</button>
+    </div>
+
+    <div class="prod" *ngIf="mostrarropa">
+      <div id="mochila" style="background-image: url('assets/mochilaRana_.jpg')">
+        <p class="prod_name">Motxilla do Peixelagarto</p>
+        <div class="prod_preu_div">
+          <p class="prod_preu">19,99€</p><p class="prod_iva">/iva inclòs</p>
+        </div>
+      </div>
+      <p class="prod_desc">Mochila resistente y espaciosa con el diseño exclusivo de La Charca Del Pejelagarto, perfecta para llevar tus cosas.</p>
+      <input type="number" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto4">
+      <button (click)="isLoggedIn ? comprar('Motxilla do Peixelagarto', 19.99, cantidadProducto4,'assets/mochilaRana_.jpg') : errorMsg() " class="prod_dest_button">COMPRAR</button>
+    </div>
+
+    <div class="prod" *ngIf="mostrarcomida">
+      <div id="funda" style="background-image: url('assets/galetesdurana.jpg')">
+        <p class="prod_name">Galetes do Sapo</p>
+        <div class="prod_preu_div">
+          <p class="prod_preu">8,99€</p><p class="prod_iva">/iva inclòs</p>
+        </div>
+      </div>
+      <p class="prod_desc">Galletas de La Charca Del Pejelagarto, hechas con la sabiduría de las ranas para un mejor sabor.</p>
+      <input type="number" class="cantidad_producto" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto5">
+      <button (click)="isLoggedIn ? comprar('Galetes do Sapo', 8.99, cantidadProducto5, 'assets/galetesdurana.jpg') : errorMsg() " class="prod_dest_button">COMPRAR</button>
+    </div>
+
+    <div class="prod" *ngIf="mostrarcomida">
+      <div id="cuadro" style="background-image: url('assets/comidaderana.jpg')">
+        <p class="prod_name">Comida do Ranas</p>
+        <div class="prod_preu_div">
+          <p class="prod_preu">25,99€<p class="prod_iva">/iva inclòs</p>
+        </div>
+      </div>
+      <p class="prod_desc">Alimenta a tus ranas con nuestra comida premium: nutrientes esenciales para colores vibrantes y vitalidad óptima.</p>
+      <input type="number" class="cantidad_producto" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto6">
+      <button (click)="isLoggedIn ? comprar('Comida do Ranas', 25.99, cantidadProducto6, 'assets/comidaderana.jpg') : errorMsg() " class="prod_dest_button">COMPRAR</button>
+    </div>
+  </article>
+
+  <div id="info_producto"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,280 @@
+html {
+  background: #65b036;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+#content {
+  padding-left: 2.5%;
+  display: flex;
+  background: #65b036;
+  margin-top: -30px;
+}
+article {
+  width: 70%;
+  margin: 10px;
+  padding: 5px;
+  background: rgba(73, 128, 39, 0.7); /* Cambia el último valor (0.7) para ajustar la transparencia */
+  color: white;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+aside {
+  background: rgba(73, 128, 39, 0.7); /* Cambia el último valor (0.7) para ajustar la transparencia */
+  color: white;
+  width: 25%;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+.noticia {
+  background: #37621d;
+  width: 90%;
+  font-size: 20px;
+  height: max-content;
+  margin-top: 20px;
+  margin: 5%;
+  transition: transform 0.3s;
+}
+
+.noticia:hover {
+  transform: scale(1.1);
+}
+.vox-noti{
+  padding: 5px;
+}
+aside h1 {
+  font-size: 30px;
+}
+.verMas {
+  background: #c0e5a5;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.verMasLink {
+  display: block;
+  transition: margin-left 0.7s ease; /* Agregamos una transición para suavizar el movimiento */
+  margin-left: 0; /* Posición inicial del texto */
+}
+.verMas a {
+  text-decoration: none; /* Quita el subrayado del enlace */
+  color: #000000; /* Cambia el color del texto a blanco verdoso */
+}
+/* Cuando se pasa el ratón sobre cualquier elemento con la clase .verMas */
+.verMas:hover .verMasLink {
+  margin-left: 70%; /* Movemos el texto hacia la derecha */
+}
+
+/* Cuando se pasa el ratón sobre cualquier elemento con la clase .verMas */
+.verMas:hover {
+  background: #a7d99d; /* Cambia el color de fondo cuando el ratón está encima */
+}
+@media (max-width: 850px) {
+  article {
+    width: 95%;
+  }
+  aside {
+    width: 95%;
+    height: auto;
+  }
+}
+
+/*Css para los contenedores de cada integrante*/
+#box-users {
+  display: flex;
+  width: 80%;
+}
+
+.box-user {
+  flex: 1;
+  text-align: center;
+  width: 50%;
+  margin: 20px;
+
+}
+.box-user img{
+  width: 100%;
+  border-radius: 50%;
+}
+
+.name-user {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.description-user {
+  border-top: 1px solid black;
+}
+
+
+/*INICI CSS CODEPEN*/
+
+*{box-sizing: border-box; -webkit-box-sizing: border-box; }
+
+/*
+PURE RESPONSIVE CSS3 SLIDESHOW GALLERY by Roko C. buljan
+http://stackoverflow.com/a/34696029/383904
+*/
+
+.CSSgal {
+  position: relative;
+  overflow: hidden;
+  height: 530px; /* Or set a fixed height */
+  margin-bottom: 30px;
+  box-shadow: #37621d 0px 0px 30px;
+  margin-top: -16px;
+}
+
+/* SLIDER */
+
+.CSSgal .slider {
+  height: 100%;
+  white-space: nowrap;
+  font-size: 0;
+  transition: 0.8s;
+}
+
+/* SLIDES */
+.greybg {
+  height: max-content;
+  width: max-content;
+  background: #2222227f;
+  margin: auto;
+  box-shadow: 0px 0px 30px #222;
+  margin-top: 365px;
+}
+.CSSgal .slider > * {
+  font-size: 1rem;
+  display: inline-block;
+  white-space: normal;
+  vertical-align: top;
+  height: 100%;
+  width: 100%;
+  background: none 50% no-repeat;
+  background-size: cover;
+}
+
+/* PREV/NEXT, CONTAINERS & ANCHORS */
+
+.CSSgal .prevNext {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  width: 100%;
+  height: 0;
+}
+
+.CSSgal .prevNext > div+div {
+  visibility: hidden; /* Hide all but first P/N container */
+}
+
+.CSSgal .prevNext a {
+  background: #fff;
+  position: absolute;
+  width:       60px;
+  height:      60px;
+  line-height: 60px; /* If you want to place numbers */
+  text-align: center;
+  opacity: 0.7;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 0;
+}
+.CSSgal .prevNext a:hover {
+  opacity: 1;
+}
+.CSSgal .prevNext a+a {
+  left: auto;
+  right: 0;
+}
+
+/* NAVIGATION */
+
+.CSSgal .bullets {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+}
+.CSSgal .bullets > a {
+  display: inline-block;
+  width:       30px;
+  height:      30px;
+  line-height: 30px;
+  text-decoration: none;
+  text-align: center;
+  background: rgba(255, 255, 255, 1);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.CSSgal .bullets > a+a {
+  background: rgba(255, 255, 255, 0.5); /* Dim all but first */
+}
+.CSSgal .bullets > a:hover {
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* NAVIGATION BUTTONS */
+/* ALL: */
+.CSSgal >s:target ~ .bullets >* {      background: rgba(255, 255, 255, 0.5);}
+/* ACTIVE */
+#s1:target ~ .bullets >*:nth-child(1) {background: rgba(255, 255, 255,   1);}
+#s2:target ~ .bullets >*:nth-child(2) {background: rgba(255, 255, 255,   1);}
+#s3:target ~ .bullets >*:nth-child(3) {background: rgba(255, 255, 255,   1);}
+#s4:target ~ .bullets >*:nth-child(4) {background: rgba(255, 255, 255,   1);}
+/* More slides? Add here more rules */
+
+/* PREV/NEXT CONTAINERS VISIBILITY */
+/* ALL: */
+.CSSgal >s:target ~ .prevNext >* {      visibility: hidden;}
+/* ACTIVE: */
+#s1:target ~ .prevNext >*:nth-child(1) {visibility: visible;}
+#s2:target ~ .prevNext >*:nth-child(2) {visibility: visible;}
+#s3:target ~ .prevNext >*:nth-child(3) {visibility: visible;}
+#s4:target ~ .prevNext >*:nth-child(4) {visibility: visible;}
+/* More slides? Add here more rules */
+
+/* SLIDER ANIMATION POSITIONS */
+
+#s1:target ~ .slider {transform: translateX(   0%); -webkit-transform: translateX(   0%);}
+#s2:target ~ .slider {transform: translateX(-100%); -webkit-transform: translateX(-100%);}
+#s3:target ~ .slider {transform: translateX(-200%); -webkit-transform: translateX(-200%);}
+#s4:target ~ .slider {transform: translateX(-300%); -webkit-transform: translateX(-300%);}
+/* More slides? Add here more rules */
+
+
+/* YOU'RE THE DESIGNER!
+   ____________________
+   All above was mainly to get it working :)
+   CSSgal CUSTOM STYLES / OVERRIDES HERE: */
+
+.CSSgal{
+  color: #fff;
+  text-align: center;
+}
+.CSSgal .slider h2 {
+  margin-top: 40vh;
+  font-weight: 200;
+  letter-spacing: -0.06em;
+  word-spacing: 0.2em;
+  font-size: 3em;
+}
+.CSSgal a {
+  border-radius: 50%;
+  margin: 0 3px;
+  color: rgba(0,0,0,0.8);
+  text-decoration: none;
+}
+
+/*FIN CSS CODEPEN*/
+

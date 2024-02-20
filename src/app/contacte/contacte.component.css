@@ -1,0 +1,47 @@
+
+body {
+  /*background-image: url("assets/a7c063a5d8c5.jpg");*/
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.red-S {
+  display: flex;
+}
+.red-S img {
+  width: 2em;
+  height: 2em;
+}
+.red-S a {
+  text-decoration: none;
+  font-family: Arial, serif;
+  color: white;
+}
+.red-S .textoC {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.5em;
+}
+
+#box-contacte {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+  background-color: rgba(7, 7, 7, 0.73);
+  color: white;
+}
+
+.contact-info {
+  width: 80%;
+  font-family: Arial, serif;
+}
+.contact-info #cartaP {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+}

@@ -1,0 +1,12 @@
+html {
+  background: #65b036;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #65af36;
+}
+#cabeza{}
+#pie{
+  margin-top: -10px;
+}

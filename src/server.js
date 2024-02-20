@@ -1,0 +1,213 @@
+const express = require('express');
+const cors = require('cors');
+const admin = require('firebase-admin');
+
+const app = express();
+const port = 3080;
+
+// Middleware para parsear el cuerpo de las solicitudes como JSON
+app.use(express.json());
+
+// Middleware para permitir solicitudes desde otras páginas web (CORS)
+app.use(cors());
+
+// Ruta al archivo de credenciales de Firebase
+const serviceAccount = require('./la-charca-del-pejelagart-42698-firebase-adminsdk-x91fd-dcee3392f3.json');
+
+// Inicialización de la aplicación de Firebase
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+// Conexión a la base de datos Firestore
+const db = admin.firestore();
+
+// Referencia a la colección 'usuarios' en Firestore
+const usuarios = db.collection('charca').doc('usuarios');
+
+// Inicio del servidor Express
+app.listen(port, () => {
+  console.log(`Escuchando en el puerto: ${port}`);
+});
+
+// Ruta para obtener datos de usuario
+app.get('/datosUsuario', async (req, res) => {
+  try {
+    // Obtener datos de Firestore
+    const datos = await usuarios.get();
+    // Enviar datos como respuesta JSON
+    res.json(datos.data());
+  } catch (error) {
+    // Manejo de errores
+    console.error("Error al obtener datos de usuario:", error);
+    res.status(500).json({ error: 'Error al obtener datos de usuario' });
+  }
+});
+
+app.post('/registroUsuario', async (req, res) => {
+  const datos = db.collection('charca')
+  const nombrearchibo = req.body.email;
+  const datosuser = {
+    user: req.body.user,
+    email: req.body.email,
+    contrasenya: req.body.contrasenya,
+    nombre: req.body.nombre,
+    apellido: req.body.apellido,
+    descripcion: req.body.descripcion,
+    tel: req.body.tel
+  };
+  await datos.doc(nombrearchibo).set({datosuser})
+});
+
+
+//se tiene que instalar el jsonpath
+const  jp = require('jsonpath')
+
+app.get('/gmailuser', async (req, res) => {
+  const snapshot = await db.collection('charca').get();
+  const nombresArchivos = [];
+
+  snapshot.forEach(doc => {
+    nombresArchivos.push(doc.id);
+  });
+
+  res.json(nombresArchivos);
+});
+app.get('/passworduser', async (req, res) =>{
+  try {
+    const usuariosSnapshot = await db.collection('charca').get();
+    const entradasConContraseña = [];
+
+    usuariosSnapshot.forEach(doc => {
+      const datauser = doc.data();
+      const datosmail = jp.query(datauser, '$..email');
+      const datosconta = jp.query(datauser, '$..contrasenya');
+      const datosuser = jp.query(datauser, '$..user');
+
+      for (let i = 0; i < Math.min(datosmail.length, datosconta.length, datosuser.length); i++) {
+        entradasConContraseña.push({
+          email: datosmail[i],
+          contrasenya: datosconta[i],
+          user: datosuser[i]
+        });
+      }
+    });
+
+    res.json(entradasConContraseña);
+  } catch (error) {
+    console.error("Error al obtener usuarios:", error);
+    res.status(500).json({ error: "Error al obtener usuarios" });
+  }
+});
+
+app.get('/tadalainfodeluser', async (req, res) => {
+  try {
+    const usuariosSnapshot = await db.collection('charca').get();
+    const entradasConTodosLosCampos = [];
+
+    usuariosSnapshot.forEach(doc => {
+      const datauser = doc.data();
+      const datosmail = jp.query(datauser, '$..email');
+      const datosconta = jp.query(datauser, '$..contrasenya');
+      const datosuser = jp.query(datauser, '$..user');
+      const datosnom = jp.query(datauser, '$..nombre');
+      const datoscognom = jp.query(datauser, '$..apellido');
+      const datosdescripcion = jp.query(datauser, '$..descripcion');
+      const datostel = jp.query(datauser, '$..tel');
+
+      for (let i = 0; i < Math.min(datosmail.length, datosconta.length, datosuser.length); i++) {
+        entradasConTodosLosCampos.push({
+          email: datosmail[i],
+          contrasenya: datosconta[i],
+          user: datosuser[i],
+          nombre: datosnom[i],
+          apellido: datoscognom[i],
+          descripcion: datosdescripcion[i],
+          tel: datostel[i]
+        });
+      }
+    });
+
+    res.json(entradasConTodosLosCampos);
+  } catch (error) {
+    console.error("Error al obtener los datos de usuario:", error);
+    res.status(500).json({ error: "Hubo un error al obtener los datos de usuario." });
+  }
+});
+
+app.post('/modificarUsuario', async (req, res) => {
+  try {
+    const correoUsuario = req.body.email;
+    const datosUsuario = {
+      user: req.body.user,
+      email: req.body.email,
+      contrasenya: req.body.contrasenya,
+      nombre: req.body.nombre,
+      apellido: req.body.apellido,
+      descripcion: req.body.descripcion,
+      tel: req.body.tel
+    };
+
+    const usuarioRef = db.collection('charca').doc(correoUsuario);
+
+    await usuarioRef.set(datosUsuario);
+
+    return res.status(200).json({ message: 'Usuario modificado exitosamente.' });
+  } catch (error) {
+    console.error("Error al modificar el usuario:", error);
+    return res.status(500).json({ error: "Hubo un error al modificar el usuario." });
+  }
+});
+
+app.post('/mailberificacion',async (req,res) => {
+  const nodemailer = require('nodemailer');
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'lacharchadelpejelagarto@gmail.com',
+      pass: 'hnfy izkj luuc dwaq'
+    }
+  });
+  const mail = req.body.mail; // Accede al correo electrónico enviado desde el cliente
+  let mailOptions = {
+    from: 'lacharchadelpejelagarto@gmail.com',
+    to: mail,
+    subject: 'Verificar tu cuenta',
+    html: '<a href="http://localhost:4200/validacion">Validar</a>'
+  };
+  await transporter.sendMail(mailOptions, (error, response) => {
+    error ? console.log(error) : console.log(response);
+  })
+})
+
+app.post('/mail',async (req,res) => {
+  const nodemailer = require('nodemailer');
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'lacharchadelpejelagarto@gmail.com',
+      pass: 'hnfy izkj luuc dwaq'
+    }
+  });
+  const mail = req.body.mail; // Accede al correo electrónico enviado desde el cliente
+  let mailOptions = {
+    from: 'lacharchadelpejelagarto@gmail.com',
+    to: mail,
+    subject: 'Recuperar tu contraseña',
+    html: '<a href="http://localhost:4200/recuperar">Recuperar</a>'
+  };
+  await transporter.sendMail(mailOptions, (error, response) => {
+    error ? console.log(error) : console.log(response);
+  })
+})
+
+const docRef = db.collection('charca')
+app.post('/contra', async (req, res)=>{
+  let data = {datosuser: {contrasenya: req.body.contrasenya}}
+  const rs = await docRef.doc(req.body.mail).set(data, {merge: true})
+})
+
+
+
+
+

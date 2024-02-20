@@ -1,0 +1,126 @@
+<div id="todo">
+  <div>
+    <p>Imagen Perfil</p>
+    <div class="contenedor-imagenes">
+      <div class="imagen">
+        <img src="assets/michopeix.jpg" alt="Imagen 1" class="imagen-item">
+        <div class="overlay"></div>
+      </div>
+      <div class="imagen">
+        <img src="assets/comidaderana.jpg" alt="Imagen 2" class="imagen-item">
+        <div class="overlay"></div>
+      </div>
+      <div class="imagen">
+        <img src="assets/michopeix.jpg" alt="Imagen 3" class="imagen-item">
+        <div class="overlay"></div>
+      </div>
+      <div class="imagen">
+        <img src="assets/michopeix.jpg" alt="Imagen 4" class="imagen-item">
+        <div class="overlay"></div>
+      </div>
+      <div class="imagen">
+        <img src="assets/michopeix.jpg" alt="Imagen 5" class="imagen-item">
+        <div class="overlay"></div>
+      </div>
+      <div class="imagen">
+        <img src="assets/michopeix.jpg" alt="Imagen 6" class="imagen-item">
+        <div class="overlay"></div>
+      </div>
+      <div class="imagen">
+        <img src="assets/michopeix.jpg" alt="Imagen 7" class="imagen-item">
+        <div class="overlay"></div>
+      </div>
+      <div class="imagen">
+        <img src="assets/michopeix.jpg" alt="Imagen 8" class="imagen-item">
+        <div class="overlay"></div>
+      </div>
+      <div class="imagen">
+        <img src="assets/michopeix.jpg" alt="Imagen 9" class="imagen-item">
+        <div class="overlay"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="info-user">
+    <div *ngIf="Info1" class="contenedor-info" id="info-1">
+      <article>
+        <form class="formulario-info" >
+          <p class="campo-titulo">Nom d'usuari:</p>
+          <input type="text" value="{{usuari}}" readonly class="campo-usuario" id="nombre-usuario">
+
+          <p class="campo-titulo">Correu electrònic de l'usuari:</p>
+          <input type="email" value="{{correuUser}}" readonly class="campo-correo" id="correo-usuario">
+
+          <p class="campo-titulo">Contrasenya de l'usuari:</p>
+          <div class="vox-contra">
+            <input *ngIf="!showPassword; else passwordField" type="password" value="{{contraUser}}" readonly class="campo-contraseña" id="contraseña-usuario">
+            <ng-template #passwordField>
+              <input type="text" value="{{contraUser}}" readonly class="campo-contraseña" >
+            </ng-template>
+            <button type="button" (click)="togglePasswordVisibility()" class="boton-toggle-password" id="boton-toggle-password">
+              <i class="fas fa-eye" *ngIf="!showPassword"></i>
+              <i class="fas fa-eye-slash" *ngIf="showPassword"></i>
+            </button>
+          </div>
+
+          <hr>
+
+          <p class="campo-titulo">Nom:</p>
+          <input type="text" value="{{nomuser}}" readonly class="campo-nombre" id="nombre">
+
+          <p class="campo-titulo">Cognom:</p>
+          <input type="text" value="{{cognomuser}}" readonly class="campo-apellido" id="apellido">
+
+          <p class="campo-titulo">Descripció:</p>
+          <textarea readonly class="campo-descripcion" id="descripcion">{{descripciouser}}</textarea>
+
+          <p class="campo-titulo">Número de telèfon:</p>
+          <input type="tel" value="{{telefonuser}}" readonly class="campo-telefono" id="telefono">
+
+          <hr>
+
+          <!-- Este enlace cambiará al otro conjunto de campos -->
+          <a (click)="mostrarInfo2()" class="enlace-cambiar-info" id="enlace-cambiar-info">Canviar informació de l'usuari</a>
+        </form>
+      </article>
+    </div>
+
+    <div *ngIf="Info2" class="contenedor-info" id="info-2">
+      <article>
+        <form class="formulario-info" id="formulario-info" #formularioInfo="ngForm">
+          <p class="campo-titulo">Nom d'usuari:</p>
+          <input type="text" [(ngModel)]="usuari" name="usuari2" class="campo-usuario" id="nuevo-nombre-usuario">
+
+          <p class="campo-titulo">Correu electrònic de l'usuari:</p>
+          <input type="email" [(ngModel)]="correuUser" readonly name="correo2" class="campo-correo2" id="correo-usuario2">
+
+          <p class="campo-titulo">Contrasenya de l'usuari:</p>
+          <input type="text" [(ngModel)]="contraUser" name="contraUser2" class="campo-contraseña" id="nueva-contraseña-usuario">
+
+          <hr>
+
+          <p class="campo-titulo">Nom:</p>
+          <input type="text" [(ngModel)]="nomuser" name="nomuser2" class="campo-nombre" id="nuevo-nombre">
+
+          <p class="campo-titulo">Cognom:</p>
+          <input type="text" [(ngModel)]="cognomuser" name="cognomuser2" class="campo-apellido" id="nuevo-apellido">
+
+          <p class="campo-titulo">Descripció:</p>
+          <textarea [(ngModel)]="descripciouser" name="descripciouser2" class="campo-descripcion" id="nueva-descripcion"></textarea>
+
+          <p class="campo-titulo">Número de telèfon:</p>
+          <input type="tel" [(ngModel)]="telefonuser" name="telefonuser2" class="campo-telefono" id="nuevo-telefono">
+
+          <hr>
+
+          <!-- Estos enlaces realizarán acciones -->
+          <a (click)="aplicarCambios()" class="enlace-aplicar-cambios" id="enlace-aplicar-cambios">Aplicar</a>
+          <br>
+          <a (click)="mostrarInfo1()" class="enlace-cancelar-cambios" id="enlace-cancelar-cambios">Cancel·lar</a>
+        </form>
+      </article>
+    </div>
+
+  </div>
+</div>

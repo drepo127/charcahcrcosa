@@ -1,0 +1,20 @@
+<html>
+<body>
+<div class="container" id="container">
+  <div class="form-container ">
+    <form (ngSubmit)="registrarUsuario()">
+      <h1>Registre</h1>
+      <input id="nom" type="text" placeholder="Nom" />
+      <input id="email" type="email" placeholder="Correu electrònic" />
+      <input id="contrasenya" type="password" placeholder="Contrasenya" />
+      <button type="submit">Registra't</button>
+    </form>
+  </div>
+  <div class="overlay-panel overlay-right">
+    <h1>Benvolgut!</h1>
+    <p>Vols iniciar sessió?</p>
+    <a id="BotoL" routerLink="/formulari">Inicia sessió</a>
+  </div>
+</div>
+</body>
+</html>

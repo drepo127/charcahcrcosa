@@ -1,0 +1,116 @@
+/* Estilos para el contenedor del formulario */
+.contenedor-info {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Estilos para el formulario */
+.formulario-info {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Estilos para los campos de título */
+.campo-titulo {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Estilos para los campos de entrada de texto */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+input[type="tel"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* para incluir el padding y el borde en el ancho total */
+}
+
+/* Estilos para el botón */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Estilos para los enlaces */
+a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilos para los enlaces cuando están siendo pasados por encima */
+a:hover {
+  text-decoration: underline;
+}
+.vox-contra {
+  display: flex;
+  align-items: center;
+}
+
+.campo-contraseña-container {
+  display: flex;
+  align-items: center;
+}
+
+#todo{
+  justify-content: center;
+  display: flex;
+}
+#imagen-perfil{
+  width: 50%;
+}
+#info-user{
+  width: 50%;
+}
+
+.contenedor-imagenes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.imagen {
+  position: relative;
+}
+
+.imagen-item {
+  width: 100px;
+  height: 100px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: none;
+}
+
+.imagen:hover .overlay {
+  display: block;
+}
+
+#boton-anadir {
+  margin-top: 20px;
+}
+#info-user{
+  margin-right: 15%;
+}

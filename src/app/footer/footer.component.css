@@ -1,0 +1,56 @@
+/* Pie de pagina */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 2% 0;
+  font-size: 1em;
+  text-align: center;
+  float: left;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.5em 1%;
+}
+
+.footer-logo img {
+  width: 150px;
+
+}
+
+.footer-contact,
+.footer-legal a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-social {
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+.footer-social a {
+  margin: 0 1%;
+}
+
+/* Estilo para los íconos de Font Awesome */
+.footer-social i {
+  font-size: 2em;
+  margin: 0 1%;
+}
