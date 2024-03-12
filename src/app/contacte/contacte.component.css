@@ -45,3 +45,45 @@ body {
   align-items: center;
   margin-bottom: 2em;
 }
+
+#consulta {
+  font-size: 1.5em;
+  font-family: Arial, serif;
+  width: 100%;
+  height: 10em;
+  resize: none;
+}
+#usuario {
+  font-family: Arial, serif;
+}
+#consultes button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+#consultes button:hover {
+  transform: scale(1.1);
+}
+
+#consultes button:active {
+  transform: scale(1.05);
+}
+
+#consultes button:focus {
+  outline: none;
+}
+#consultes{
+  padding-bottom: 2em;
+}
+main {
+  height: 100vh;
+  width: 100vw;
+}
