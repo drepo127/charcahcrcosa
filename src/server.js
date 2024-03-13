@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const admin = require('firebase-admin');
-
+const fs = require('node:fs');
+const { Buffer } = require('node:buffer');
+const concat = require('stream-concat');
 const app = express();
 const port = 3080;
 
@@ -62,6 +64,8 @@ app.post('/registroUsuario', async (req, res) => {
 
 //se tiene que instalar el jsonpath
 const  jp = require('jsonpath')
+//const {dirname} = require("@angular/compiler-cli");
+const path = require("path");
 
 app.get('/gmailuser', async (req, res) => {
   const snapshot = await db.collection('charca').get();
@@ -208,6 +212,24 @@ app.post('/contra', async (req, res)=>{
 })
 
 
+app.post('/consultes', async (req, res) => {
+  const nombreConsulta = req.body.nombreConsulta;
+  const consulta = req.body.consulta;
 
+  const rutaArchibos = path.join(__dirname, '/consultes')
+
+  const files = fs.readdirSync(rutaArchibos);
+  const cantitatfixers = files.length;
+
+  let cantitatfixersAString = cantitatfixers.toString();
+  const rutaParaConsulta = path.join(__dirname, '/consultes','consulta'+cantitatfixersAString+'.txt')
+  const escribirConsultas = fs.createWriteStream(rutaParaConsulta, { flags: 'a' });
+  fs.writeFileSync(rutaParaConsulta, `--------- ${nombreConsulta} ---------\n`);
+  escribirConsultas.write(consulta + "\n");
+  escribirConsultas.end("--------------------------------------------------------");
+
+  console.log(cantitatfixers);
+  console.log(rutaParaConsulta);
+})
 
 
