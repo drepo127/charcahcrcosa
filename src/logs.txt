@@ -1,0 +1,56 @@
+10:50:50 - User: manel, Pagina: Inici
+----------------------------------------------------------------
+10:50:50 - User: manel, Pagina: Inici
+----------------------------------------------------------------
+10:50:51 - User: manel, Pagina: Inici
+----------------------------------------------------------------
+10:51:29 - User: manel, Pagina: Inici
+----------------------------------------------------------------
+10:57:20 - User: null, accion: Ir a pagina Inici
+----------------------------------------------------------------
+10:57:22 - User: null, accion: Ir a pagina tenda
+----------------------------------------------------------------
+10:57:22 - User: null, accion: Ir a pagina cesta
+----------------------------------------------------------------
+10:57:23 - User: null, accion: Ir a pagina condicions
+----------------------------------------------------------------
+10:57:24 - User: null, accion: Ir a pagina contacte
+----------------------------------------------------------------
+11:21:57 - User: null, accion: Compra 1 de Vi do Peixelagarto
+----------------------------------------------------------------
+11:22:9 - User: null, accion: Compra 150 de Vi do Peixelagarto
+----------------------------------------------------------------
+11:33:25 - User: null, accion: Se esta filtrando ropa
+----------------------------------------------------------------
+11:33:41 - User: null, accion: Se esta filtrando Alimentos
+----------------------------------------------------------------
+11:33:45 - User: null, accion: Se esta filtrando ropa
+----------------------------------------------------------------
+11:33:45 - User: null, accion: Se esta filtrando Alimentos
+----------------------------------------------------------------
+11:33:52 - User: null, accion: no se esta filtrando nada
+----------------------------------------------------------------
+11:33:56 - User: null, ac cion: Se esta filtrando ropa
+----------------------------------------------------------------
+11:34:33 - User: null, accion: Se esta filtrando ropa
+----------------------------------------------------------------
+11:36:57 - User: null, accion: Compra 123 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+11:50:27 - User: null, accion: Compra 122 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+11:50:34 - User: null, accion: Ha Comprat los productos
+----------------------------------------------------------------
+11:50:39 - User: null, accion: Compra 12 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+11:50:43 - User: null, accion: undefined
+----------------------------------------------------------------
+11:52:20 - User: null, accion: Compra 1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+11:52:23 - User: null, accion: ha eliminat productes de la cesta
+----------------------------------------------------------------
+11:52:34 - User: null, accion: Compra 1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+11:52:37 - User: null, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:0:3 - User: null, accion: Ha cancelat els canvis en la informacio del usuari
+----------------------------------------------------------------

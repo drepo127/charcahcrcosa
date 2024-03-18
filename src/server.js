@@ -1,14 +1,16 @@
 const express = require('express');
 const cors = require('cors');
 const admin = require('firebase-admin');
-
+const fs = require('node:fs');
+const { Buffer } = require('node:buffer');
+const concat = require('stream-concat');
 const app = express();
 const port = 3080;
 
-// Middleware para parsear el cuerpo de las solicitudes como JSON
+
+
 app.use(express.json());
 
-// Middleware para permitir solicitudes desde otras páginas web (CORS)
 app.use(cors());
 
 // Ruta al archivo de credenciales de Firebase
@@ -62,6 +64,8 @@ app.post('/registroUsuario', async (req, res) => {
 
 //se tiene que instalar el jsonpath
 const  jp = require('jsonpath')
+const {createWriteStream, appendFile} = require("fs");
+const {join} = require("path");
 
 app.get('/gmailuser', async (req, res) => {
   const snapshot = await db.collection('charca').get();
@@ -206,6 +210,24 @@ app.post('/contra', async (req, res)=>{
   let data = {datosuser: {contrasenya: req.body.contrasenya}}
   const rs = await docRef.doc(req.body.mail).set(data, {merge: true})
 })
+
+
+app.post('/logs', async (req, res) => {
+
+
+  const user = req.body.user;
+  const accion = req.body.accion;
+  const data = req.body.data;
+  const logEntry = `${data} - User: ${user}, accion: ${accion}\n`;
+
+  const rutaArchibos = join(__dirname, '/logs.txt');
+  const escribirConsultas = fs.createWriteStream(rutaArchibos, { flags: 'a' });
+  escribirConsultas.write(logEntry)
+  escribirConsultas.end("----------------------------------------------------------------\n");
+
+})
+
+
 
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CommonModule, NgIf} from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import { ProductosService } from '../productos.service';
+import {HttpClient} from "@angular/common/http";
 
 
 interface Producto {
@@ -33,8 +34,11 @@ export class TiendaComponent implements OnInit{
   cantidadProducto5: number = 1;
   cantidadProducto6: number = 1;
   productos: Producto[][] = [];
+  private storedNom: string | null;
 
-  constructor(private productosService: ProductosService) {}
+  constructor(private productosService: ProductosService, private http: HttpClient) {
+    this.storedNom = sessionStorage.getItem('username');
+  }
 
   ngOnInit() {
     this.productosService.productos$.subscribe(productos => {
@@ -47,6 +51,9 @@ export class TiendaComponent implements OnInit{
     window.alert("Has d'iniciar sessio per afegir productes a la cesta!")
   }
   filtrar() {
+    this.mostrarropa = true
+    const currentDate = new Date();
+    const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
     // Obtener los checkboxes marcados
     const checkboxes = document.querySelectorAll('.check_filtro:checked');
 
@@ -63,9 +70,16 @@ export class TiendaComponent implements OnInit{
         switch (checkbox.value) {
           case 'roba':
             this.mostrarropa = true
+            if (!this.isLoggedIn ){
+              this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion:"Se esta filtrando ropa", data: data }, { responseType: 'text' }).subscribe({});
+            }
+
             break;
           case 'alimentacio':
             this.mostrarcomida = true
+            if (!this.isLoggedIn) {
+            this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion:"Se esta filtrando Alimentos", data: data }, { responseType: 'text' }).subscribe({});
+            }
             break;
           // Agregar más casos según sea necesario
         }
@@ -76,6 +90,10 @@ export class TiendaComponent implements OnInit{
     // Lógica para manejar la opción por defecto cuando no hay checkboxes marcados
     this.mostrarropa = true
     this.mostrarcomida = true
+    if (!this.isLoggedIn) {
+    const currentDate = new Date();
+    const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
+    this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion:"no se esta filtrando nada", data: data }, { responseType: 'text' }).subscribe({});}
   }
 
 
@@ -125,5 +143,13 @@ export class TiendaComponent implements OnInit{
       this.productosService.actualizarProductos(this.productos);
     }
     console.log(this.productos)
+    this.logsComprar(nuevoProducto)
   }
+  logsComprar(nuevoProducto: Producto) {
+
+    const currentDate = new Date();
+    const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
+    this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion: `Ha añadido a la cesta  ${nuevoProducto.cantidadProducto} de ${nuevoProducto.prodName}`, data: data }, { responseType: 'text' }).subscribe({});
+  }
+
 }

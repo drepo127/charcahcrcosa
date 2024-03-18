@@ -11,7 +11,7 @@
         Acepto las condiciones de compra
       </label>
       <br>
-      <input class="boton2" type="button" value="Comprar" (click)="comprarProductos()">
+      <input class="boton2" type="button" value="Comprar" (click)="comprarProductos(); logsComprar()">
     </form>
   </div>
   <br>
@@ -25,7 +25,7 @@
           <p class="descripcion">{{ producto.prodName }}</p>
           <p class="cantidad">Cantida producto: {{ producto.cantidadProducto }}</p>
           <p class="precio">{{ producto.prodPreu }}</p>
-          <button class="boton" (click)="quitarProducto(producto.prodName)">Quitar producto</button>
+          <button class="boton" (click)="quitarProducto(producto.prodName); logsQuitarProducto()">Quitar producto</button>
         </div>
       </div>
     </div>

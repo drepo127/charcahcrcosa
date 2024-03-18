@@ -32,6 +32,7 @@ export class UsuarioComponent implements OnInit{
     cognomuser: string | null = null;
     descripciouser: string | null = null;
     telefonuser: string | null = null;
+    private storedNom: string | null;
 
     mostrarInfo2() {
         this.Info1 = false;
@@ -41,6 +42,7 @@ export class UsuarioComponent implements OnInit{
     mostrarInfo1() {
         this.Info1 = true;
         this.Info2 = false;
+        this.logsCancelar()
     }
     showPassword: boolean = false;
 
@@ -51,7 +53,9 @@ export class UsuarioComponent implements OnInit{
         }, 2000); // Cambia este valor (en milisegundos) según lo que prefieras
     }
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+      this.storedNom = sessionStorage.getItem('username');
+    }
 
     ngOnInit() {
         const correoUsuario = sessionStorage.getItem('usercorreo');
@@ -99,6 +103,7 @@ export class UsuarioComponent implements OnInit{
             (response) => {
                 console.log('Información actualizada exitosamente en el servidor:', response);
                 alert("Los datos se han cambiado correctamente");
+                this.logsCanvis()
                 window.location.reload();
             },
             (error) => {
@@ -108,6 +113,19 @@ export class UsuarioComponent implements OnInit{
             }
         );
     }
+
+  logsCanvis() {
+
+    const currentDate = new Date();
+    const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
+    this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion: "Ha canviat la seva informacio del usuari", data: data }, { responseType: 'text' }).subscribe({});
+  }
+  logsCancelar() {
+
+    const currentDate = new Date();
+    const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
+    this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion: "Ha cancelat els canvis en la informacio del usuari", data: data }, { responseType: 'text' }).subscribe({});
+  }
 
 
 }
