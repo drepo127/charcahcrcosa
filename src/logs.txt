@@ -54,3 +54,59 @@
 ----------------------------------------------------------------
 12:0:3 - User: null, accion: Ha cancelat els canvis en la informacio del usuari
 ----------------------------------------------------------------
+8:41:25 - User: null, accion: Ha Comprat los productos
+----------------------------------------------------------------
+8:41:25 - User: null, accion: Ha Comprat los productos
+----------------------------------------------------------------
+8:41:25 - User: null, accion: Ha Comprat los productos
+----------------------------------------------------------------
+8:41:25 - User: null, accion: Ha Comprat los productos
+----------------------------------------------------------------
+8:41:25 - User: null, accion: Ha Comprat los productos
+----------------------------------------------------------------
+8:41:26 - User: null, accion: Ha Comprat los productos
+----------------------------------------------------------------
+8:41:27 - User: null, accion: Ha Comprat los productos
+----------------------------------------------------------------
+8:44:3 - User: joelAAAA, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:44:4 - User: joelAAAA, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:44:4 - User: joelAAAA, accion: Ir a pagina condicions
+----------------------------------------------------------------
+8:44:6 - User: joelAAAA, accion: Ir a pagina Inici
+----------------------------------------------------------------
+8:44:6 - User: joelAAAA, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:44:7 - User: joelAAAA, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:47:19 - User: joelAAAA, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:47:22 - User: joelAAAA, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+8:47:22 - User: joelAAAA, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+8:47:22 - User: joelAAAA, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+8:47:22 - User: joelAAAA, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+8:47:23 - User: joelAAAA, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+8:47:24 - User: joelAAAA, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:48:35 - User: joelAAAA, accion: Ir a pagina Perfil
+----------------------------------------------------------------
+8:48:38 - User: joelAAAA, accion: Ha cancelat els canvis en la informacio del usuari
+----------------------------------------------------------------
+8:48:40 - User: joelAAAA, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:48:44 - User: joelAAAA, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+8:48:46 - User: joelAAAA, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:48:49 - User: joelAAAA, accion: ha eliminat productes de la cesta
+----------------------------------------------------------------
+9:6:28 - User: joelAAAA, accion: Ir a pagina Perfil
+----------------------------------------------------------------
+9:6:38 - User: joelAAAA, accion: S'ha desloguejat
+----------------------------------------------------------------

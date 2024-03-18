@@ -219,6 +219,20 @@ app.post('/consultes', async (req, res) => {
   const consulta = req.body.consulta;
 
   const rutaArchibos = path.join(__dirname, '/consultes')
+    const files = fs.readdirSync(rutaArchibos);
+  const cantitatfixers = files.length;
+
+  let cantitatfixersAString = cantitatfixers.toString();
+  const rutaParaConsulta = path.join(__dirname, '/consultes','consulta'+cantitatfixersAString+'.txt')
+  const escribirConsultas = fs.createWriteStream(rutaParaConsulta, { flags: 'a' });
+  fs.writeFileSync(rutaParaConsulta, `--------- ${nombreConsulta} ---------\n`);
+  escribirConsultas.write(consulta + "\n");
+  escribirConsultas.end("--------------------------------------------------------");
+
+  console.log(cantitatfixers);
+  console.log(rutaParaConsulta);
+})
+
 app.post('/logs', async (req, res) => {
 
 
@@ -233,23 +247,4 @@ app.post('/logs', async (req, res) => {
   escribirConsultas.end("----------------------------------------------------------------\n");
 
 })
-
-
-
-
-
-  const files = fs.readdirSync(rutaArchibos);
-  const cantitatfixers = files.length;
-
-  let cantitatfixersAString = cantitatfixers.toString();
-  const rutaParaConsulta = path.join(__dirname, '/consultes','consulta'+cantitatfixersAString+'.txt')
-  const escribirConsultas = fs.createWriteStream(rutaParaConsulta, { flags: 'a' });
-  fs.writeFileSync(rutaParaConsulta, `--------- ${nombreConsulta} ---------\n`);
-  escribirConsultas.write(consulta + "\n");
-  escribirConsultas.end("--------------------------------------------------------");
-
-  console.log(cantitatfixers);
-  console.log(rutaParaConsulta);
-})
-
 

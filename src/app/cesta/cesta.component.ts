@@ -31,7 +31,7 @@ export class CestaComponent implements OnInit {
       this.productos = productos;
       this.calcularPrecio()
     });
-    const isLoggedInString = localStorage.getItem('isLoggedIn');
+    const isLoggedInString = sessionStorage.getItem('isLoggedIn');
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
 
   }
