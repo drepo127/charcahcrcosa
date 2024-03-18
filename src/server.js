@@ -7,10 +7,10 @@ const concat = require('stream-concat');
 const app = express();
 const port = 3080;
 
-
-
+// Middleware para parsear el cuerpo de las solicitudes como JSON
 app.use(express.json());
 
+// Middleware para permitir solicitudes desde otras páginas web (CORS)
 app.use(cors());
 
 // Ruta al archivo de credenciales de Firebase
@@ -66,6 +66,8 @@ app.post('/registroUsuario', async (req, res) => {
 const  jp = require('jsonpath')
 const {createWriteStream, appendFile} = require("fs");
 const {join} = require("path");
+//const {dirname} = require("@angular/compiler-cli");
+const path = require("path");
 
 app.get('/gmailuser', async (req, res) => {
   const snapshot = await db.collection('charca').get();
@@ -212,6 +214,11 @@ app.post('/contra', async (req, res)=>{
 })
 
 
+app.post('/consultes', async (req, res) => {
+  const nombreConsulta = req.body.nombreConsulta;
+  const consulta = req.body.consulta;
+
+  const rutaArchibos = path.join(__dirname, '/consultes')
 app.post('/logs', async (req, res) => {
 
 
@@ -231,5 +238,18 @@ app.post('/logs', async (req, res) => {
 
 
 
+  const files = fs.readdirSync(rutaArchibos);
+  const cantitatfixers = files.length;
+
+  let cantitatfixersAString = cantitatfixers.toString();
+  const rutaParaConsulta = path.join(__dirname, '/consultes','consulta'+cantitatfixersAString+'.txt')
+  const escribirConsultas = fs.createWriteStream(rutaParaConsulta, { flags: 'a' });
+  fs.writeFileSync(rutaParaConsulta, `--------- ${nombreConsulta} ---------\n`);
+  escribirConsultas.write(consulta + "\n");
+  escribirConsultas.end("--------------------------------------------------------");
+
+  console.log(cantitatfixers);
+  console.log(rutaParaConsulta);
+})
 
 
