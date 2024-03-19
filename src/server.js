@@ -64,6 +64,8 @@ app.post('/registroUsuario', async (req, res) => {
 
 //se tiene que instalar el jsonpath
 const  jp = require('jsonpath')
+const {createWriteStream, appendFile} = require("fs");
+const {join} = require("path");
 //const {dirname} = require("@angular/compiler-cli");
 const path = require("path");
 

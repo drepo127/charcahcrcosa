@@ -5,7 +5,6 @@ import {FormsModule} from "@angular/forms";
 import {RecaptchaModule} from "ng-recaptcha";
 import {NgIf} from "@angular/common";
 
-declare var grecaptcha: any;
 @Component({
   selector: 'app-contacte',
   standalone: true,
