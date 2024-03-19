@@ -10,21 +10,33 @@
     <div class="dropdown">
       <button class="dropbtn">{{storedNom}}</button>
       <div class="dropdown-content">
-        <button routerLink="usuario" >Usuari</button>
-        <button (click)="clearLogInData()" >Desconnectar-se</button>
+        <button (click)="logsPerfil()" routerLink="usuario" >Usuari</button>
+        <button (click)="logsDesloguejar();clearLogInData()" >Desconnectar-se</button>
       </div>
     </div>
   </div>
   <div *ngIf="!isLoggedIn" class="registro">
     <a routerLink="formulari" class="regist">Registra't</a>
   </div>
-  <div id="menu">
+  <div *ngIf="!isLoggedIn" id="menu">
     <a routerLink="inici">Inici</a>
     <a routerLink="tienda">Catàleg</a>
     <a routerLink="cesta">Cistella</a>
     <a routerLink="condicions">Condicions</a>
     <a routerLink="contacte">Contacte</a>
   </div>
+
+  <div *ngIf="isLoggedIn" id="menuLog">
+    <a routerLink="inici" (click)="logsInici()">Inici</a>
+    <a routerLink="tienda" (click)="logstenda()">Catàleg</a>
+    <a routerLink="cesta" (click)="logsCesta()">Cistella</a>
+    <a routerLink="condicions" (click)="logsCondicions()">Condicions</a>
+    <a routerLink="contacte" (click)="logsContacte()">Contacte</a>
+  </div>
+
+
+
+
   <div id="buscador">
     <form action="#" method="get">
       <input class="busqueda" type="text" id="busqueda" name="q">

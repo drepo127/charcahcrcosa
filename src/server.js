@@ -235,4 +235,18 @@ app.post('/consultes', async (req, res) => {
   console.log(rutaParaConsulta);
 })
 
+app.post('/logs', async (req, res) => {
+
+
+  const user = req.body.user;
+  const accion = req.body.accion;
+  const data = req.body.data;
+  const logEntry = `${data} - User: ${user}, accion: ${accion}\n`;
+
+  const rutaArchibos = join(__dirname, '/logs.txt');
+  const escribirConsultas = fs.createWriteStream(rutaArchibos, { flags: 'a' });
+  escribirConsultas.write(logEntry)
+  escribirConsultas.end("----------------------------------------------------------------\n");
+
+})
 

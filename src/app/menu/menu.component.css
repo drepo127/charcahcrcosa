@@ -57,6 +57,44 @@ menu{
   margin-left: 8em;
 
 }
+
+menuLog{
+  margin-top: 0;
+  height: 3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  margin-bottom: 0;
+  top: 0;
+  z-index: 1000
+}
+#menuLog a,.registro a{
+  text-decoration: none;
+  font-family: Arial;
+  color: white;
+}
+#menuLog a:hover ,.registro:hover, .buquedaB:hover{
+  background-color: #86d384;
+}
+
+#menuLog a{
+  width: 5em;
+  background-color: rgba(64, 114, 19, 0.53);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#menuLog{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-left: 8em;
+
+}
 .registro{
   background-color: rgba(205, 241, 181, 0.53);
   height: 60%;

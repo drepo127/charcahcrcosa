@@ -43,7 +43,7 @@
       </div>
       <p class="prod_desc">Camiseta unisex 100% algodón con el logo de La Charca Del Pejelagarto.</p>
       <input type="number" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto1">
-      <button (click)="isLoggedIn ? comprar('Camiseta do Peixelagarto', 10.99, cantidadProducto1, 'assets/pejelagarto_camiseta.png') : errorMsg() " class="prod_dest_button">COMPRAR</button>
+      <button (click)="!isLoggedIn ? comprar('Camiseta do Peixelagarto', 10.99, cantidadProducto1, 'assets/pejelagarto_camiseta.png') : errorMsg() " class="prod_dest_button">COMPRAR</button>
     </div>
 
     <div class="prod" *ngIf="mostrarcomida">
