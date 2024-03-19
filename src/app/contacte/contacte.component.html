@@ -40,10 +40,13 @@
         <br>
         <textarea name="consulta" id="consulta" [(ngModel)]="consulta"></textarea>
       </div>
-      <button type="submit" (click)="mandarConsulta()">Enviar Consulta</button>
+      <div id="g-recaptcha" class="g-recaptcha" data-sitekey="<6LfDYZwpAAAAAMr4dSQfhjusf4ed4LMMdGUBuJl_>"></div>
+      <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+      <re-captcha (resolved)="onResolved($event)" siteKey="6LfDYZwpAAAAAMr4dSQfhjusf4ed4LMMdGUBuJl_"></re-captcha>
+      <button *ngIf="this.recaptcha!= null" type="submit" class="boton-encendido"(click)="mandarConsulta()">Enviar Consulta</button>
+      <button *ngIf="this.recaptcha== null" type="submit" class="boton-apagado" disabled>Enviar Consulta</button>
     </form>
-
   </div>
 </div>
-
 </body>
+

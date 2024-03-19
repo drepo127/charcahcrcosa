@@ -216,9 +216,12 @@ app.post('/consultes', async (req, res) => {
   const nombreConsulta = req.body.nombreConsulta;
   const consulta = req.body.consulta;
 
-  const rutaArchibos = path.join(__dirname, '/consultes')
+  const rutaArchivos = path.join(__dirname, '/consultes')
+  if (!fs.existsSync(rutaArchivos)) {
+    fs.mkdirSync(rutaArchivos);
+  }
 
-  const files = fs.readdirSync(rutaArchibos);
+  const files = fs.readdirSync(rutaArchivos);
   const cantitatfixers = files.length;
 
   let cantitatfixersAString = cantitatfixers.toString();
