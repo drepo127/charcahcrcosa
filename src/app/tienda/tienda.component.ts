@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CommonModule, NgIf} from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import { ProductosService } from '../productos.service';
+import {NgbProgressbarConfig, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 interface Producto {
@@ -16,10 +17,12 @@ interface Producto {
   standalone: true,
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    NgbProgressbarModule
   ],
   templateUrl: './tienda.component.html',
-  styleUrl: './tienda.component.css'
+  styleUrl: './tienda.component.css',
+  providers: [NgbProgressbarConfig]
 })
 
 export class TiendaComponent implements OnInit{
@@ -34,13 +37,26 @@ export class TiendaComponent implements OnInit{
   cantidadProducto6: number = 1;
   productos: Producto[][] = [];
 
-  constructor(private productosService: ProductosService) {}
+
+  showPopup = false;
+
+
+  constructor(private productosService: ProductosService, config: NgbProgressbarConfig) {
+    //---------------- PROGRESS BAR CONFIG ----------------
+    config.height = '10px';
+    config.type = 'linear';
+    config.striped = true;
+    config.animated = true;
+    //-------------------------------------------------------
+  }
+  value = 0;
+  private timer: any;
 
   ngOnInit() {
     this.productosService.productos$.subscribe(productos => {
       this.productos = productos;
     });
-    const isLoggedInString = localStorage.getItem('isLoggedIn');
+    const isLoggedInString = sessionStorage.getItem('isLoggedIn');
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
   }
   errorMsg(){
@@ -81,6 +97,7 @@ export class TiendaComponent implements OnInit{
 
 
   comprar(prodName: string, prodPreu: number, cantidadProducto: number, rutaImagen: string) {
+    this.openPopup()
     switch (prodName) {
       case 'Camiseta do Peixelagarto':
         cantidadProducto = this.cantidadProducto1
@@ -125,5 +142,21 @@ export class TiendaComponent implements OnInit{
       this.productosService.actualizarProductos(this.productos);
     }
     console.log(this.productos)
+  }
+  openPopup() {
+    this.showPopup = true;
+    this.value = 0; // Reset the progress bar value
+    this.timer = setInterval(() => {
+      this.value = Math.min(this.value + 2, 140);
+      if (this.value === 140) {
+        this.closePopup(); // Close the popup when the progress bar reaches 100%
+      }
+    }, 40);
+  }
+
+  closePopup() {
+    clearInterval(this.timer);
+    this.showPopup = false;
+    this.value = 0;
   }
 }

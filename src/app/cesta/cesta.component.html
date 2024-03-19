@@ -30,11 +30,14 @@
       </div>
     </div>
   </div>
+  @for (alert of alerts; track alert) {
+  <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
+  }
 </div>
 <div id="containerError" *ngIf="!isLoggedIn">
   <div id="error">
     <p>Has d'iniciar sessio per veure la teva cesta!</p>
-    <img ngSrc="./assets/rana-confundida.png" height="300" width="346">
+    <img ngSrc="http://192.168.1.2:3080/assets/rana-confundida.png" height="300" width="346">
   </div>
 </div>
 </body>

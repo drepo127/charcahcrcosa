@@ -232,4 +232,6 @@ app.post('/consultes', async (req, res) => {
   console.log(rutaParaConsulta);
 })
 
+app.use(express.static('.'))
+app.use('/assets', express.static('assets'))
 

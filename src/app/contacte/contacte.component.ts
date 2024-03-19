@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MenuComponent} from "../menu/menu.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-contacte',
@@ -9,7 +10,8 @@ import {FormsModule} from "@angular/forms";
   imports: [
     MenuComponent,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbRatingModule
   ],
   templateUrl: './contacte.component.html',
   styleUrl: './contacte.component.css'
@@ -18,6 +20,8 @@ export class ContacteComponent {
   contacte = true
   consulta: string | null = null;
   nombre: string = "anonimo";
+  rating = 5;
+
 
   constructor(private http: HttpClient) {};
     mandarConsulta(): void {

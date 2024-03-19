@@ -11,8 +11,29 @@ body {
   background: #65b036;
   margin-top: -30px;
 }
+.offcanvas-body {
+  background-color: rgba(73, 128, 39, 0.7); /* Reemplaza 'yourcolor' con el color de fondo deseado */
+}
+.offcanvas-header {
+  background-color: rgba(73, 128, 39, 0.7); /* Reemplaza 'yourcolor' con el color de fondo deseado */
+}
+.noticies{
+  font-size: 25px;
+  transition-duration: 0.3s;
+  border: #37621d 2px solid;
+  border-radius: 30px;
+  font-family: sans-serif;
+  font-weight: bolder;
+  color: #37621d;
+  width: 120px;
+  margin-top: 5px;
+}
+.noticies:hover {
+  transition-duration: 0.3s;
+  background-color: rgba(55, 98, 29, 0.1);
+}
 article {
-  width: 70%;
+  width: 95%;
   margin: 10px;
   padding: 5px;
   background: rgba(73, 128, 39, 0.7); /* Cambia el último valor (0.7) para ajustar la transparencia */

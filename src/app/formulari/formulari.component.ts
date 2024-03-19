@@ -8,6 +8,7 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
+import {NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
 
 interface Usuario {
   loginEmail: string;
@@ -24,6 +25,7 @@ interface Usuario {
     FormsModule,
     RouterLinkActive,
     HttpClientModule,
+    NgbPopoverModule
   ],
   templateUrl: './formulari.component.html',
   styleUrl: './formulari.component.css'
