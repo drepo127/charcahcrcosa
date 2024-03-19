@@ -72,9 +72,11 @@ export class FormulariComponent {
         this.isLoggedIn = true;
         sessionStorage.setItem('isLoggedIn', String(this.isLoggedIn));
         alert('Inicio de sesión correcto');
+        this.logsISessio()
         window.location.replace('http://localhost:4200/inici');
       } else {
         alert('El correo o la contraseña no son correctos');
+        this.logsnoSessio()
         window.location.reload();
       }
     }, error => {
@@ -83,6 +85,16 @@ export class FormulariComponent {
     });
   }
 
+  logsISessio() {
+    const currentDate = new Date();
+    const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
+    this.http.post('http://localhost:3080/logs', { user: this.usercorreo, accion: "Ha iniciat sessio", data: data }, { responseType: 'text' }).subscribe({});
+  }
+  logsnoSessio() {
+    const currentDate = new Date();
+    const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
+    this.http.post('http://localhost:3080/logs', { user: this.usercorreo, accion: "Ha intentat iniciar sessio", data: data }, { responseType: 'text' }).subscribe({});
+  }
 
 }
 
