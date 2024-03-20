@@ -237,9 +237,10 @@ app.post('/consultes', async (req, res) => {
   console.log(rutaParaConsulta);
 })
 
+app.use(express.static('.'))
+app.use('/assets', express.static('assets'))
+
 app.post('/logs', async (req, res) => {
-
-
   const user = req.body.user;
   const accion = req.body.accion;
   const data = req.body.data;
@@ -249,6 +250,5 @@ app.post('/logs', async (req, res) => {
   const escribirConsultas = fs.createWriteStream(rutaArchibos, { flags: 'a' });
   escribirConsultas.write(logEntry)
   escribirConsultas.end("----------------------------------------------------------------\n");
-
 })
 

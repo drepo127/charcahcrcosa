@@ -4,6 +4,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {RecaptchaModule} from "ng-recaptcha";
 import {NgIf} from "@angular/common";
+import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-contacte',
@@ -13,7 +14,8 @@ import {NgIf} from "@angular/common";
     FormsModule,
     HttpClientModule,
     RecaptchaModule,
-    NgIf
+    NgIf,
+    NgbRatingModule
   ],
   templateUrl: './contacte.component.html',
   styleUrl: './contacte.component.css'
@@ -22,6 +24,8 @@ export class ContacteComponent implements OnInit{
   contacte = true
   consulta: string | null = null;
   nombre: string = "anonimo";
+  rating = 5;
+
   recaptcha: string | null | undefined;
 
   onResolved(captchaResponse: string | null){
@@ -43,5 +47,4 @@ export class ContacteComponent implements OnInit{
             window.location.reload();
       }
     }
-
 }

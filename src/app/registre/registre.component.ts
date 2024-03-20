@@ -7,6 +7,7 @@ import {StyleClassModule} from 'primeng/styleclass';
 import { Router } from '@angular/router';
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 interface Usuario {
@@ -24,7 +25,8 @@ interface Usuario {
     CheckboxModule,
     RouterLink,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbTooltipModule
   ],
   templateUrl: './registre.component.html',
   styleUrl: './registre.component.css'

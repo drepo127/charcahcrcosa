@@ -1,4 +1,4 @@
-<body style="background-image: url(assets/a7c063a5d8c5.jpg)">
+<body style="background-image: url(http://192.168.1.2:3080/assets/a7c063a5d8c5.jpg)">
 <div id="box-contacte">
   <div class="contact-info">
     <h2>Información de Contacto</h2>
@@ -8,24 +8,24 @@
     <p>Localización: C/ de l'Institut, s/n 17411 Vidreres </p>
     <p>Redes Sociales:</p>
     <div class="red-S">
-      <div><img src="assets/instagram_black_logo_icon_147122.png" alt=""></div>
+      <div><img src="http://192.168.1.2:3080/assets/instagram_black_logo_icon_147122.png" alt=""></div>
       <div class="textoC"><a href="" target="_blank">Instagram</a></div>
     </div>
     <div class="red-S">
-      <div><img src="assets/steam_icon_135152.png" alt=""></div>
+      <div><img src="http://192.168.1.2:3080/assets/steam_icon_135152.png" alt=""></div>
       <div class="textoC"><a href="" target="_blank">Steam</a></div>
     </div>
     <div class="red-S">
-      <div><img src="assets/TWITTER_icon-icons.com_65486.png" alt=""></div>
+      <div><img src="http://192.168.1.2:3080/assets/TWITTER_icon-icons.com_65486.png" alt=""></div>
       <div class="textoC"><a href="" target="_blank">Twitter</a></div>
     </div>
     <div class="red-S">
-      <div><img src="assets/linkedin_black_logo_icon_147114.png" alt=""></div>
+      <div><img src="http://192.168.1.2:3080/assets/linkedin_black_logo_icon_147114.png" alt=""></div>
       <div class="textoC"><a href="" target="_blank">LinkedIn</a></div>
 
     </div>
     <div id="cartaP">
-      <img src="assets/images.png" alt="">
+      <img src="http://192.168.1.2:3080/assets/images.png" alt="">
     </div>
 
     <hr>
@@ -35,6 +35,9 @@
         <h2>Consultas</h2>
         <label class="nombre">Nombre: </label>
         <input type="text" name="usuario" id="usuario" value="anonimo" [(ngModel)]="nombre">
+        <br>
+        Quina valoracio dones a la nostra pagina?<br>
+        <ngb-rating [(rate)]="rating" /> {{rating}}
         <br>
         <label class="nombre">Consulta: </label>
         <br>

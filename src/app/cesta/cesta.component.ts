@@ -5,13 +5,26 @@ import { Producto } from '../productos.service';
 import {NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+interface Alert {
+  type: string;
+  message: string;
+}
+
+const ALERTS: Alert[] = [
+  {
+    type: 'success',
+    message: 'Aquesta es la teva cistella',
+  },];
+
 
 @Component({
   selector: 'app-cesta',
   standalone: true,
   imports: [CommonModule,
     NgIf,
-    RouterLink, NgOptimizedImage],
+    RouterLink, NgOptimizedImage, NgbAlertModule
+  ],
   templateUrl: './cesta.component.html',
   styleUrl: './cesta.component.css'
 })
@@ -21,9 +34,18 @@ export class CestaComponent implements OnInit {
   isLoggedIn: boolean | null = false;
   user: string | null = null
   private storedNom: string | null;
+  alerts: Alert[] | undefined;
+  close(alert: Alert) {
+    // @ts-ignore
+    this.alerts.splice(this.alerts.indexOf(alert), 1);
+  }
 
   constructor(private productosService: ProductosService, private  http: HttpClient) {
     this.storedNom = sessionStorage.getItem('username');
+    this.reset();
+  }
+  reset() {
+    this.alerts = Array.from(ALERTS);
   }
 
   ngOnInit() {
@@ -33,7 +55,6 @@ export class CestaComponent implements OnInit {
     });
     const isLoggedInString = sessionStorage.getItem('isLoggedIn');
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
-
   }
   quitarProducto(prodName: string) {
     this.productosService.eliminarArrayPorNombre(prodName);

@@ -2,6 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {NgbAccordionModule} from "@ng-bootstrap/ng-bootstrap";
 interface UserData {
     email: string;
     user: string;
@@ -17,7 +18,8 @@ interface UserData {
     imports: [
         NgIf,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        NgbAccordionModule
     ],
     templateUrl: './usuario.component.html',
     styleUrl: './usuario.component.css'

@@ -3,6 +3,7 @@ import {CommonModule, NgIf} from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import { ProductosService } from '../productos.service';
 import {HttpClient} from "@angular/common/http";
+import {NgbProgressbarConfig, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 interface Producto {
@@ -17,10 +18,12 @@ interface Producto {
   standalone: true,
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    NgbProgressbarModule
   ],
   templateUrl: './tienda.component.html',
-  styleUrl: './tienda.component.css'
+  styleUrl: './tienda.component.css',
+  providers: [NgbProgressbarConfig]
 })
 
 export class TiendaComponent implements OnInit{
@@ -36,15 +39,26 @@ export class TiendaComponent implements OnInit{
   productos: Producto[][] = [];
   private storedNom: string | null;
 
-  constructor(private productosService: ProductosService, private http: HttpClient) {
+  constructor(private productosService: ProductosService,config: NgbProgressbarConfig , private http: HttpClient) {
     this.storedNom = sessionStorage.getItem('username');
+    //---------------- PROGRESS BAR CONFIG ----------------
+    config.height = '10px';
+    config.type = 'linear';
+    config.striped = true;
+    config.animated = true;
+    //-------------------------------------------------------
   }
+
+  showPopup = false;
+
+  value = 0;
+  private timer: any;
 
   ngOnInit() {
     this.productosService.productos$.subscribe(productos => {
       this.productos = productos;
     });
-    const isLoggedInString = localStorage.getItem('isLoggedIn');
+    const isLoggedInString = sessionStorage.getItem('isLoggedIn');
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
   }
   errorMsg(){
@@ -99,6 +113,7 @@ export class TiendaComponent implements OnInit{
 
 
   comprar(prodName: string, prodPreu: number, cantidadProducto: number, rutaImagen: string) {
+    this.openPopup()
     switch (prodName) {
       case 'Camiseta do Peixelagarto':
         cantidadProducto = this.cantidadProducto1
@@ -144,6 +159,22 @@ export class TiendaComponent implements OnInit{
     }
     console.log(this.productos)
     this.logsComprar(nuevoProducto)
+  }
+  openPopup() {
+    this.showPopup = true;
+    this.value = 0; // Reset the progress bar value
+    this.timer = setInterval(() => {
+      this.value = Math.min(this.value + 2, 140);
+      if (this.value === 140) {
+        this.closePopup(); // Close the popup when the progress bar reaches 100%
+      }
+    }, 40);
+  }
+
+  closePopup() {
+    clearInterval(this.timer);
+    this.showPopup = false;
+    this.value = 0;
   }
   logsComprar(nuevoProducto: Producto) {
 

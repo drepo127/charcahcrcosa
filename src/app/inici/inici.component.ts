@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, TemplateRef} from '@angular/core';
+import { NgbOffcanvas} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-inici',
@@ -11,6 +13,14 @@ export class IniciComponent implements OnInit {
   storedEmail: string | null = null;
   storedContrasenya: string | null = null;
   contacte = false
+  private offcanvasService = inject(NgbOffcanvas);
+
+  open(content: TemplateRef<any>) {
+    this.offcanvasService.open(content, { position: 'end'}).result.then(
+    );
+  }
+
+
 
   ngOnInit() {
     // Obtener los datos almacenados en localStorage

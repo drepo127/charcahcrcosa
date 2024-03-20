@@ -10,26 +10,26 @@
   <s id="s3"></s>
   <s id="s4"></s>
   <div class="slider">
-    <div style="background-image: url(assets/rana.jpg)">
+    <div style="background-image: url(http://192.168.1.2:3080/assets/rana.jpg)">
       <div class="greybg">
         <h2>ÚLTIMES NOTÍCIES SOBRE <b>GRANOTES</b>  </h2>
         <a></a>
         <p>Mira aquí les últimes notícies interessants<br>sobre els millors animals del planeta</p>
       </div>
     </div>
-    <div style="background-image: url(assets/patreon.jpg)">
+    <div style="background-image: url(http://192.168.1.2:3080/assets/patreon.jpg)">
       <div class="greybg">
         <h2>AJUDA AL <b>PROJECTE</b> </h2>
         <p>Si ho desitges, ens pots ajudar amb el nostre projecte<br>amb una subscripció al nostre Patreon</p>
       </div>
     </div>
-    <div style="background-image: url(assets/gabe.jpeg)">
+    <div style="background-image: url(http://192.168.1.2:3080/assets/gabe.jpeg)">
       <div class="greybg">
         <h2>REBAIXES DE <b>STEAM</b> </h2>
         <p>Quan són les properes rebaixes de Steam?<br>Ho podràs veure aquí</p>
       </div>
     </div>
-    <div style="background-image: url(assets/inutil.jpg)">
+    <div style="background-image: url(http://192.168.1.2:3080/assets/inutil.jpg)">
       <div class="greybg">
         <h2>L'ANIMAL MÉS <b>INÚTIL</b> </h2>
         <p>El peix lluna és l'animal més inútil del món<br>i t'ho demostrem aquí</p>
@@ -51,57 +51,92 @@
     <a href="#s4">4</a>
   </div>
 
+  <ng-template #content let-offcanvas>
+    <div class="offcanvas-header">
+      <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h1>Notícies</h1>
+        <div class="noticia">
+          <div class="vox-noti">
+            <p>Les accions de La Charca Del Peixallagarta han pujat a 0.00152€</p>
+          </div>
+          <div class="verMas"><a href="https://www.youtube.com/watch?v=P_-vULShtyY&ab_channel=NationalGeographicEspa%C3%B1a" class="verMasLink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
+            Ver más</a></div>
+        </div>
+        <div class="noticia">
+          <div class="vox-noti">
+            <p>El videojoc Jogo do Manketilla ha aconseguit les 10.000 vendes a Steam</p>
+          </div>
+          <div class="verMas"><a href="https://www.youtube.com/watch?v=P_-vULShtyY&ab_channel=NationalGeographicEspa%C3%B1a" class="verMasLink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
+            Ver más </a></div>
+        </div>
+        <div class="noticia">
+          <div class="vox-noti">
+            <p>Hem començat a desenvolupar la segona part de Jogo do Manketilla, el nom serà "Jogo do Manketilla 2, ara és personal"</p>
+          </div>
+          <div class="verMas"><a href="https://www.youtube.com/watch?v=P_-vULShtyY&ab_channel=NationalGeographicEspa%C3%B1a" class="verMasLink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
+            Ver más</a></div>
+        </div>
+        <img src="http://192.168.1.2:3080/assets/PEJELAGARTO-696x1354.jpg" style="width: 300px; height: auto;">
+    </div>
+  </ng-template>
+
+
+
 </div>
-<div id="content" style="background-image: url(assets/fondopaginaweb.jpg); background-repeat: no-repeat; background-position: center; background-size: cover;">
+<div id="content" style="background-image: url(http://192.168.1.2:3080/assets/fondopaginaweb.jpg); background-repeat: no-repeat; background-position: center; background-size: cover;">
   <article>
     <h1>Qui som?</h1>
     <p>A La Charca del Pejelagarto estem compromesos amb la creació d'experiències úniques i emocionants. Som una empresa innovadora formada a partir del projecte "Jogo do Manketilla", format en SMX per Joel Pérez de la Casa, Manel Domínguez Gómez i Marcos Hernández González.</p>
+    <button class="noticies" (click)="open(content)">Noticies</button>
     <h1>Integrants:</h1>
     <div id="box-users">
       <div class="box-user">
-        <img src="assets/lj own.png" class="img-user">
+        <img src="http://192.168.1.2:3080/assets/lj own.png" class="img-user">
         <div class="name-user"><h2>Marcos</h2></div>
         <div class="description-user"><p>Un experto en diseño web que disfruta sumergirse en el mundo de los videojuegos y la mantequilla de calidad, siempre buscando formas creativas de fusionar estos intereses en la experiencia del usuario.</p></div>
       </div>
 
       <div class="box-user">
-        <img src="assets/92_sin_titulo_20201030211546.png" class="img-user">
+        <img src="http://192.168.1.2:3080/assets/92_sin_titulo_20201030211546.png" class="img-user">
         <div class="name-user"><h2>Manel</h2></div>
         <div class="description-user"><p>Un apasionado de la programación y las ranas exóticas, combina su amor por la tecnología con su fascinación por estos anfibios en cada línea de código que escribe.</p></div>
       </div>
 
       <div class="box-user">
-        <img src="assets/sapuprimaberesco.png" class="img-user">
+        <img src="http://192.168.1.2:3080/assets/sapuprimaberesco.png" class="img-user">
         <div class="name-user"><h2>Joel</h2></div>
         <div class="description-user"><p>Un emprendedor audaz y visionario que se sumerge en el mundo de los negocios de la Charca del Pejelagarto, creando estrategias innovadoras para promover la venta de juegos y productos de mantequilla y ranas.</p></div>
       </div>
     </div>
 
   </article>
-  <aside>
-    <h1>Notícies</h1>
-    <div class="noticia">
-      <div class="vox-noti">
-        <p>Les accions de La Charca Del Peixallagarta han pujat a 0.00152€</p>
-      </div>
-      <div class="verMas"><a href="https://www.youtube.com/watch?v=P_-vULShtyY&ab_channel=NationalGeographicEspa%C3%B1a" class="verMasLink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
-        Ver más</a></div>
-    </div>
-    <div class="noticia">
-      <div class="vox-noti">
-        <p>El videojoc Jogo do Manketilla ha aconseguit les 10.000 vendes a Steam</p>
-      </div>
-      <div class="verMas"><a href="https://www.youtube.com/watch?v=P_-vULShtyY&ab_channel=NationalGeographicEspa%C3%B1a" class="verMasLink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
-        Ver más </a></div>
-    </div>
-    <div class="noticia">
-      <div class="vox-noti">
-        <p>Hem començat a desenvolupar la segona part de Jogo do Manketilla, el nom serà "Jogo do Manketilla 2, ara és personal"</p>
-      </div>
-      <div class="verMas"><a href="https://www.youtube.com/watch?v=P_-vULShtyY&ab_channel=NationalGeographicEspa%C3%B1a" class="verMasLink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
-        Ver más</a></div>
-    </div>
-    <img src="assets/PEJELAGARTO-696x1354.jpg" style="width: 300px; height: auto;">
-  </aside>
+<!--  <aside>-->
+<!--    <h1>Notícies</h1>-->
+<!--    <div class="noticia">-->
+<!--      <div class="vox-noti">-->
+<!--        <p>Les accions de La Charca Del Peixallagarta han pujat a 0.00152€</p>-->
+<!--      </div>-->
+<!--      <div class="verMas"><a href="https://www.youtube.com/watch?v=P_-vULShtyY&ab_channel=NationalGeographicEspa%C3%B1a" class="verMasLink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>-->
+<!--        Ver más</a></div>-->
+<!--    </div>-->
+<!--    <div class="noticia">-->
+<!--      <div class="vox-noti">-->
+<!--        <p>El videojoc Jogo do Manketilla ha aconseguit les 10.000 vendes a Steam</p>-->
+<!--      </div>-->
+<!--      <div class="verMas"><a href="https://www.youtube.com/watch?v=P_-vULShtyY&ab_channel=NationalGeographicEspa%C3%B1a" class="verMasLink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>-->
+<!--        Ver más </a></div>-->
+<!--    </div>-->
+<!--    <div class="noticia">-->
+<!--      <div class="vox-noti">-->
+<!--        <p>Hem començat a desenvolupar la segona part de Jogo do Manketilla, el nom serà "Jogo do Manketilla 2, ara és personal"</p>-->
+<!--      </div>-->
+<!--      <div class="verMas"><a href="https://www.youtube.com/watch?v=P_-vULShtyY&ab_channel=NationalGeographicEspa%C3%B1a" class="verMasLink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>-->
+<!--        Ver más</a></div>-->
+<!--    </div>-->
+<!--    <img src="assets/PEJELAGARTO-696x1354.jpg" style="width: 300px; height: auto;">-->
+
+<!--  </aside>-->
 </div>
 </body>
