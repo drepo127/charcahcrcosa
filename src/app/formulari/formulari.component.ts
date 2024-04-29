@@ -32,6 +32,7 @@ interface Usuario {
 })
 export class FormulariComponent {
   isLoggedIn: boolean = false;
+  admin: boolean  = false;
   iniciarSesion() {
     // const storedEmail = localStorage.getItem('email');
     // const storedContrasenya = localStorage.getItem('contrasenya');

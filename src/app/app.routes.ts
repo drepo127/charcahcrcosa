@@ -12,6 +12,9 @@ import {UsuarioComponent} from "./usuario/usuario.component";
 import {ErrorComponent} from "./error/error.component";
 import {ValidacionComponent} from "./validacion/validacion.component";
 import {RecuperarComponent} from "./recuperar/recuperar.component";
+import { FormulariAdminComponent } from "./formulari-admin/formulari-admin.component";
+import { DiagramasComponent } from "./diagramas/diagramas.component";
+
 
 
 export const routes: Routes = [
@@ -27,8 +30,11 @@ export const routes: Routes = [
   {path: 'contrasenya', component: ContrasenyaComponent },
   {path: 'validacion', component: ValidacionComponent},
   {path: 'recuperar', component: RecuperarComponent},
+  {path: 'Admin', component: FormulariAdminComponent},
+  {path: 'diagramas', component: DiagramasComponent},
   {path: '404', component: ErrorComponent},
   {path: '**', redirectTo: '/404'}
+
 
 ];
 

@@ -13,6 +13,7 @@ interface UserData {
   apellido: string;
   descripcion: string;
   tel: string;
+  admin: boolean;
 }
 
 @Component({

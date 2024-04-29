@@ -19,6 +19,7 @@
     <a routerLink="formulari" class="regist">Registra't</a>
   </div>
   <div *ngIf="!isLoggedIn" id="menu">
+    <a routerLink="Admin">Admin</a>
     <a routerLink="inici">Inici</a>
     <a routerLink="tienda">Catàleg</a>
     <a routerLink="cesta">Cistella</a>
@@ -27,6 +28,15 @@
   </div>
 
   <div *ngIf="isLoggedIn" id="menuLog">
+    <a routerLink="inici" (click)="logsInici()">Inici</a>
+    <a routerLink="tienda" (click)="logstenda()">Catàleg</a>
+    <a routerLink="cesta" (click)="logsCesta()">Cistella</a>
+    <a routerLink="condicions" (click)="logsCondicions()">Condicions</a>
+    <a routerLink="contacte" (click)="logsContacte()">Contacte</a>
+  </div>
+
+  <div *ngIf="isLoggedIn && isAdmin" id="menuAdmin">
+    <a routerLink="Admin">Admin</a>
     <a routerLink="inici" (click)="logsInici()">Inici</a>
     <a routerLink="tienda" (click)="logstenda()">Catàleg</a>
     <a routerLink="cesta" (click)="logsCesta()">Cistella</a>

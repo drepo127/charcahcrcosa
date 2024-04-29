@@ -12,3 +12,17 @@
 ----------------------------------------------------------------
 11:32:6 - User: joeljoel, accion: Ir a pagina contacte
 ----------------------------------------------------------------
+9:10:11 - User: lacharchadelpejelagarto@gmail.com, accion: Ha intentat iniciar sessio
+----------------------------------------------------------------
+9:16:8 - User: lacharchadelpejelagarto@gmail.com, accion: Ha intentat iniciar sessio
+----------------------------------------------------------------
+9:16:25 - User: lacharchadelpejelagarto@gmail.com, accion: Ha intentat iniciar sessio
+----------------------------------------------------------------
+9:17:35 - User: lacharchadelpejelagarto@gmail.com, accion: Ha intentat iniciar sessio
+----------------------------------------------------------------
+9:17:49 - User: lacharchadelpejelagarto@gmail.com, accion: Ha intentat iniciar sessio
+----------------------------------------------------------------
+9:18:44 - User: lacharchadelpejelagarto@gmail.com, accion: Ha intentat iniciar sessio
+----------------------------------------------------------------
+9:19:15 - User: lacharchadelpejelagarto@gmail.com, accion: Ha intentat iniciar sessio
+----------------------------------------------------------------

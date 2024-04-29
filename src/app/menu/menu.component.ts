@@ -22,6 +22,7 @@ export class MenuComponent {
   storedNom: string | null = null;
   storedId: string | null = null;
   isLoggedIn: boolean | null = false;
+  isAdmin: boolean | null = false;
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +31,10 @@ export class MenuComponent {
     this.storedNom = sessionStorage.getItem('username');
     const isLoggedInString = sessionStorage.getItem('isLoggedIn');
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
+    this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
+
+    const isAdminString = sessionStorage.getItem('isAdmin');
+    this.isAdmin = isAdminString ? JSON.parse(isAdminString) : false;
   }
 
    // constructor(private  http: HttpClient) {}

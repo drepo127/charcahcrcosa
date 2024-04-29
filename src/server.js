@@ -7,6 +7,35 @@ const concat = require('stream-concat');
 const app = express();
 const port = 3080;
 
+
+const producto = require('../models/producte');
+
+
+
+const mysql = require('mysql2');
+
+const { Sequelize, DataTypes } = require('sequelize');
+const {crearConfigBaseDades} = require('./db.config');
+
+const dbSQL = crearConfigBaseDades();
+
+const initModels = require("../models/init-models");
+const sqldb = initModels(dbSQL)
+
+
+module.exports = {crearConfigBaseDades}
+
+
+
+app.use(cors({
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+//tamaño maximo
+app.use(express.json({ limit: '100mb' }));
+
+
 // Middleware para parsear el cuerpo de las solicitudes como JSON
 app.use(express.json());
 
@@ -251,4 +280,41 @@ app.post('/logs', async (req, res) => {
   escribirConsultas.write(logEntry)
   escribirConsultas.end("----------------------------------------------------------------\n");
 })
+app.get('/datosUsuario', async (req, res) => {
+  try {
+    // Obtener datos de Firestore
+    const datos = await usuarios.get();
+    const userData = datos.data();
+    const isAdmin = userData.admin || false;
+    res.json({ ...userData, isAdmin });
+  } catch (error) {
 
+    console.error("Error al obtener datos de usuario:", error);
+    res.status(500).json({ error: 'Error al obtener datos de usuario' });
+  }
+});
+app.post('/api/agregar-producto', async (req, res) => {
+  try {
+    console.log(req.body.nombre_producto);
+    console.log(req.body.descripcion_producto);
+    console.log(req.body.cantidad);
+    console.log(req.body.precio_producto);
+    console.log(req.body.cantidad_descuento);
+    console.log(req.body.imagen_producto);
+    console.log(req.body.tipo_producto);
+    await sqldb.producte.create({
+      nombre_producto: req.body.nombre_producto,
+      descripcion_producto: req.body.descripcion_producto,
+      cantidad: req.body.cantidad,
+      precio_producto: req.body.precio_producto,
+      cantidad_descuento: req.body.cantidad_descuento,
+      imagen_producto: req.body.imagen_producto,
+      tipo_producto: req.body.tipo_producto
+    });
+
+
+    res.status(200).json({ message: 'Producto insertado con éxito' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al insertar el producto en la base de datos' });
+  }
+});
