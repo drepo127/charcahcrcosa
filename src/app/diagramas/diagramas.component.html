@@ -5,7 +5,30 @@
     <a routerLink="/historial">Historial</a>
   </div>
 </div>
-
+<div id="chart">
+  <apx-chart
+    [series]="chartOptions?.series!"
+    [chart]="chartOptions?.chart!"
+    [dataLabels]="chartOptions?.dataLabels!"
+    [plotOptions]="chartOptions?.plotOptions!"
+    [responsive]="chartOptions?.responsive!"
+    [xaxis]="chartOptions?.xaxis!"
+    [legend]="chartOptions?.legend!"
+    [fill]="chartOptions?.fill!"
+  ></apx-chart>
+</div>
+<div id="chart2">
+  <apx-chart
+    [series]="chartOptions2?.series!"
+    [chart]="chartOptions2?.chart!"
+    [dataLabels]="chartOptions2?.dataLabels!"
+    [plotOptions]="chartOptions2?.plotOptions!"
+    [responsive]="chartOptions2?.responsive!"
+    [xaxis]="chartOptions2?.xaxis!"
+    [legend]="chartOptions2?.legend!"
+    [fill]="chartOptions2?.fill!"
+  ></apx-chart>
+</div>
 <div class="container">
   <h2>Diagramas</h2>
 </div>

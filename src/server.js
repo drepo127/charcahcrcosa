@@ -372,17 +372,17 @@ app.post('/descontarStock', async (req, res) => {
   await producto.save();
 })
 
-  app.get('/historial', async (req, res) => {
+app.get('/historial', async (req, res) => {
 
-    try {
-      const historialProductos = await models.productevenut.findAll();
-      console.log(historialProductos);
-      res.json(historialProductos);
-    } catch (error) {
-      console.error('Error al obtener el historial de productos:', error);
-      res.status(500).json({ error: 'Error al obtener el historial de productos' });
-    }
-  });
+  try {
+    const historialProductos = await models.productevenut.findAll();
+    console.log(historialProductos);
+    res.json(historialProductos);
+  } catch (error) {
+    console.error('Error al obtener el historial de productos:', error);
+    res.status(500).json({ error: 'Error al obtener el historial de productos' });
+  }
+});
 app.post('/api/agregar-producto', async (req, res) => {
   try {
     console.log(req.body.nombre_producto);
@@ -406,3 +406,36 @@ app.post('/api/agregar-producto', async (req, res) => {
     res.status(500).json({ error: 'Error al insertar el producto en la base de datos' });
   }
 })
+
+
+// ----------------------------- Graficos -----------------------------------
+app.get('/consultarVentes',  (req, res) => {
+  const id = parseInt(req.query.id);
+  const dias = parseInt(req.query.dias);
+
+  console.log("req");
+  console.log(id, dias);
+
+  connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE id_producte = ? AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[id, dias], (err, rows) => {
+    if (err) {throw err}
+    console.log(rows);
+    res.json(rows);
+  })
+});
+
+app.get('/consultarVentesDescompte',  (req, res) => {
+  const dias = parseInt(req.query.dias);
+  connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE oferta = 1 AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[dias], (err, rows) => {
+    if (err) {throw err}
+    res.json(rows);
+  })
+});
+
+app.get('/consultarVentesNoDescompte',  (req, res) => {
+  const dias = parseInt(req.query.dias);
+  connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE oferta = 0 AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[dias], (err, rows) => {
+    if (err) {throw err}
+    res.json(rows);
+  })
+});
+// --------------------------------------------------------------------------
