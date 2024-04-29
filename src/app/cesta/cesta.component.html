@@ -11,28 +11,26 @@
         Acepto las condiciones de compra
       </label>
       <br>
-      <input class="boton2" type="button" value="Comprar" (click)="comprarProductos(); logsComprar()">
+      <input class="boton2" type="button" value="Comprar" (click)="comprar(); logsComprar()">
     </form>
   </div>
   <br>
   <div id="box-productos">
-    <div *ngFor="let arrayProductos of productos">
-      <div class="producto" *ngFor="let producto of arrayProductos">
+    <div *ngFor="let arraycarro of productosArrayUsuario">
         <div class="imagen">
-          <img [src]="producto.rutaImagen" alt="">
+          <img [src]="arraycarro.imagen_producto" alt="">
         </div>
         <div class="contenido">
-          <p class="descripcion">{{ producto.prodName }}</p>
-          <p class="cantidad">Cantida producto: {{ producto.cantidadProducto }}</p>
-          <p class="precio">{{ producto.prodPreu }}</p>
-          <button class="boton" (click)="quitarProducto(producto.prodName); logsQuitarProducto()">Quitar producto</button>
+          <p class="descripcion">{{ arraycarro.nom_producte }}</p>
+          <p class="cantidad">Cantida producto: {{ arraycarro.cantitat }}</p>
+          <p class="precio">{{ arraycarro.preu_unitat }}</p>
+          <button class="boton" (click)="sacarDeLaCesta(arraycarro.nom_producte)">Quitar producto</button>
         </div>
-      </div>
     </div>
   </div>
-  @for (alert of alerts; track alert) {
-  <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
-  }
+<!--  @for (alert of alerts; track alert) {-->
+<!--  <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>-->
+<!--  }-->
 </div>
 <div id="containerError" *ngIf="!isLoggedIn">
   <div id="error">

@@ -12,3 +12,403 @@
 ----------------------------------------------------------------
 11:32:6 - User: joeljoel, accion: Ir a pagina contacte
 ----------------------------------------------------------------
+8:4:51 - User: joeljoel, accion: Ir a pagina condicions
+----------------------------------------------------------------
+8:18:18 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:18:20 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+8:18:23 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:18:26 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:19:5 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:19:6 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:19:40 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:19:43 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:20:11 - User: joeljoel, accion: Ha añadido a la cesta  1 de Vi do Peixelagarto
+----------------------------------------------------------------
+8:20:14 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:30:53 - User: joeljoel, accion: Ir a pagina Inici
+----------------------------------------------------------------
+8:31:0 - User: joeljoel, accion: Ir a pagina contacte
+----------------------------------------------------------------
+8:43:39 - User: null, accion: Se esta filtrando ropa
+----------------------------------------------------------------
+10:52:47 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+10:52:49 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+10:52:51 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+10:54:18 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+10:55:58 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+10:57:5 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+10:57:12 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+10:57:16 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+10:59:15 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+10:59:15 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+10:59:53 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+10:59:53 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+11:1:9 - User: joeljoel, accion: Ha añadido a la cesta  1 de Camiseta do Peixelagarto
+----------------------------------------------------------------
+17:44:3 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+17:44:5 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+17:44:17 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+17:44:24 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+18:19:36 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:2:52 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:2:54 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:7:21 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:25:21 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:26:52 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+8:46:14 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+8:46:55 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+9:26:35 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+9:47:40 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+9:51:59 - User: joeljoel, accion: Ir a pagina Inici
+----------------------------------------------------------------
+9:52:0 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+9:52:6 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+10:10:21 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:10:38 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:23:33 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:23:40 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:23:40 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:25:0 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+10:25:2 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+10:25:5 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+10:25:16 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:25:20 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:38:13 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:38:22 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:40:25 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:40:57 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:42:41 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:46:12 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:47:39 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+10:47:53 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+10:48:21 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+10:48:32 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+10:49:10 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+10:49:25 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+10:49:26 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+10:49:37 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+11:26:52 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+11:27:16 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+11:28:13 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+11:28:24 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+11:28:27 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+11:40:12 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+11:40:42 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+11:45:33 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+11:45:54 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+11:46:12 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+11:54:26 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+11:54:49 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+11:56:2 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+11:56:12 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+11:56:34 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+11:58:16 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+11:58:29 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+11:59:34 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:2:42 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:2:59 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:3:2 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:4:33 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:9:10 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:9:12 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:9:15 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:9:16 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:9:17 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:10:5 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:12:43 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:13:44 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:14:29 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:14:52 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:15:37 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:15:58 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:15:59 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:16:13 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:20:5 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:20:15 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:20:26 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:20:28 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:20:47 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:21:4 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:24:4 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:24:36 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:24:54 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:24:57 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:39:3 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:39:19 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:43:29 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:50:47 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:51:12 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:51:33 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:52:1 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:52:23 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:52:38 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:53:8 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:53:22 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:53:32 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:53:45 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:53:53 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:56:1 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:56:14 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:56:20 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:56:32 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+12:56:35 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+12:58:21 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+12:58:31 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:1:17 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:1:31 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:1:56 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:3:39 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:4:26 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:4:27 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:9:12 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:9:16 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+13:9:24 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:29:27 - User: joeljoel, accion: Ir a pagina contacte
+----------------------------------------------------------------
+13:29:33 - User: joeljoel, accion: Ir a pagina condicions
+----------------------------------------------------------------
+13:29:35 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:29:36 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:29:37 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:29:38 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:31:46 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:31:56 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+13:32:42 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:36:24 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:36:29 - User: joeljoel, accion: Ir a pagina condicions
+----------------------------------------------------------------
+13:36:33 - User: joeljoel, accion: Ir a pagina contacte
+----------------------------------------------------------------
+13:36:34 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:36:34 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:36:42 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:36:43 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:36:45 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:36:46 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:36:47 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:36:47 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:37:1 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:37:2 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:37:6 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:37:6 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:37:7 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:37:7 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:38:6 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:38:45 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:38:45 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:39:0 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+13:39:1 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+13:58:8 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:0:44 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+14:0:59 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:1:4 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+14:2:8 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+14:2:18 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:4:26 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+14:4:35 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:5:46 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+14:5:53 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:6:15 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+14:6:26 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:7:16 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+14:7:25 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:7:29 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+14:7:30 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+14:7:44 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:7:48 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+14:7:50 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+14:8:4 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:8:7 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+14:8:9 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------
+14:27:19 - User: joeljoel, accion: Ir a pagina cesta
+----------------------------------------------------------------
+14:27:24 - User: joeljoel, accion: Ha Comprat los productos
+----------------------------------------------------------------
+14:30:2 - User: joeljoel, accion: Ir a pagina tenda
+----------------------------------------------------------------

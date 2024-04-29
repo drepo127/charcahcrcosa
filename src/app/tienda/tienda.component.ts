@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {CommonModule, NgIf} from '@angular/common';
+import {CommonModule, NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import { ProductosService } from '../productos.service';
 import {HttpClient} from "@angular/common/http";
 import {NgbProgressbarConfig, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
+import {Producte} from "../producte.model";
+import {Cistella} from "../cistella.model";
+import {Filtro} from "../filtro.model";
+
 
 
 interface Producto {
@@ -19,7 +23,8 @@ interface Producto {
   imports: [
     FormsModule,
     NgIf,
-    NgbProgressbarModule
+    NgbProgressbarModule,
+    NgForOf
   ],
   templateUrl: './tienda.component.html',
   styleUrl: './tienda.component.css',
@@ -28,16 +33,16 @@ interface Producto {
 
 export class TiendaComponent implements OnInit{
   isLoggedIn: boolean | null = false;
-  mostrarropa: boolean = true;
-  mostrarcomida: boolean = true;
-  cantidadProducto1: number = 1;
-  cantidadProducto2: number = 1;
-  cantidadProducto3: number = 1;
-  cantidadProducto4: number = 1;
-  cantidadProducto5: number = 1;
-  cantidadProducto6: number = 1;
+  mostrarropa: boolean = false;
+  mostrarcomida: boolean = false;
+  cantidadProducto: number = 1;
   productos: Producto[][] = [];
-  private storedNom: string | null;
+  storedNom: string | null;
+  productosArray: Producte[] = [];
+  filtroProductoArray: Filtro[] = [];
+  productosFiltrados: Producte[] = [];
+
+
 
   constructor(private productosService: ProductosService,config: NgbProgressbarConfig , private http: HttpClient) {
     this.storedNom = sessionStorage.getItem('username');
@@ -47,8 +52,70 @@ export class TiendaComponent implements OnInit{
     config.striped = true;
     config.animated = true;
     //-------------------------------------------------------
+    const getFiltro = (productosArray: Producte[]) => {
+      for (const producto of productosArray) {
+        if (producto.tipo_producto && !this.filtroProductoArray.map(filtro => filtro.nombre_filtro).includes(producto.tipo_producto)) {
+          let filtro = new Filtro(producto.tipo_producto, false);
+          this.filtroProductoArray.push(filtro);
+        }
+      }
+      this.aplicarFiltro();
+    }
+    const getProductes = () =>{
+      this.http.get<Producte[]>('http://localhost:3080/obtenirProductes').subscribe((productes) =>{
+        productes.forEach((producte) =>{
+          let precioConDescuento = (producte.cantidad_descuento * producte.precio_producto)/100;
+          let producto = new Producte(producte.id_producto, producte.nombre_producto, producte.descripcion_producto, producte.cantidad, precioConDescuento, producte.cantidad_descuento, producte.imagen_producto, producte.tipo_producto, 0);
+          this.productosArray.push(producto);
+        })
+        getFiltro(this.productosArray);
+      })
+    }
+    getProductes();
+  }
+  aplicarFiltro() {
+    let todosFalse = true; // Flag para verificar si todos los filtros están apagados
+    let productosFiltradosTemp : Producte[] = []; // Array temporal para almacenar los productos filtrados
+
+    // Iteramos sobre cada filtro
+    for (const filtro of this.filtroProductoArray) {
+      // Si encontramos un filtro encendido, cambiamos la bandera y salimos del bucle
+      if (filtro.filtro_encendido) {
+        todosFalse = false;
+        break;
+      }
+    }
+
+    // Si todos los filtros están apagados, añadimos todos los productos
+    if (todosFalse) {
+      productosFiltradosTemp = this.productosArray.slice();
+    } else {
+      // Si no, aplicamos los filtros encendidos
+      for (const filtro of this.filtroProductoArray) {
+        if (filtro.filtro_encendido) {
+          const productosFiltroActual = this.productosArray.filter(producto => producto.tipo_producto === filtro.nombre_filtro);
+          productosFiltradosTemp = productosFiltradosTemp.concat(productosFiltroActual);
+        }
+      }
+    }
+
+    // Asignamos el resultado final a this.productosFiltrados
+    this.productosFiltrados = productosFiltradosTemp;
   }
 
+    setProductoCesta(id_producto_cistella: number, usuari_afegit: string | null, nom_producte: string, cantitat: number, preu_unitat: number, imagen_producto: any, stock: number){
+      if (cantitat <= 0){
+        alert("No pots agregar 0 productes")
+      }else {
+        if (cantitat > stock){
+          alert("No pots agregar mes productes dels que tenim")
+        }else {
+          this.http.post('http://localhost:3080/setProducteCarrito', {id_producto_cistella: id_producto_cistella, usuari_afegit: usuari_afegit, nom_producte: nom_producte, cantitat: cantitat, preu_unitat: preu_unitat, imagen_producto: imagen_producto}).subscribe(
+          )
+          this.openPopup()
+        }
+      }
+  }
   showPopup = false;
 
   value = 0;
@@ -64,102 +131,55 @@ export class TiendaComponent implements OnInit{
   errorMsg(){
     window.alert("Has d'iniciar sessio per afegir productes a la cesta!")
   }
-  filtrar() {
-    this.mostrarropa = true
-    const currentDate = new Date();
-    const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
-    // Obtener los checkboxes marcados
-    const checkboxes = document.querySelectorAll('.check_filtro:checked');
 
-    // Verificar si hay algún checkbox marcado
-    if (checkboxes.length === 0) {
-      this.noSelecionado();  // Llamada a la función para la opción por defecto
-    } else {
-      // Establecer todas las variables en false
-      this.mostrarropa = false;
-      this.mostrarcomida = false;
-
-      // Iterar sobre los checkboxes y ejecutar las funciones correspondientes
-      checkboxes.forEach((checkbox: any) => {
-        switch (checkbox.value) {
-          case 'roba':
-            this.mostrarropa = true
-            if (!this.isLoggedIn ){
-              this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion:"Se esta filtrando ropa", data: data }, { responseType: 'text' }).subscribe({});
-            }
-
-            break;
-          case 'alimentacio':
-            this.mostrarcomida = true
-            if (!this.isLoggedIn) {
-            this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion:"Se esta filtrando Alimentos", data: data }, { responseType: 'text' }).subscribe({});
-            }
-            break;
-          // Agregar más casos según sea necesario
-        }
-      });
-    }
-  }
-  noSelecionado() {
-    // Lógica para manejar la opción por defecto cuando no hay checkboxes marcados
-    this.mostrarropa = true
-    this.mostrarcomida = true
-    if (!this.isLoggedIn) {
-    const currentDate = new Date();
-    const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
-    this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion:"no se esta filtrando nada", data: data }, { responseType: 'text' }).subscribe({});}
-  }
-
-
-
-  comprar(prodName: string, prodPreu: number, cantidadProducto: number, rutaImagen: string) {
-    this.openPopup()
-    switch (prodName) {
-      case 'Camiseta do Peixelagarto':
-        cantidadProducto = this.cantidadProducto1
-        break;
-      case 'Vi do Peixelagarto':
-        cantidadProducto = this.cantidadProducto2
-        break;
-      case 'Mitjó do Peixelagarto':
-        cantidadProducto = this.cantidadProducto3
-        break;
-      case 'Motxilla do Peixelagarto':
-        cantidadProducto = this.cantidadProducto4
-        break;
-      case 'Galetes do Sapo':
-        cantidadProducto = this.cantidadProducto5
-        break;
-      case 'Comida do Ranas':
-        cantidadProducto = this.cantidadProducto6
-        break;
-    }
-
-    const nuevoProducto: Producto = { prodName, prodPreu, cantidadProducto, rutaImagen };
-
-    // Verifica si ya existe un array para este producto
-    const index = this.productos.findIndex(arr => arr.some(item => item.prodName === prodName));
-
-    if (index !== -1) {
-      // Ya existe un array para este producto, encuentra el producto y suma la cantidad
-      const productoExistenteIndex = this.productos[index].findIndex(item => item.prodName === prodName);
-
-      if (productoExistenteIndex !== -1) {
-        // Producto existente, suma la cantidad
-        this.productos[index][productoExistenteIndex].cantidadProducto += cantidadProducto;
-      } else {
-        // Producto no encontrado en el array existente, agrega el nuevo producto
-        this.productos[index].push(nuevoProducto);
-        this.productosService.actualizarProductos(this.productos);
-      }
-    } else {
-      // No existe un array para este producto, crea un nuevo array con el nuevo producto
-      this.productos.push([nuevoProducto]);
-      this.productosService.actualizarProductos(this.productos);
-    }
-    console.log(this.productos)
-    this.logsComprar(nuevoProducto)
-  }
+  // comprar(prodName: string, prodPreu: number, cantidadProducto: number, rutaImagen: string) {
+  //   this.openPopup()
+  //   switch (prodName) {
+  //     case 'Camiseta do Peixelagarto':
+  //       cantidadProducto = this.cantidadProducto1
+  //       break;
+  //     case 'Vi do Peixelagarto':
+  //       cantidadProducto = this.cantidadProducto2
+  //       break;
+  //     case 'Mitjó do Peixelagarto':
+  //       cantidadProducto = this.cantidadProducto3
+  //       break;
+  //     case 'Motxilla do Peixelagarto':
+  //       cantidadProducto = this.cantidadProducto4
+  //       break;
+  //     case 'Galetes do Sapo':
+  //       cantidadProducto = this.cantidadProducto5
+  //       break;
+  //     case 'Comida do Ranas':
+  //       cantidadProducto = this.cantidadProducto6
+  //       break;
+  //   }
+  //
+  //   const nuevoProducto: Producto = { prodName, prodPreu, cantidadProducto, rutaImagen };
+  //
+  //   // Verifica si ya existe un array para este producto
+  //   const index = this.productos.findIndex(arr => arr.some(item => item.prodName === prodName));
+  //
+  //   if (index !== -1) {
+  //     // Ya existe un array para este producto, encuentra el producto y suma la cantidad
+  //     const productoExistenteIndex = this.productos[index].findIndex(item => item.prodName === prodName);
+  //
+  //     if (productoExistenteIndex !== -1) {
+  //       // Producto existente, suma la cantidad
+  //       this.productos[index][productoExistenteIndex].cantidadProducto += cantidadProducto;
+  //     } else {
+  //       // Producto no encontrado en el array existente, agrega el nuevo producto
+  //       this.productos[index].push(nuevoProducto);
+  //       this.productosService.actualizarProductos(this.productos);
+  //     }
+  //   } else {
+  //     // No existe un array para este producto, crea un nuevo array con el nuevo producto
+  //     this.productos.push([nuevoProducto]);
+  //     this.productosService.actualizarProductos(this.productos);
+  //   }
+  //   console.log(this.productos)
+  //   this.logsComprar(nuevoProducto)
+  // }
   openPopup() {
     this.showPopup = true;
     this.value = 0; // Reset the progress bar value
@@ -175,6 +195,7 @@ export class TiendaComponent implements OnInit{
     clearInterval(this.timer);
     this.showPopup = false;
     this.value = 0;
+    window.location.reload();
   }
   logsComprar(nuevoProducto: Producto) {
 
@@ -182,5 +203,6 @@ export class TiendaComponent implements OnInit{
     const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
     this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion: `Ha añadido a la cesta  ${nuevoProducto.cantidadProducto} de ${nuevoProducto.prodName}`, data: data }, { responseType: 'text' }).subscribe({});
   }
+
 
 }

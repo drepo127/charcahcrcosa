@@ -252,3 +252,99 @@ app.post('/logs', async (req, res) => {
   escribirConsultas.end("----------------------------------------------------------------\n");
 })
 
+
+//------------------- UF2 - Persistència en BDR-BDOR-BDOO --------------------------------
+const {where} = require("sequelize");
+const {ConfigDB} = require('./db.config')
+const dbSQL = ConfigDB();
+const mysql2 = require("mysql2");
+
+const connection = mysql2.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '1212',
+  database: 'charcacharcosa'
+})
+
+app.post('/comprarproductos', (req, res) => {
+  const {
+    idproducte_productevenut,
+    nom_producte_venut,
+    cantitat_producte_venut,
+    preuTotal_producte_venut,
+    cantitat_descompte,
+    usuari_compradors
+  } = req.body;
+  const query = `INSERT INTO productevenut (
+    idproducte_productevenut,
+    nom_producte_venut,
+    cantitat_producte_venut,
+    preuTotal_producte_venut,
+    data_producte_venut,
+    cantitat_descompte,
+    usuari_compradors
+  ) VALUES (?, ?, ?, ?, CURDATE(), ?, ?)`;
+
+  const values = [
+    idproducte_productevenut,
+    nom_producte_venut,
+    cantitat_producte_venut,
+    preuTotal_producte_venut,
+    cantitat_descompte,
+    usuari_compradors
+  ];
+  connection.query(query, values)
+})
+
+const initModels = require("./models/init-models");
+
+const models = initModels(dbSQL);
+
+app.get('/obtenirProductes', async (req, res) => {
+  const productes = await models.producte.findAll();
+  res.json(productes);
+})
+
+app.get('/obtenirCarrito', async (req, res) => {
+  const carrito = await models.cistella.findAll();
+  res.json(carrito);
+})
+
+app.post('/setProducteCarrito' , async (req, res) => {
+  const id_producto_cistella = req.body.id_producto_cistella;
+  const usuari_afegit = req.body.usuari_afegit;
+  const nom_producte = req.body.nom_producte;
+  const cantitat = req.body.cantitat;
+  const preu_unitat = req.body.preu_unitat;
+  const imagen_producto = req.body.imagen_producto;
+  console.log(id_producto_cistella)
+  await models.cistella.create({
+    id_producto_cistella: id_producto_cistella,
+    usuari_afegit: usuari_afegit,
+    nom_producte: nom_producte,
+    cantitat: cantitat,
+    preu_unitat: preu_unitat,
+    imagen_producto: imagen_producto
+  });
+})
+
+app.post('/eliminarProductoCarrito', async (req, res) => {
+  const nom_producte = req.body.nom_producte;
+  const usuari_afegit = req.body.usuari_afegit;
+  await models.cistella.destroy({where: {usuari_afegit: usuari_afegit, nom_producte:nom_producte}})
+})
+
+app.post('/eliminarProductoCarritoComprado', async (req, res) => {
+  const usuari_afegit = req.body.usuari_afegit;
+  await models.cistella.destroy({where: {usuari_afegit: usuari_afegit}})
+})
+
+app.post('/descontarStock', async (req, res) => {
+  const nom_producte = req.body.nom_producte;
+  const cantidad_restar = req.body.cantidad_restar;
+  console.log("ola",nom_producte)
+  console.log(cantidad_restar)
+  const producto = await models.producte.findOne({where: {nombre_producto: nom_producte}});
+  producto.cantidad -= cantidad_restar;
+  await producto.save();
+})
