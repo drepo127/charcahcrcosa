@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     data_producte_venut: {
-      type: DataTypes.BLOB,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     cantitat_descompte: {

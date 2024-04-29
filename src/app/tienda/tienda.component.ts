@@ -64,13 +64,22 @@ export class TiendaComponent implements OnInit{
     const getProductes = () =>{
       this.http.get<Producte[]>('http://localhost:3080/obtenirProductes').subscribe((productes) =>{
         productes.forEach((producte) =>{
+          let imagenUrl = "http://192.168.1.2:3080/assets/"+producte.imagen_producto;
+          console.log(imagenUrl);
           let precioConDescuento = (producte.cantidad_descuento * producte.precio_producto)/100;
-          let producto = new Producte(producte.id_producto, producte.nombre_producto, producte.descripcion_producto, producte.cantidad, precioConDescuento, producte.cantidad_descuento, producte.imagen_producto, producte.tipo_producto, 0);
+          let producto = new Producte(producte.id_producto,
+              producte.nombre_producto,
+              producte.descripcion_producto, producte.cantidad,
+              precioConDescuento, producte.cantidad_descuento,
+              imagenUrl, producte.tipo_producto,
+              0);
+
           this.productosArray.push(producto);
         })
         getFiltro(this.productosArray);
       })
     }
+
     getProductes();
   }
   aplicarFiltro() {
@@ -110,6 +119,7 @@ export class TiendaComponent implements OnInit{
         if (cantitat > stock){
           alert("No pots agregar mes productes dels que tenim")
         }else {
+          console.log(imagen_producto)
           this.http.post('http://localhost:3080/setProducteCarrito', {id_producto_cistella: id_producto_cistella, usuari_afegit: usuari_afegit, nom_producte: nom_producte, cantitat: cantitat, preu_unitat: preu_unitat, imagen_producto: imagen_producto}).subscribe(
           )
           this.openPopup()

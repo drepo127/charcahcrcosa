@@ -45,10 +45,10 @@
     </div>
 
     <div class="grup_productes" *ngFor="let producto of productosFiltrados">
-        <div class="camiseta" style="background-image: url('http://192.168.1.2:3080/assets/pejelagarto_camiseta.png')">
+        <div class="camiseta">
           <div>
             <p class="prod_name">{{producto.nombre_producto}}</p>
-
+            <img [src]="producto.imagen_producto" alt="Imagen del producto">
             <div *ngIf="producto.cantidad_descuento == 0">
               <p class="descuento">No Hay descuentos</p>
             </div>

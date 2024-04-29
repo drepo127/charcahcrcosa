@@ -1,3 +1,5 @@
+import {Data} from "@angular/router";
+
 export class Producte {
   id_producto: number;
   nombre_producto: string;
@@ -5,11 +7,11 @@ export class Producte {
   cantidad: number;
   precio_producto: number;
   cantidad_descuento: number;
-  imagen_producto: string;
+  imagen_producto: String;
   tipo_producto: string;
   total_compra_producto: number;
 
-  constructor(id_producto: number, nombre_producto: string, descripcion_producto: string, cantidad: number, precio_producto: number, cantidad_descuento: number, imagen_producto: string, tipo_producto: string, total_compra_producto: number) {
+  constructor(id_producto: number, nombre_producto: string, descripcion_producto: string, cantidad: number, precio_producto: number, cantidad_descuento: number, imagen_producto: String, tipo_producto: string, total_compra_producto: number) {
     this.id_producto = id_producto;
     this.nombre_producto = nombre_producto;
     this.descripcion_producto = descripcion_producto;

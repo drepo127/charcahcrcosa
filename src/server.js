@@ -7,26 +7,6 @@ const concat = require('stream-concat');
 const app = express();
 const port = 3080;
 
-
-const producto = require('../models/producte');
-const Productevenut = require('../models/productevenut')
-
-
-const mysql = require('mysql2');
-
-const { Sequelize, DataTypes } = require('sequelize');
-const {crearConfigBaseDades} = require('./db.config');
-
-const dbSQL = crearConfigBaseDades();
-
-const initModels = require("../models/init-models");
-const sqldb = initModels(dbSQL)
-
-
-module.exports = {crearConfigBaseDades}
-
-
-
 app.use(cors({
   origin: 'http://localhost:4200',
   methods: ['GET', 'POST'],
@@ -294,25 +274,6 @@ app.get('/datosUsuario', async (req, res) => {
     res.status(500).json({ error: 'Error al obtener datos de usuario' });
   }
 });
-app.post('/api/agregar-producto', async (req, res) => {
-  try {
-    console.log(req.body.nombre_producto);
-    console.log(req.body.descripcion_producto);
-    console.log(req.body.cantidad);
-    console.log(req.body.precio_producto);
-    console.log(req.body.cantidad_descuento);
-    console.log(req.body.imagen_producto);
-    console.log(req.body.tipo_producto);
-    await sqldb.producte.create({
-      nombre_producto: req.body.nombre_producto,
-      descripcion_producto: req.body.descripcion_producto,
-      cantidad: req.body.cantidad,
-      precio_producto: req.body.precio_producto,
-      cantidad_descuento: req.body.cantidad_descuento,
-      imagen_producto: req.body.imagen_producto,
-      tipo_producto: req.body.tipo_producto
-    });
-
 
 //------------------- UF2 - Persistència en BDR-BDOR-BDOO --------------------------------
 const {where} = require("sequelize");
@@ -363,6 +324,7 @@ const models = initModels(dbSQL);
 
 app.get('/obtenirProductes', async (req, res) => {
   const productes = await models.producte.findAll();
+  console.log(productes)
   res.json(productes);
 })
 
@@ -410,15 +372,10 @@ app.post('/descontarStock', async (req, res) => {
   await producto.save();
 })
 
-    res.status(200).json({ message: 'Producto insertado con éxito' });
-  } catch (error) {
-    res.status(500).json({ error: 'Error al insertar el producto en la base de datos' });
-  }
-
   app.get('/historial', async (req, res) => {
 
     try {
-      const historialProductos = await sqldb.productevenut.findAll();
+      const historialProductos = await models.productevenut.findAll();
       console.log(historialProductos);
       res.json(historialProductos);
     } catch (error) {
@@ -426,5 +383,26 @@ app.post('/descontarStock', async (req, res) => {
       res.status(500).json({ error: 'Error al obtener el historial de productos' });
     }
   });
-
-});
+app.post('/api/agregar-producto', async (req, res) => {
+  try {
+    console.log(req.body.nombre_producto);
+    console.log(req.body.descripcion_producto);
+    console.log(req.body.cantidad);
+    console.log(req.body.precio_producto);
+    console.log(req.body.cantidad_descuento);
+    console.log(req.body.imagen_producto);
+    console.log(req.body.tipo_producto);
+    await models.producte.create({
+      nombre_producto: req.body.nombre_producto,
+      descripcion_producto: req.body.descripcion_producto,
+      cantidad: req.body.cantidad,
+      precio_producto: req.body.precio_producto,
+      cantidad_descuento: req.body.cantidad_descuento,
+      imagen_producto: req.body.imagen_producto,
+      tipo_producto: req.body.tipo_producto
+    });
+    res.status(200).json({ message: 'Producto insertado con éxito' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al insertar el producto en la base de datos' });
+  }
+})
