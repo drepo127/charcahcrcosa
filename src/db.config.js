@@ -1,16 +1,10 @@
-const { Sequelize } = require('sequelize');
+const Sequelize = require('sequelize');
 
-const crearConfigBaseDades = () => {
-  return new Sequelize("charcacharcosa", "root", "root", {
-    host: 'localhost',
-    port: 3306,
+const ConfigDB = () => {
+  return new Sequelize("charcacharcosa", "root", "1212",{
+    host: "localhost",
     dialect: "mysql",
-    define: {
-      timestamps: false,
-      freezeTableName: true
-    },
-  });
-};
+  })
+}
 
-module.exports = { crearConfigBaseDades };
-
+module.exports = {ConfigDB}

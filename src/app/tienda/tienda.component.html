@@ -3,7 +3,7 @@
 <body>
 <div id="content" style="background-image: url(http://192.168.1.2:3080/assets/fondopaginaweb.jpg); background-repeat: no-repeat; background-position: center; background-size: cover;">
   <aside>
-    <form action="#" method="get" (ngSubmit)="filtrar()" id="filtre">
+    <div id="filtre">
       <p>Preu maxim</p>
       <div class="slidecontainer">
         <p>0€</p>
@@ -16,18 +16,22 @@
           <ngb-progressbar class="mb-3" [value]="value"/>
         </div>
       </div>
-
-      <div>
-        <input type="checkbox" class="check_filtro" id="roba" value="roba">
-        <label for="roba">Roba i accesioris</label>
+      <!--
+            <div>
+              <input type="checkbox" class="check_filtro" id="roba" value="roba" [(ngModel)]="mostrarropa" (change)="">
+              <label for="roba">Roba i accesioris</label>
+            </div>
+            <div>
+              <input type="checkbox" class="check_filtro" id="alimentacio" value="alimentacio" [(ngModel)]="mostrarcomida" (change)="">
+              <label for="alimentacio">Alimentacio</label>
+            </div>
+            -->
+      <div *ngFor="let filtro of filtroProductoArray">
+        <input type="checkbox" class="check_filtro" id="{{filtro.nombre_filtro}}" [checked]="filtro.filtro_encendido" [(ngModel)]="filtro.filtro_encendido" (change)="aplicarFiltro()">
+        <label for="{{filtro.nombre_filtro}}">{{filtro.nombre_filtro}}</label>
       </div>
-      <div>
-        <input type="checkbox" class="check_filtro" id="alimentacio" value="alimentacio">
-        <label for="alimentacio">Alimentacio</label>
-      </div>
 
-      <input class="button_filtre" type="submit" value="Filtrar">
-    </form>
+    </div>
   </aside>
   <article>
     <div class="titol1"><p class="titol1">PRODUCTE DESTACAT</p></div>
@@ -40,80 +44,37 @@
       <button class="prod_dest_button">COMPRAR</button>
     </div>
 
-    <div class="prod" *ngIf="mostrarropa">
-      <div id="camiseta" style="background-image: url('http://192.168.1.2:3080/assets/pejelagarto_camiseta.png')">
-        <p class="prod_name">Camiseta do Peixelagarto</p>
-        <div class="prod_preu_div">
-          <p class="prod_preu">10,99€</p><p class="prod_iva">/iva inclos</p>
+    <div class="grup_productes" *ngFor="let producto of productosFiltrados">
+        <div class="camiseta" style="background-image: url('http://192.168.1.2:3080/assets/pejelagarto_camiseta.png')">
+          <div>
+            <p class="prod_name">{{producto.nombre_producto}}</p>
+
+            <div *ngIf="producto.cantidad_descuento == 0">
+              <p class="descuento">No Hay descuentos</p>
+            </div>
+            <div *ngIf="producto.cantidad_descuento!= 0">
+              <p class="descuento">{{producto.cantidad_descuento}}% De DESCOMPTE!!!</p>
+            </div>
+          </div>
+
+          <div class="prod_preu_div">
+            <p class="prod_preu">{{producto.precio_producto}}</p><p class="prod_iva">/iva inclos</p>
+          </div>
         </div>
+        <p class="prod_desc">{{producto.descripcion_producto}}</p>
+
+        <p class="descuento">Stock: {{producto.cantidad}}</p>
+        <p class="descuento">Cantitat:</p>
+        <input type="number" min="1" max="100" placeholder="Cantidad" [(ngModel)]="producto.total_compra_producto">
+        <div *ngIf="producto.cantidad <= 0">
+          <button class="prod_dest_button" disabled>COMPRAR</button>
+        </div>
+      <div *ngIf="producto.cantidad > 0">
+        <button (click)="isLoggedIn ? setProductoCesta(producto.id_producto ,this.storedNom, producto.nombre_producto, producto.total_compra_producto, producto.precio_producto, producto.imagen_producto, producto.cantidad) : errorMsg() " class="prod_dest_button">COMPRAR</button>
       </div>
-      <p class="prod_desc">Camiseta unisex 100% algodón con el logo de La Charca Del Pejelagarto.</p>
-      <input type="number" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto1">
-      <button (click)="!isLoggedIn ? comprar('Camiseta do Peixelagarto', 10.99, cantidadProducto1, 'http://192.168.1.2:3080/assets/pejelagarto_camiseta.png') : errorMsg() " class="prod_dest_button">COMPRAR</button>
     </div>
 
-    <div class="prod" *ngIf="mostrarcomida">
-      <div id="vi" style="background-image: url('http://192.168.1.2:3080/assets/vino-lagartoo.png')">
-        <p class="prod_name">Vi do Peixelagarto</p>
-        <div class="prod_preu_div">
-          <p class="prod_preu">15,99€</p><p class="prod_iva">/iva inclòs</p>
-        </div>
-      </div>
-      <p class="prod_desc">Ampolla de vino Peixelagarto, cosecha especial con aroma y sabor únicos.</p>
-      <input type="number" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto2">
-      <button (click)="isLoggedIn ? comprar('Vi do Peixelagarto', 15.99, cantidadProducto2, 'http://192.168.1.2:3080/assets/vino-lagartoo.png') : errorMsg() " class="prod_dest_button">COMPRAR</button>
-    </div>
-
-    <div class="prod" *ngIf="mostrarropa">
-      <div id="calcetin" style="background-image: url('http://192.168.1.2:3080/assets/michopeix.jpg')">
-        <p class="prod_name">Mitjó do Peixelagarto</p>
-        <div class="prod_preu_div">
-          <p class="prod_preu">5,99€</p><p class="prod_iva">/iva inclòs</p>
-        </div>
-      </div>
-      <p class="prod_desc">Calcetines suaves y cómodos con el logotipo de La Charca Del Pejelagarto, disponibles en varias tallas.</p>
-      <input type="number" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto3">
-      <button (click)="isLoggedIn ? comprar('Mitjó do Peixelagarto', 5.99, cantidadProducto3, 'http://192.168.1.2:3080/assets/michopeix.jpg') : errorMsg() " class="prod_dest_button">COMPRAR</button>
-    </div>
-
-    <div class="prod" *ngIf="mostrarropa">
-      <div id="mochila" style="background-image: url('http://192.168.1.2:3080/assets/mochilaRana_.jpg')">
-        <p class="prod_name">Motxilla do Peixelagarto</p>
-        <div class="prod_preu_div">
-          <p class="prod_preu">19,99€</p><p class="prod_iva">/iva inclòs</p>
-        </div>
-      </div>
-      <p class="prod_desc">Mochila resistente y espaciosa con el diseño exclusivo de La Charca Del Pejelagarto, perfecta para llevar tus cosas.</p>
-      <input type="number" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto4">
-      <button (click)="isLoggedIn ? comprar('Motxilla do Peixelagarto', 19.99, cantidadProducto4,'http://192.168.1.2:3080/assets/mochilaRana_.jpg') : errorMsg() " class="prod_dest_button">COMPRAR</button>
-    </div>
-
-    <div class="prod" *ngIf="mostrarcomida">
-      <div id="funda" style="background-image: url('http://192.168.1.2:3080/assets/galetesdurana.jpg')">
-        <p class="prod_name">Galetes do Sapo</p>
-        <div class="prod_preu_div">
-          <p class="prod_preu">8,99€</p><p class="prod_iva">/iva inclòs</p>
-        </div>
-      </div>
-      <p class="prod_desc">Galletas de La Charca Del Pejelagarto, hechas con la sabiduría de las ranas para un mejor sabor.</p>
-      <input type="number" class="cantidad_producto" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto5">
-      <button (click)="isLoggedIn ? comprar('Galetes do Sapo', 8.99, cantidadProducto5, 'http://192.168.1.2:3080/assets/galetesdurana.jpg') : errorMsg() " class="prod_dest_button">COMPRAR</button>
-    </div>
-
-    <div class="prod" *ngIf="mostrarcomida">
-      <div id="cuadro" style="background-image: url('http://192.168.1.2:3080/assets/comidaderana.jpg')">
-        <p class="prod_name">Comida do Ranas</p>
-        <div class="prod_preu_div">
-          <p class="prod_preu">25,99€<p class="prod_iva">/iva inclòs</p>
-        </div>
-      </div>
-      <p class="prod_desc">Alimenta a tus ranas con nuestra comida premium: nutrientes esenciales para colores vibrantes y vitalidad óptima.</p>
-      <input type="number" class="cantidad_producto" min="1" max="100" placeholder="Cantidad del producto" required [(ngModel)]="cantidadProducto6">
-      <button (click)="isLoggedIn ? comprar('Comida do Ranas', 25.99, cantidadProducto6, 'http://192.168.1.2:3080/assets/comidaderana.jpg') : errorMsg() " class="prod_dest_button">COMPRAR</button>
-    </div>
   </article>
-
-  <div id="info_producto"></div>
 </div>
 </body>
 </html>

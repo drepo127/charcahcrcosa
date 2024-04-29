@@ -146,32 +146,7 @@ aside {
   width: 29.4%;
   border-radius: 20px;
 }
-#camiseta {
-  background-size: cover;
-  width: 100%;
-  max-height: max-content;
-}
-#vi {
-  background-size: cover;
-  width: 100%;
-  max-height: max-content;
-}
-#calcetin {
-  background-size: cover;
-  width: 100%;
-  max-height: max-content;
-}
-#mochila {
-  background-size: cover;
-  width: 100%;
-  max-height: max-content;
-}
-#funda {
-  background-size: cover;
-  width: 100%;
-  max-height: max-content;
-}
-#cuadro {
+.camiseta {
   background-size: cover;
   width: 100%;
   max-height: max-content;
