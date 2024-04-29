@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
+    idproducte_productevenut: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     nom_producte_venut: {
       type: DataTypes.STRING(45),
       allowNull: true
@@ -20,8 +24,16 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     data_producte_venut: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
+    },
+    cantitat_descompte: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    usuari_compradors: {
+      type: DataTypes.STRING(45),
+      allowNull: true
     }
   }, {
     sequelize,

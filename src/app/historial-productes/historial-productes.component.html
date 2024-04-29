@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="navigation">
+    <a routerLink="/Admin">Afegir productes</a>
+    <a routerLink="/diagramas">Diagramas</a>
+    <a routerLink="/historial">Historial</a>
+  </div>
+
+  <h2>Historial de Ventas</h2>
+
+  <table class="product-table">
+    <thead>
+    <tr>
+      <th>IdVenta</th>
+      <th>IdProducte</th>
+      <th>Nom</th>
+      <th>Quantitat</th>
+      <th>Preu</th>
+      <th>Data</th>
+      <th>Descompte</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let producto of historialProductos">
+      <td>{{ producto.idproductevenut }}</td>
+      <td>{{ producto.idproducte_productevenut }}</td>
+      <td>{{ producto.nom_producte_venut }}</td>
+      <td>{{ producto.cantitat_producte_venut }}</td>
+      <td>{{ producto.preuTotal_producte_venut }}</td>
+      <td>{{ producto.data_producte_venut }}</td>
+      <td>{{ producto.cantitat_descompte }}</td>
+    </tr>
+    </tbody>
+
+  </table>
+</div>

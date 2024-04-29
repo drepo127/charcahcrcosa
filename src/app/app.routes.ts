@@ -14,6 +14,7 @@ import {ValidacionComponent} from "./validacion/validacion.component";
 import {RecuperarComponent} from "./recuperar/recuperar.component";
 import { FormulariAdminComponent } from "./formulari-admin/formulari-admin.component";
 import { DiagramasComponent } from "./diagramas/diagramas.component";
+import {HistorialProductesComponent } from "./historial-productes/historial-productes.component";
 
 
 
@@ -32,6 +33,7 @@ export const routes: Routes = [
   {path: 'recuperar', component: RecuperarComponent},
   {path: 'Admin', component: FormulariAdminComponent},
   {path: 'diagramas', component: DiagramasComponent},
+  {path: 'historial', component: HistorialProductesComponent },
   {path: '404', component: ErrorComponent},
   {path: '**', redirectTo: '/404'}
 

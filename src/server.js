@@ -9,7 +9,7 @@ const port = 3080;
 
 
 const producto = require('../models/producte');
-
+const Productevenut = require('../models/productevenut')
 
 
 const mysql = require('mysql2');
@@ -97,6 +97,7 @@ const {createWriteStream, appendFile} = require("fs");
 const {join} = require("path");
 //const {dirname} = require("@angular/compiler-cli");
 const path = require("path");
+const sequelize = require("sequelize");
 
 app.get('/gmailuser', async (req, res) => {
   const snapshot = await db.collection('charca').get();
@@ -317,4 +318,17 @@ app.post('/api/agregar-producto', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Error al insertar el producto en la base de datos' });
   }
+
+  app.get('/historial', async (req, res) => {
+
+    try {
+      const historialProductos = await sqldb.productevenut.findAll();
+      console.log(historialProductos);
+      res.json(historialProductos);
+    } catch (error) {
+      console.error('Error al obtener el historial de productos:', error);
+      res.status(500).json({ error: 'Error al obtener el historial de productos' });
+    }
+  });
+
 });
