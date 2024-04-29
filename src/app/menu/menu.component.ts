@@ -39,7 +39,6 @@ export class MenuComponent {
 
    // constructor(private  http: HttpClient) {}
   clearLogInData() {
-
     sessionStorage.setItem('usercorreo', '');
     sessionStorage.setItem('username', '');
     sessionStorage.setItem('isLoggedIn', 'false');
