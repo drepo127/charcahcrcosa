@@ -43,36 +43,41 @@
       </div>
       <button class="prod_dest_button">COMPRAR</button>
     </div>
-
-    <div class="grup_productes" *ngFor="let producto of productosFiltrados">
-        <div class="camiseta">
-          <div>
-            <p class="prod_name">{{producto.nombre_producto}}</p>
-            <img [src]="producto.imagen_producto" alt="Imagen del producto">
-            <div *ngIf="producto.cantidad_descuento == 0">
-              <p class="descuento">No Hay descuentos</p>
+    <div class="grup_productes">
+      <div  *ngFor="let producto of productosFiltrados" >
+        <div class="prod">
+          <div class="camiseta">
+            <div>
+              <p class="prod_name">{{producto.nombre_producto}}</p>
+              <img [src]="producto.imagen_producto" alt="Imagen del producto">
+              <div *ngIf="producto.cantidad_descuento == 0">
+                <p class="descuento">No Hay descuentos</p>
+              </div>
+              <div *ngIf="producto.cantidad_descuento!= 0">
+                <p class="descuento">{{producto.cantidad_descuento}}% De DESCOMPTE!!!</p>
+              </div>
             </div>
-            <div *ngIf="producto.cantidad_descuento!= 0">
-              <p class="descuento">{{producto.cantidad_descuento}}% De DESCOMPTE!!!</p>
+
+            <div class="prod_preu_div">
+              <p class="prod_preu">{{producto.precio_producto}}</p><p class="prod_iva">/iva inclos</p>
             </div>
           </div>
+          <p class="prod_desc">{{producto.descripcion_producto}}</p>
 
-          <div class="prod_preu_div">
-            <p class="prod_preu">{{producto.precio_producto}}</p><p class="prod_iva">/iva inclos</p>
+          <p class="descuento">Stock: {{producto.cantidad}}</p>
+          <p class="descuento">Cantitat:</p>
+          <input type="number" min="1" max="100" placeholder="Cantidad" [(ngModel)]="producto.total_compra_producto">
+          <div *ngIf="producto.cantidad <= 0">
+            <button class="prod_dest_button" disabled>COMPRAR</button>
+          </div>
+          <div *ngIf="producto.cantidad > 0">
+            <button (click)="isLoggedIn ? setProductoCesta(producto.id_producto ,this.storedNom, producto.nombre_producto, producto.total_compra_producto, producto.precio_producto, producto.imagen_producto, producto.cantidad) : errorMsg() " class="prod_dest_button">COMPRAR</button>
           </div>
         </div>
-        <p class="prod_desc">{{producto.descripcion_producto}}</p>
 
-        <p class="descuento">Stock: {{producto.cantidad}}</p>
-        <p class="descuento">Cantitat:</p>
-        <input type="number" min="1" max="100" placeholder="Cantidad" [(ngModel)]="producto.total_compra_producto">
-        <div *ngIf="producto.cantidad <= 0">
-          <button class="prod_dest_button" disabled>COMPRAR</button>
-        </div>
-      <div *ngIf="producto.cantidad > 0">
-        <button (click)="isLoggedIn ? setProductoCesta(producto.id_producto ,this.storedNom, producto.nombre_producto, producto.total_compra_producto, producto.precio_producto, producto.imagen_producto, producto.cantidad) : errorMsg() " class="prod_dest_button">COMPRAR</button>
       </div>
     </div>
+
 
   </article>
 </div>
