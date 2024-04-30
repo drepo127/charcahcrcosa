@@ -59,7 +59,7 @@ export class CestaComponent implements OnInit {
             productoExistente.cantitat += carro.cantitat;
           } else {
             // Si el producto no existe en el carrito, agrégalo
-            let carrito = new Cistella(carro.id_producto_cistella, carro.usuari_afegit, carro.nom_producte, carro.cantitat, carro.preu_unitat, carro.imagen_producto);
+            let carrito = new Cistella(carro.id_producto_cistella, carro.usuari_afegit, carro.nom_producte, carro.cantitat, carro.preu_unitat, carro.imagen_producto, carro.descuento_producto);
             if (carrito.usuari_afegit == this.storedNom) {
               this.productosArrayUsuario.push(carrito);
             }
@@ -106,7 +106,7 @@ export class CestaComponent implements OnInit {
     this.productosArrayUsuario.forEach(producto => {
       let preuTotal = producto.preu_unitat * producto.cantitat;
       console.log(preuTotal)
-      let productovendido = new Productosvendidos(producto.id_producto_cistella, producto.nom_producte, producto.cantitat, preuTotal, 20, producto.usuari_afegit);
+      let productovendido = new Productosvendidos(producto.id_producto_cistella, producto.nom_producte, producto.cantitat, preuTotal, producto.descuento_producto, producto.usuari_afegit);
       this.http.post('http://localhost:3080/comprarproductos', productovendido).subscribe(
       );
       console.log(producto.nom_producte)

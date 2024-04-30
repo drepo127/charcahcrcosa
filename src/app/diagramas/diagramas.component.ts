@@ -196,7 +196,7 @@ export class DiagramasComponent {
             }
           ],
           chart: {
-            type: "bar",
+            type: "line",
             height: 300,
             stacked: false,
             toolbar: {

@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     imagen_producto: {
-      type: DataTypes.BLOB,
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     tipo_producto: {

@@ -112,7 +112,7 @@ export class TiendaComponent implements OnInit{
     this.productosFiltrados = productosFiltradosTemp;
   }
 
-    setProductoCesta(id_producto_cistella: number, usuari_afegit: string | null, nom_producte: string, cantitat: number, preu_unitat: number, imagen_producto: any, stock: number){
+    setProductoCesta(id_producto_cistella: number, usuari_afegit: string | null, nom_producte: string, cantitat: number, preu_unitat: number, imagen_producto: any, stock: number, desc_producto: number){
       if (cantitat <= 0){
         alert("No pots agregar 0 productes")
       }else {
@@ -120,7 +120,7 @@ export class TiendaComponent implements OnInit{
           alert("No pots agregar mes productes dels que tenim")
         }else {
           console.log(imagen_producto)
-          this.http.post('http://localhost:3080/setProducteCarrito', {id_producto_cistella: id_producto_cistella, usuari_afegit: usuari_afegit, nom_producte: nom_producte, cantitat: cantitat, preu_unitat: preu_unitat, imagen_producto: imagen_producto}).subscribe(
+          this.http.post('http://localhost:3080/setProducteCarrito', {id_producto_cistella: id_producto_cistella, usuari_afegit: usuari_afegit, nom_producte: nom_producte, cantitat: cantitat, preu_unitat: preu_unitat, imagen_producto: imagen_producto, descuento_producto: desc_producto}).subscribe(
           )
           this.openPopup()
         }

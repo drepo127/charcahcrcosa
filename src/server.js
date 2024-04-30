@@ -340,6 +340,7 @@ app.post('/setProducteCarrito' , async (req, res) => {
   const cantitat = req.body.cantitat;
   const preu_unitat = req.body.preu_unitat;
   const imagen_producto = req.body.imagen_producto;
+  const descuento_producto = req.body.descuento_producto;
   console.log(id_producto_cistella)
   await models.cistella.create({
     id_producto_cistella: id_producto_cistella,
@@ -347,7 +348,8 @@ app.post('/setProducteCarrito' , async (req, res) => {
     nom_producte: nom_producte,
     cantitat: cantitat,
     preu_unitat: preu_unitat,
-    imagen_producto: imagen_producto
+    imagen_producto: imagen_producto,
+    descuento_producto: descuento_producto
   });
 })
 
@@ -416,7 +418,7 @@ app.get('/consultarVentes',  (req, res) => {
   console.log("req");
   console.log(id, dias);
 
-  connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE id_producte = ? AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[id, dias], (err, rows) => {
+  connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE idproductevenut = ? AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[id, dias], (err, rows) => {
     if (err) {throw err}
     console.log(rows);
     res.json(rows);
@@ -425,7 +427,7 @@ app.get('/consultarVentes',  (req, res) => {
 
 app.get('/consultarVentesDescompte',  (req, res) => {
   const dias = parseInt(req.query.dias);
-  connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE oferta = 1 AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[dias], (err, rows) => {
+  connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE cantitat_descompte >= 1 AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[dias], (err, rows) => {
     if (err) {throw err}
     res.json(rows);
   })
@@ -433,7 +435,7 @@ app.get('/consultarVentesDescompte',  (req, res) => {
 
 app.get('/consultarVentesNoDescompte',  (req, res) => {
   const dias = parseInt(req.query.dias);
-  connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE oferta = 0 AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[dias], (err, rows) => {
+  connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE cantitat_descompte = 0 AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[dias], (err, rows) => {
     if (err) {throw err}
     res.json(rows);
   })
