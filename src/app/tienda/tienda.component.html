@@ -63,8 +63,12 @@
             </div>
           </div>
           <p class="prod_desc">{{producto.descripcion_producto}}</p>
-
-          <p class="descuento">Stock: {{producto.cantidad}}</p>
+          <div *ngIf="producto.cantidad <= 0">
+            <p class="descuento">No Stok</p>
+          </div>
+          <div *ngIf="producto.cantidad > 0">
+            <p class="descuento">Stock: {{producto.cantidad}}</p>
+          </div>
           <p class="descuento">Cantitat:</p>
           <input type="number" min="1" max="100" placeholder="Cantidad" [(ngModel)]="producto.total_compra_producto">
           <div *ngIf="producto.cantidad <= 0">

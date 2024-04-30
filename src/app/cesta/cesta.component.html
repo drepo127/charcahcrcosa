@@ -11,7 +11,13 @@
         Acepto las condiciones de compra
       </label>
       <br>
-      <input class="boton2" type="button" value="Comprar" (click)="comprar(); logsComprar()">
+      <div *ngIf="stockNoSuperado">
+        <input class="boton2" type="button" value="Comprar" (click)="comprar(); logsComprar()">
+      </div>
+      <div *ngIf="!stockNoSuperado">
+        <p style="color: white">Superas la cantidad del Stock en algun producto</p>
+        <input class="boton2" type="button" value="Comprar" disabled>
+      </div>
     </form>
   </div>
   <br>

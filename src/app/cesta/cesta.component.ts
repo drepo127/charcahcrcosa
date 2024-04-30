@@ -8,6 +8,7 @@ import {HttpClient} from "@angular/common/http";
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import {Cistella} from "../cistella.model";
 import {Productosvendidos} from "../productosvendidos.model";
+import {Producte} from "../producte.model";
 interface Alert {
   type: string;
   message: string;
@@ -38,6 +39,7 @@ export class CestaComponent implements OnInit {
   storedNom: string | null;
   alerts: Alert[] | undefined;
   productosArrayUsuario: Cistella[] = [];
+  stockNoSuperado: boolean = true;
   close(alert: Alert) {
     // @ts-ignore
     this.alerts.splice(this.alerts.indexOf(alert), 1);
@@ -63,8 +65,8 @@ export class CestaComponent implements OnInit {
             }
           }
         });
+        this.contarStockIDesactivarBoton();
       });
-      console.log(this.productosArrayUsuario)
     }
     getProductes();
   }
@@ -77,6 +79,21 @@ export class CestaComponent implements OnInit {
   sacarDeLaCestaalComprar(){
     this.http.post('http://localhost:3080/eliminarProductoCarritoComprado', {usuari_afegit: this.storedNom}).subscribe({
 
+    })
+  }
+  contarStockIDesactivarBoton(){
+    this.http.get<Producte[]>('http://localhost:3080/obtenirProductes').subscribe((productes) =>{
+      productes.forEach((producte) =>{
+        let nombreProducto = producte.nombre_producto
+        let cantidadProducto = producte.cantidad
+        console.log(cantidadProducto)
+        this.productosArrayUsuario.forEach((productosCesta) =>{
+          if(productosCesta.nom_producte == nombreProducto){
+            this.stockNoSuperado = productosCesta.cantitat <= cantidadProducto;
+            console.log(this.stockNoSuperado)
+          }
+        })
+      })
     })
   }
 
