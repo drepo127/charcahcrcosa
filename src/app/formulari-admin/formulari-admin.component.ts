@@ -28,8 +28,17 @@ export class FormulariAdminComponent implements  OnInit{
     cantidad_descuento: number = 0;
     tipo_producto: string = '';
     imagen_producto: string = '';
+    storedNom: string | null;
+  constructor(private router: Router, private http: HttpClient) {
+    this.storedNom = sessionStorage.getItem('username');
+    this.mirarUser();
+  }
 
-  constructor(private router: Router, private http: HttpClient) { }
+  mirarUser(){
+    if (this.storedNom !== "joeljoel"){
+      window.location.replace('http://localhost:4200/inici')
+    }
+  }
 
   ngOnInit(): void {
     // const isAdminString = sessionStorage.getItem('isAdmin');
@@ -41,21 +50,10 @@ export class FormulariAdminComponent implements  OnInit{
     // }
   }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      // Almacena la imagen como una cadena base64
-      this.imagen_producto = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-  }
+
 
 
   agregarProducto() {
-
-
-
     this.http.post<any>('http://localhost:3080/api/agregar-producto',{ nombre_producto: this.nombre_producto, descripcion_producto: this.descripcion_producto, cantidad: this.cantidad,cantidad_descuento: this.cantidad_descuento, precio_producto: this.precio_producto, imagen_producto: this.imagen_producto, tipo_producto: this.tipo_producto }).subscribe({
         next: response => {
           console.log(response);

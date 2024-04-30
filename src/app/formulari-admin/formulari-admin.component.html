@@ -37,11 +37,7 @@
       </div>
       <div class="form-group">
         <label for="imagenProducto">Imagen del Producto:</label>
-        <input type="file" id="imagenProducto" (change)="onFileSelected($event)" accept="image/*">
-      </div>
-      <div class="form-group">
-        <label>Imagen actual:</label>
-        <img [src]="imagen_producto" alt="Imagen del Producto" *ngIf="imagen_producto">
+        <input type="text" class="form-control" id="imagenProducto" [(ngModel)]="imagen_producto" name="imagenProducto" required>
       </div>
       <button type="submit" class="btn btn-primary">Agregar Producto</button>
     </form>

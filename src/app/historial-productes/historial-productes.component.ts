@@ -19,7 +19,17 @@ import {Productesvenuts} from "../productesvenuts.model";
 export class HistorialProductesComponent {
   historialProductos: Productesvenuts[] = [];
 
-  constructor(private http: HttpClient) {}
+  storedNom: string | null;
+  constructor(private router: Router, private http: HttpClient) {
+    this.storedNom = sessionStorage.getItem('username');
+    this.mirarUser();
+  }
+
+  mirarUser(){
+    if (this.storedNom !== "joeljoel"){
+      window.location.replace('http://localhost:4200/inici')
+    }
+  }
 
   ngOnInit(): void {
     this.obtenerProductos();

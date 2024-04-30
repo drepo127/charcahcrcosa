@@ -51,6 +51,7 @@ export class DiagramasComponent {
   @ViewChild("chart") chart: ChartComponent | undefined;
   public chartOptions: Partial<ChartOptions> | undefined;
   public chartOptions2: Partial<ChartOptions> | undefined;
+  storedNom: string | null;
 
   getLastNDays(n: number): string[] {
     const result = [];
@@ -113,6 +114,9 @@ export class DiagramasComponent {
   }
 
   constructor(private router: Router, private http: HttpClient) {
+    this.storedNom = sessionStorage.getItem('username');
+    this.mirarUser();
+
     const categories = this.getLastNDays(6);
     this.getLastNDaysVentas(6,1).then((data) => {
       let var1 = data
@@ -237,6 +241,12 @@ export class DiagramasComponent {
         };
       })
     })
+  }
+
+  mirarUser(){
+    if (this.storedNom !== "joeljoel"){
+      window.location.replace('http://localhost:4200/inici')
+    }
   }
 
 }
