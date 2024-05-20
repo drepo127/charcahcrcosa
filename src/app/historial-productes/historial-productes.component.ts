@@ -37,7 +37,7 @@ export class HistorialProductesComponent {
 
   obtenerProductos(): void {
     // Realizar la solicitud HTTP para obtener el historial de productos
-    this.http.get<Productesvenuts[]>('http://localhost:3080/historial').subscribe({
+    this.http.get<Productesvenuts[]>('http://192.168.1.2:3080/historial').subscribe({
       next: data => {
         // Asignar los datos obtenidos a la variable historialProductos
         this.historialProductos = data;
