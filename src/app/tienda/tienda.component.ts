@@ -43,7 +43,6 @@ export class TiendaComponent implements OnInit{
   filtroProductoArray: Filtro[] = [];
   productosFiltrados: Producte[] = [];
   precioEcerium: number = 0;
-  tipoMoneda: String = "ethereum"
 
 
 
@@ -76,10 +75,11 @@ export class TiendaComponent implements OnInit{
   //   this.getProductes();
   //
   // }
+
   obtenerCriptomoneda(){
     let promesaDelPrecioETH = new Promise (async (resolve, reject) => {
-      this.http.get<any>(`https://api.coingecko.com/api/v3/simple/price?ids=${this.tipoMoneda}&vs_currencies=eur`).subscribe(data => {
-        resolve(data.ethereum.eur);
+      this.http.get<any>(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=eur`).subscribe(data => {
+        resolve(data.binancecoin.eur);
         reject(0);
       })
     })

@@ -12,6 +12,8 @@ export class ValidacionComponent {
 
   constructor(private http: HttpClient) {
   }
+
+
   asignaricrear() {
     const usuarioData = {
       user: localStorage.getItem('nomvali') || "", // Obtener el valor de 'nomvali' desde localStorage

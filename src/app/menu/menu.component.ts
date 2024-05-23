@@ -24,7 +24,8 @@ export class MenuComponent {
   isLoggedIn: boolean | null = false;
   isAdmin: boolean | null = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit() {
     this.storedId = sessionStorage.getItem('usercorreo');
@@ -33,22 +34,20 @@ export class MenuComponent {
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
 
-    if (this.isLoggedIn) {
-      // Si el usuario está logueado, obtenemos sus datos de usuario
-      this.http.get<any>('http://localhost:3080/datosUsuario').subscribe(
-        data => {
-          this.isAdmin = data.isAdmin; // Verificamos si el usuario es administrador
-        },
-        error => {
-          console.error('Error al obtener los datos de usuario:', error);
+    const isAdminString = sessionStorage.getItem('isAdmin');
+    this.isAdmin = isAdminString ? JSON.parse(isAdminString) : false;
+
+    //@ts-ignore
+    if (typeof window.ethereum !== "undefined") {
+      //@ts-ignore
+      window.ethereum.on('accountsChanged', (account) => {
+        if (account.length >= 0) {
+          this.clearLogInData();
         }
-      );
+      })
     }
   }
 
-
-
-   // constructor(private  http: HttpClient) {}
   clearLogInData() {
     sessionStorage.setItem('usercorreo', '');
     sessionStorage.setItem('username', '');

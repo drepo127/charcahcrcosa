@@ -46,6 +46,7 @@ app.get('/datosUsuario', async (req, res) => {
   try {
     // Obtener datos de Firestore
     const datos = await usuarios.get();
+    console.log(datos);
     // Enviar datos como respuesta JSON
     res.json(datos.data());
   } catch (error) {
@@ -324,7 +325,6 @@ const models = initModels(dbSQL);
 
 app.get('/obtenirProductes', async (req, res) => {
   const productes = await models.producte.findAll();
-  console.log(productes)
   res.json(productes);
 })
 
@@ -341,7 +341,6 @@ app.post('/setProducteCarrito' , async (req, res) => {
   const preu_unitat = req.body.preu_unitat;
   const imagen_producto = req.body.imagen_producto;
   const descuento_producto = req.body.descuento_producto;
-  console.log(id_producto_cistella)
   await models.cistella.create({
     id_producto_cistella: id_producto_cistella,
     usuari_afegit: usuari_afegit,
@@ -367,8 +366,6 @@ app.post('/eliminarProductoCarritoComprado', async (req, res) => {
 app.post('/descontarStock', async (req, res) => {
   const nom_producte = req.body.nom_producte;
   const cantidad_restar = req.body.cantidad_restar;
-  console.log("ola",nom_producte)
-  console.log(cantidad_restar)
   const producto = await models.producte.findOne({where: {nombre_producto: nom_producte}});
   producto.cantidad -= cantidad_restar;
   await producto.save();
@@ -378,7 +375,6 @@ app.get('/historial', async (req, res) => {
 
   try {
     const historialProductos = await models.productevenut.findAll();
-    console.log(historialProductos);
     res.json(historialProductos);
   } catch (error) {
     console.error('Error al obtener el historial de productos:', error);
@@ -387,13 +383,6 @@ app.get('/historial', async (req, res) => {
 });
 app.post('/api/agregar-producto', async (req, res) => {
   try {
-    console.log(req.body.nombre_producto);
-    console.log(req.body.descripcion_producto);
-    console.log(req.body.cantidad);
-    console.log(req.body.precio_producto);
-    console.log(req.body.cantidad_descuento);
-    console.log(req.body.imagen_producto);
-    console.log(req.body.tipo_producto);
     await models.producte.create({
       nombre_producto: req.body.nombre_producto,
       descripcion_producto: req.body.descripcion_producto,
@@ -417,12 +406,8 @@ app.get('/consultarVentes',  (req, res) => {
   const id = parseInt(req.query.id);
   const dias = parseInt(req.query.dias);
 
-  console.log("req");
-  console.log(id, dias);
-
   connection.query('SELECT SUM(cantitat_producte_venut) AS total FROM productevenut WHERE idproductevenut = ? AND data_producte_venut = CURDATE() - INTERVAL ? DAY',[id, dias], (err, rows) => {
     if (err) {throw err}
-    console.log(rows);
     res.json(rows);
   })
 });

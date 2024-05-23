@@ -45,6 +45,7 @@ export class FormulariComponent {
     // } else {
     //   alert('Invalid email or password');
     // }
+
     // @ts-ignore
     const nuevoUsuario: Usuario = {loginEmail, loginContrasenya};
     this.login(nuevoUsuario)
@@ -52,54 +53,52 @@ export class FormulariComponent {
   constructor(private http: HttpClient) {
   }
 
-  async iniciarEnMetamask(){
-    // @ts-ignore
-    if (typeof window.ethereum !== "undefined") {
-       let logEnMetamasc= new Promise(async (resolve, reject) => {
-        // @ts-ignore
-        window.ethereum.request({method: 'eth_requestAccounts'}).then((response) => {
-          console.log(response);
-          resolve(response);
-          reject(response);
-        });
-      });
-      await logEnMetamasc
-        .then(async () => {
-          this.iniciarSesion()
-        })
-        .catch(async (error) => {
-          console.log(error);
-
-        });
-    } else {
-      alert("MetaMask no esta instalado");
-    }
-  }
-
   usercorreo = null;
   username = null;
   login(nuevoUsuario: Usuario) {
-    this.http.get<any>('http://localhost:3080/passworduser').subscribe((datosuser) => {
+    this.http.get<any>('http://localhost:3080/passworduser').subscribe(async (datosuser) => {
       let informacioncoincide = false;
       // @ts-ignore
       this.usercorreo = nuevoUsuario.loginEmail;
       for (let i = 0; i < datosuser.length; i++) {
         if (datosuser[i].email === nuevoUsuario.loginEmail && datosuser[i].contrasenya === nuevoUsuario.loginContrasenya) {
           this.username = datosuser[i].user;
-           informacioncoincide = true;
+          informacioncoincide = true;
           break;
         }
       }
       if (informacioncoincide) {
         // @ts-ignore
-        sessionStorage.setItem('usercorreo', this.usercorreo);
-        // @ts-ignore
-        sessionStorage.setItem('username', this.username);
-        this.isLoggedIn = true;
-        sessionStorage.setItem('isLoggedIn', String(this.isLoggedIn));
-        alert('Inicio de sesión correcto');
-        this.logsISessio()
-        window.location.replace('http://localhost:4200/inici');
+        if (typeof window.ethereum !== "undefined") {
+          let logEnMetamasc = new Promise(async (resolve, reject) => {
+            // @ts-ignore
+            window.ethereum.request({method: 'eth_requestAccounts'}).then((response) => {
+              console.log(response);
+              resolve(response);
+              reject(response);
+            });
+          });
+          await logEnMetamasc
+            .then(async () => {
+
+              // @ts-ignore
+              sessionStorage.setItem('usercorreo', this.usercorreo);
+              // @ts-ignore
+              sessionStorage.setItem('username', this.username);
+              this.isLoggedIn = true;
+              sessionStorage.setItem('isLoggedIn', String(this.isLoggedIn));
+
+              alert('Inicio de sesión correcto');
+              this.logsISessio()
+              window.location.replace('http://localhost:4200/inici');
+            })
+            .catch(async (error) => {
+              console.log(error);
+              alert("No se pudo iniciar sesión o se rechazó la autenticación. Compruebe su conexión a Internet y vuelva a intentarlo.");
+            });
+        } else {
+          alert("MetaMask no esta instalado");
+        }
       } else {
         alert('El correo o la contraseña no son correctos');
         this.logsnoSessio()

@@ -1,22 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-<div id="container" *ngIf="!isLoggedIn">
+<div id="container" *ngIf="isLoggedIn">
   <div id="box-contenido">
-    <p>Precio de Binance Coin (BNB) en EUR: {{pricebnb}}€</p>
-    <p>Precio de BitCoin (BTC) en EUR: {{pricebit}}€</p>
-    <p>Precio total En Euros: {{preuTotal}}€</p>
-    <form>
-      <label for="moneda">Selecciona la moneda:</label>
-      <select id="moneda" name="moneda" [(ngModel)]="selectedCurrency" (ngModelChange)="updatePrecioTotal()">
-        <option value="euros">Euros</option>
-        <option value="bitcoin">Bitcoin</option>
-        <option value="bnb">BNB</option>
-      </select>
-    </form>
-    <p>Precio total de la compra en {{ selectedCurrency | uppercase }}: {{ precioTotalEnMoneda }}</p>
-
-
+    <p>Precio total de: {{preuTotal}}</p>
     <p>Por favor, lea y acepte las condiciones de compra antes de continuar.</p>
     <form action="" method="post">
       <label>
@@ -36,20 +23,20 @@
   <br>
   <div id="box-productos">
     <div *ngFor="let arraycarro of productosArrayUsuario">
-        <div class="imagen">
-          <img [src]="arraycarro.imagen_producto" alt="">
-        </div>
-        <div class="contenido">
-          <p class="descripcion">{{ arraycarro.nom_producte }}</p>
-          <p class="cantidad">Cantida producto: {{ arraycarro.cantitat }}</p>
-          <p class="precio">{{ arraycarro.preu_unitat }}</p>
-          <button class="boton" (click)="sacarDeLaCesta(arraycarro.nom_producte)">Quitar producto</button>
-        </div>
+      <div class="imagen">
+        <img [src]="arraycarro.imagen_producto" alt="">
+      </div>
+      <div class="contenido">
+        <p class="descripcion">{{ arraycarro.nom_producte }}</p>
+        <p class="cantidad">Cantida producto: {{ arraycarro.cantitat }}</p>
+        <p class="precio">{{ arraycarro.preu_unitat }}</p>
+        <button class="boton" (click)="sacarDeLaCesta(arraycarro.nom_producte)">Quitar producto</button>
+      </div>
     </div>
   </div>
-<!--  @for (alert of alerts; track alert) {-->
-<!--  <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>-->
-<!--  }-->
+  <!--  @for (alert of alerts; track alert) {-->
+  <!--  <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>-->
+  <!--  }-->
 </div>
 <div id="containerError" *ngIf="!isLoggedIn">
   <div id="error">
