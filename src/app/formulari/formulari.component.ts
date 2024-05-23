@@ -1,14 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MenuComponent} from "../menu/menu.component";
 import {FooterComponent} from "../footer/footer.component";
-import {StyleClassModule} from 'primeng/styleclass';
 import {CheckboxModule} from "primeng/checkbox";
-import {RegistreComponent} from "../registre/registre.component";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import { ActivatedRoute } from '@angular/router';
-import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
+
 
 interface Usuario {
   loginEmail: string;
@@ -53,10 +51,35 @@ export class FormulariComponent {
   }
   constructor(private http: HttpClient) {
   }
+
+  async iniciarEnMetamask(){
+    // @ts-ignore
+    if (typeof window.ethereum !== "undefined") {
+       let logEnMetamasc= new Promise(async (resolve, reject) => {
+        // @ts-ignore
+        window.ethereum.request({method: 'eth_requestAccounts'}).then((response) => {
+          console.log(response);
+          resolve(response);
+          reject(response);
+        });
+      });
+      await logEnMetamasc
+        .then(async () => {
+          this.iniciarSesion()
+        })
+        .catch(async (error) => {
+          console.log(error);
+
+        });
+    } else {
+      alert("MetaMask no esta instalado");
+    }
+  }
+
   usercorreo = null;
   username = null;
   login(nuevoUsuario: Usuario) {
-    this.http.get<any>('http://192.168.1.2:3080/passworduser').subscribe((datosuser) => {
+    this.http.get<any>('http://localhost:3080/passworduser').subscribe((datosuser) => {
       let informacioncoincide = false;
       // @ts-ignore
       this.usercorreo = nuevoUsuario.loginEmail;
@@ -91,12 +114,12 @@ export class FormulariComponent {
   logsISessio() {
     const currentDate = new Date();
     const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
-    this.http.post('http://192.168.1.2:3080/logs', { user: this.usercorreo, accion: "Ha iniciat sessio", data: data }, { responseType: 'text' }).subscribe({});
+    this.http.post('http://localhost:3080/logs', { user: this.usercorreo, accion: "Ha iniciat sessio", data: data }, { responseType: 'text' }).subscribe({});
   }
   logsnoSessio() {
     const currentDate = new Date();
     const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
-    this.http.post('http://192.168.1.2:3080/logs', { user: this.usercorreo, accion: "Ha intentat iniciar sessio", data: data }, { responseType: 'text' }).subscribe({});
+    this.http.post('http://localhost:3080/logs', { user: this.usercorreo, accion: "Ha intentat iniciar sessio", data: data }, { responseType: 'text' }).subscribe({});
   }
 
 }
