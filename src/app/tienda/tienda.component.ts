@@ -44,6 +44,7 @@ export class TiendaComponent implements OnInit{
 
 
 
+
   constructor(private productosService: ProductosService,config: NgbProgressbarConfig , private http: HttpClient) {
     this.storedNom = sessionStorage.getItem('username');
     //---------------- PROGRESS BAR CONFIG ----------------
@@ -213,6 +214,9 @@ export class TiendaComponent implements OnInit{
     const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
     this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion: `Ha añadido a la cesta  ${nuevoProducto.cantidadProducto} de ${nuevoProducto.prodName}`, data: data }, { responseType: 'text' }).subscribe({});
   }
+
+
+
 
 
 }

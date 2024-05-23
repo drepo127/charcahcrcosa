@@ -3,7 +3,8 @@
   padding-left: 1em;
   padding-top: 0.5em;
   border-radius: 1em;
-  height: 20%
+  height: 20%;
+  color: white;
 }
 *{
   font-family: Arial, serif;

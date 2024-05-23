@@ -9,6 +9,7 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import {Cistella} from "../cistella.model";
 import {Productosvendidos} from "../productosvendidos.model";
 import {Producte} from "../producte.model";
+import {FormsModule} from "@angular/forms";
 interface Alert {
   type: string;
   message: string;
@@ -26,7 +27,7 @@ const ALERTS: Alert[] = [
   standalone: true,
   imports: [CommonModule,
     NgIf,
-    RouterLink, NgOptimizedImage, NgbAlertModule
+    RouterLink, NgOptimizedImage, NgbAlertModule, FormsModule
   ],
   templateUrl: './cesta.component.html',
   styleUrl: './cesta.component.css'
@@ -40,6 +41,12 @@ export class CestaComponent implements OnInit {
   alerts: Alert[] | undefined;
   productosArrayUsuario: Cistella[] = [];
   stockNoSuperado: boolean = true;
+  pricebit: number | undefined;
+  pricebnb: number | undefined;
+  selectedCurrency: string = 'euros'; // Moneda por defecto
+  precioTotalEnMoneda: string = ''; // Precio total en la moneda seleccionada
+
+
   close(alert: Alert) {
     // @ts-ignore
     this.alerts.splice(this.alerts.indexOf(alert), 1);
@@ -48,6 +55,8 @@ export class CestaComponent implements OnInit {
   constructor(private productosService: ProductosService, private  http: HttpClient) {
     this.storedNom = sessionStorage.getItem('username');
     this.reset();
+
+
 
     const getProductes = () => {
       this.http.get<Cistella[]>('http://localhost:3080/obtenirCarrito').subscribe((carrito) => {
@@ -70,6 +79,22 @@ export class CestaComponent implements OnInit {
     }
     getProductes();
   }
+
+  ngOnInit() {
+    this.productosService.productos$.subscribe(productos => {
+      this.productos = productos;
+      this.calcularPrecio()
+    });
+    const isLoggedInString = sessionStorage.getItem('isLoggedIn');
+    this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
+
+    this.getCurrentPrices();
+    this.Refrescar();
+    this.calcularPrecioEnMoneda(this.precioTotalEnMoneda)
+
+  }
+
+
   sacarDeLaCesta(nomProducte: string){
     this.http.post('http://localhost:3080/eliminarProductoCarrito', {usuari_afegit: this.storedNom, nom_producte:nomProducte}).subscribe({
 
@@ -121,14 +146,7 @@ export class CestaComponent implements OnInit {
     this.alerts = Array.from(ALERTS);
   }
 
-  ngOnInit() {
-    this.productosService.productos$.subscribe(productos => {
-      this.productos = productos;
-      this.calcularPrecio()
-    });
-    const isLoggedInString = sessionStorage.getItem('isLoggedIn');
-    this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
-  }
+
   quitarProducto(prodName: string) {
     this.productosService.eliminarArrayPorNombre(prodName);
   }
@@ -151,6 +169,54 @@ export class CestaComponent implements OnInit {
     this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion:"ha eliminat productes de la cesta", data: data }, { responseType: 'text' }).subscribe({});
   }
 
+  getCurrentPrices() {
+    this.http.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,binancecoin&vs_currencies=eur")
+      .subscribe((data: any) => {
+        if (data) {
+          this.pricebit = data.bitcoin.eur;
+          this.pricebnb = data.binancecoin.eur;
+          this.updatePrecioTotal(); // Actualizar el precio total al obtener los precios
+        } else {
+          console.error("Error fetching current prices");
+        }
+      });
+  }
 
+  updatePrecioTotal() {
+    this.precioTotalEnMoneda = this.calcularPrecioEnMoneda(this.selectedCurrency);
+  }
+
+
+
+  async Refrescar() {
+    this.getCurrentPrices()
+      setInterval(() => {
+      this.getCurrentPrices()
+      }, 60000);
+  }
+
+  calcularPrecioEnMoneda(moneda: string) {
+    this.preuTotal = 200;
+    switch (moneda) {
+      case 'euros':
+        return this.preuTotal + '€';
+      case 'bitcoin':
+        if (this.pricebit) {
+          const precioEnBitcoin = this.preuTotal / this.pricebit;
+          return precioEnBitcoin.toFixed(8) + ' BTC';
+        } else {
+          return 'Precio de Bitcoin no disponible';
+        }
+      case 'bnb':
+        if (this.pricebnb) {
+          const precioEnBNB = this.preuTotal / this.pricebnb;
+          return precioEnBNB.toFixed(8) + ' BNB';
+        } else {
+          return 'Precio de BNB no disponible';
+        }
+      default:
+        return 'Moneda no válida';
+    }
+  }
 
 }

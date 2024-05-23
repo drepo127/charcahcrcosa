@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-<div id="container" *ngIf="isLoggedIn">
+<div id="container" *ngIf="!isLoggedIn">
   <div id="box-contenido">
-    <p>Precio total de: {{preuTotal}}</p>
+    <p>Precio de Binance Coin (BNB) en EUR: {{pricebnb}}€</p>
+    <p>Precio de BitCoin (BTC) en EUR: {{pricebit}}€</p>
+    <p>Precio total de: {{preuTotal}}€</p>
+    <form>
+      <label for="moneda">Selecciona la moneda:</label>
+      <select id="moneda" name="moneda" [(ngModel)]="selectedCurrency" (ngModelChange)="updatePrecioTotal()">
+        <option value="euros">Euros</option>
+        <option value="bitcoin">Bitcoin</option>
+        <option value="bnb">BNB</option>
+      </select>
+    </form>
+    <p>Precio total de la compra en {{ selectedCurrency | uppercase }}: {{ precioTotalEnMoneda }}</p>
+
+
     <p>Por favor, lea y acepte las condiciones de compra antes de continuar.</p>
     <form action="" method="post">
       <label>

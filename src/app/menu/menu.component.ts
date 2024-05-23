@@ -33,9 +33,20 @@ export class MenuComponent {
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
 
-    const isAdminString = sessionStorage.getItem('isAdmin');
-    this.isAdmin = isAdminString ? JSON.parse(isAdminString) : false;
+    if (this.isLoggedIn) {
+      // Si el usuario está logueado, obtenemos sus datos de usuario
+      this.http.get<any>('http://localhost:3080/datosUsuario').subscribe(
+        data => {
+          this.isAdmin = data.isAdmin; // Verificamos si el usuario es administrador
+        },
+        error => {
+          console.error('Error al obtener los datos de usuario:', error);
+        }
+      );
+    }
   }
+
+
 
    // constructor(private  http: HttpClient) {}
   clearLogInData() {
@@ -44,6 +55,8 @@ export class MenuComponent {
     sessionStorage.setItem('isLoggedIn', 'false');
     window.location.replace('http://localhost:4200/inici')
   }
+
+
 
   // //logs per a les pagines cambiar nom de pagina per a cada pagina.
   logsInici() {

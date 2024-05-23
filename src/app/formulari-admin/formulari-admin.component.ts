@@ -41,13 +41,13 @@ export class FormulariAdminComponent implements  OnInit{
   }
 
   ngOnInit(): void {
-    // const isAdminString = sessionStorage.getItem('isAdmin');
-    // this.isAdmin = isAdminString ? JSON.parse(isAdminString) : false;
-    //
-    // if (!this.isAdmin) {
-    //   alert('No tienes permisos para acceder a esta página.');
-    //   this.router.navigate(['/']).then(r => this );
-    // }
+    const isAdminString = sessionStorage.getItem('isAdmin');
+    this.isAdmin = isAdminString ? JSON.parse(isAdminString) : false;
+
+    if (!this.isAdmin) {
+      alert('No tienes permisos para acceder a esta página.');
+      this.router.navigate(['/']).then(r => this );
+    }
   }
 
 

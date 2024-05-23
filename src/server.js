@@ -403,6 +403,8 @@ app.post('/api/agregar-producto', async (req, res) => {
       imagen_producto: req.body.imagen_producto,
       tipo_producto: req.body.tipo_producto
     });
+
+
     res.status(200).json({ message: 'Producto insertado con éxito' });
   } catch (error) {
     res.status(500).json({ error: 'Error al insertar el producto en la base de datos' });
@@ -440,4 +442,5 @@ app.get('/consultarVentesNoDescompte',  (req, res) => {
     res.json(rows);
   })
 });
-// --------------------------------------------------------------------------
+
+

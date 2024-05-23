@@ -26,6 +26,30 @@
 ----------------------------------------------------------------
 9:19:15 - User: lacharchadelpejelagarto@gmail.com, accion: Ha intentat iniciar sessio
 ----------------------------------------------------------------
+17:30:7 - User: lacharchadelpejelagarto@gmail.com, accion: Ha intentat iniciar sessio
+----------------------------------------------------------------
+17:30:58 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+17:32:9 - User: joeljoel, accion: Ir a pagina Perfil
+----------------------------------------------------------------
+17:49:5 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+18:1:5 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+18:33:41 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+18:54:27 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+18:55:55 - User: joeljoel, accion: S'ha desloguejat
+----------------------------------------------------------------
+18:56:39 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+19:6:9 - User: joeljoel, accion: S'ha desloguejat
+----------------------------------------------------------------
+19:32:10 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
+19:34:14 - User: legolandor@gmail.com, accion: Ha iniciat sessio
+----------------------------------------------------------------
 17:22:12 - User: joeljoel, accion: Ir a pagina Inici
 ----------------------------------------------------------------
 17:22:19 - User: joeljoel, accion: S'ha desloguejat
