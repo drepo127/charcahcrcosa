@@ -67,7 +67,7 @@ export class DiagramasComponent {
     let nums: number[] = []
     for (let i = 0; i < n; i++) {
       let req = new HttpParams().set("id", id).set("dias", i)
-      let num: any = await firstValueFrom(this.http.get<number>('http://localhost:3080/consultarVentes', {params: req}));
+      let num: any = await firstValueFrom(this.http.get<number>('http://192.168.1.2:3080/consultarVentes', {params: req}));
       nums.push(parseInt(num[0].total));
     }
     for (let i = 0; i < n; i++) {
@@ -82,7 +82,7 @@ export class DiagramasComponent {
     let nums: number[] = []
     for (let i = 0; i < n; i++) {
       let req = new HttpParams().set("dias", i)
-      let num: any = await firstValueFrom(this.http.get<number>('http://localhost:3080/consultarVentesDescompte', {params: req}));
+      let num: any = await firstValueFrom(this.http.get<number>('http://192.168.1.2:3080/consultarVentesDescompte', {params: req}));
       nums.push(parseInt(num[0].total));
       console.log(nums);
       console.log(num);
@@ -99,7 +99,7 @@ export class DiagramasComponent {
     let nums: number[] = []
     for (let i = 0; i < n; i++) {
       let req = new HttpParams().set("dias", i)
-      let num: any = await firstValueFrom(this.http.get<number>('http://localhost:3080/consultarVentesNoDescompte', {params: req}));
+      let num: any = await firstValueFrom(this.http.get<number>('http://192.168.1.2:3080/consultarVentesNoDescompte', {params: req}));
       nums.push(parseInt(num[0].total));
       console.log(nums);
       console.log(num);

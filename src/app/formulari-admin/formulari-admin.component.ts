@@ -54,7 +54,7 @@ export class FormulariAdminComponent implements  OnInit{
 
 
   agregarProducto() {
-    this.http.post<any>('http://localhost:3080/api/agregar-producto',{ nombre_producto: this.nombre_producto, descripcion_producto: this.descripcion_producto, cantidad: this.cantidad,cantidad_descuento: this.cantidad_descuento, precio_producto: this.precio_producto, imagen_producto: this.imagen_producto, tipo_producto: this.tipo_producto }).subscribe({
+    this.http.post<any>('http://192.168.1.2:3080/api/agregar-producto',{ nombre_producto: this.nombre_producto, descripcion_producto: this.descripcion_producto, cantidad: this.cantidad,cantidad_descuento: this.cantidad_descuento, precio_producto: this.precio_producto, imagen_producto: this.imagen_producto, tipo_producto: this.tipo_producto }).subscribe({
         next: response => {
           console.log(response);
           console.log('Producto creado con éxito');

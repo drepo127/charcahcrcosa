@@ -30,7 +30,16 @@
         <input type="checkbox" class="check_filtro" id="{{filtro.nombre_filtro}}" [checked]="filtro.filtro_encendido" [(ngModel)]="filtro.filtro_encendido" (change)="aplicarFiltro()">
         <label for="{{filtro.nombre_filtro}}">{{filtro.nombre_filtro}}</label>
       </div>
-
+<!--      <div>-->
+<!--        <form>-->
+<!--          <label for="BNB">BNB .</label>-->
+<!--          <input type="radio" id="BNB" name="opcio" (change)="selecionarTipoMoneda('BinanceCoin')"><br>-->
+<!--          <label for="Etherium">Etherium .</label>-->
+<!--          <input type="radio" id="Etherium" name="opcio" checked (change)="selecionarTipoMoneda('ethereum')"><br>-->
+<!--          <label for="Bitcoin">Bitcoin .</label>-->
+<!--          <input type="radio" id="Bitcoin" name="opcio" (change)="selecionarTipoMoneda('Bitcoin')"><br>-->
+<!--        </form>-->
+<!--      </div>-->
     </div>
   </aside>
   <article>
@@ -47,17 +56,14 @@
       <div  *ngFor="let producto of productosFiltrados" >
         <div class="prod">
           <div class="camiseta">
-            <div>
               <p class="prod_name">{{producto.nombre_producto}}</p>
-              <img [src]="producto.imagen_producto" alt="Imagen del producto">
+              <img [src]="producto.imagen_producto" alt="Imagen del producto" style="width: 100%">
               <div *ngIf="producto.cantidad_descuento == 0">
                 <p class="descuento">No Hay descuentos</p>
               </div>
               <div *ngIf="producto.cantidad_descuento!= 0">
                 <p class="descuento">{{producto.cantidad_descuento}}% De DESCOMPTE!!!</p>
               </div>
-            </div>
-
             <div class="prod_preu_div">
               <p class="prod_preu">{{producto.precio_producto}}</p><p class="prod_iva">/iva inclos</p>
             </div>

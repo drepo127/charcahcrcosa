@@ -7,6 +7,7 @@ import {NgbProgressbarConfig, NgbProgressbarModule} from '@ng-bootstrap/ng-boots
 import {Producte} from "../producte.model";
 import {Cistella} from "../cistella.model";
 import {Filtro} from "../filtro.model";
+import {response} from "express";
 
 
 
@@ -41,6 +42,8 @@ export class TiendaComponent implements OnInit{
   productosArray: Producte[] = [];
   filtroProductoArray: Filtro[] = [];
   productosFiltrados: Producte[] = [];
+  precioEcerium: number = 0;
+  tipoMoneda: String = "ethereum"
 
 
 
@@ -53,35 +56,68 @@ export class TiendaComponent implements OnInit{
     config.striped = true;
     config.animated = true;
     //-------------------------------------------------------
-    const getFiltro = (productosArray: Producte[]) => {
-      for (const producto of productosArray) {
-        if (producto.tipo_producto && !this.filtroProductoArray.map(filtro => filtro.nombre_filtro).includes(producto.tipo_producto)) {
-          let filtro = new Filtro(producto.tipo_producto, false);
-          this.filtroProductoArray.push(filtro);
-        }
+
+    this.getProductes();
+    this.obtenerCriptomoneda();
+  }
+  getFiltro(productosArray: Producte[]){
+    for (const producto of productosArray) {
+      if (producto.tipo_producto && !this.filtroProductoArray.map(filtro => filtro.nombre_filtro).includes(producto.tipo_producto)) {
+        let filtro = new Filtro(producto.tipo_producto, false);
+        this.filtroProductoArray.push(filtro);
       }
-      this.aplicarFiltro();
     }
-    const getProductes = () =>{
-      this.http.get<Producte[]>('http://localhost:3080/obtenirProductes').subscribe((productes) =>{
-        productes.forEach((producte) =>{
-          let imagenUrl = "http://192.168.1.2:3080/assets/"+producte.imagen_producto;
-          console.log(imagenUrl);
-          let precioConDescuento = (producte.cantidad_descuento * producte.precio_producto)/100;
-          let producto = new Producte(producte.id_producto,
-              producte.nombre_producto,
-              producte.descripcion_producto, producte.cantidad,
-              precioConDescuento, producte.cantidad_descuento,
-              imagenUrl, producte.tipo_producto,
-              0);
+    this.aplicarFiltro();
+  }
 
-          this.productosArray.push(producto);
-        })
-        getFiltro(this.productosArray);
+  // selecionarTipoMoneda(tipoMonedaEscogida : string){
+  //   this.tipoMoneda = tipoMonedaEscogida;
+  //   this.obtenerCriptomoneda();
+  //   this.getProductes();
+  //
+  // }
+  obtenerCriptomoneda(){
+    let promesaDelPrecioETH = new Promise (async (resolve, reject) => {
+      this.http.get<any>(`https://api.coingecko.com/api/v3/simple/price?ids=${this.tipoMoneda}&vs_currencies=eur`).subscribe(data => {
+        resolve(data.ethereum.eur);
+        reject(0);
       })
-    }
+    })
+    return promesaDelPrecioETH;
+  }
+  async getProductes(){
+    await this.obtenerCriptomoneda()
+      .then((result) =>{
+        if (typeof result === "number") {
+          this.precioEcerium = result;
+        }
+      })
+     .catch((error) =>{
+        console.log(error);
+      })
 
-    getProductes();
+    this.http.get<Producte[]>('http://localhost:3080/obtenirProductes').subscribe((productes) =>{
+      productes.forEach((producte) =>{
+        let imagenUrl = "http://localhost:3080/assets/"+producte.imagen_producto;
+        console.log(imagenUrl);
+        let Descuento = (producte.cantidad_descuento * producte.precio_producto)/100;
+        let precioConDescuento = producte.precio_producto - Descuento;
+
+        let precioAEth =  this.precioEcerium * precioConDescuento;
+
+        console.log(precioAEth, precioConDescuento)
+        let producto = new Producte(
+          producte.id_producto,
+          producte.nombre_producto,
+          producte.descripcion_producto, producte.cantidad,
+          precioAEth, producte.cantidad_descuento,
+          imagenUrl, producte.tipo_producto,
+          0);
+
+        this.productosArray.push(producto);
+      })
+      this.getFiltro(this.productosArray);
+    })
   }
   aplicarFiltro() {
     let todosFalse = true; // Flag para verificar si todos los filtros están apagados
@@ -138,6 +174,7 @@ export class TiendaComponent implements OnInit{
     });
     const isLoggedInString = sessionStorage.getItem('isLoggedIn');
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
+
   }
   errorMsg(){
     window.alert("Has d'iniciar sessio per afegir productes a la cesta!")

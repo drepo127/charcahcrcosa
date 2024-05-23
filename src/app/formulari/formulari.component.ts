@@ -56,7 +56,7 @@ export class FormulariComponent {
   usercorreo = null;
   username = null;
   login(nuevoUsuario: Usuario) {
-    this.http.get<any>('http://localhost:3080/passworduser').subscribe((datosuser) => {
+    this.http.get<any>('http://192.168.1.2:3080/passworduser').subscribe((datosuser) => {
       let informacioncoincide = false;
       // @ts-ignore
       this.usercorreo = nuevoUsuario.loginEmail;
@@ -91,12 +91,12 @@ export class FormulariComponent {
   logsISessio() {
     const currentDate = new Date();
     const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
-    this.http.post('http://localhost:3080/logs', { user: this.usercorreo, accion: "Ha iniciat sessio", data: data }, { responseType: 'text' }).subscribe({});
+    this.http.post('http://192.168.1.2:3080/logs', { user: this.usercorreo, accion: "Ha iniciat sessio", data: data }, { responseType: 'text' }).subscribe({});
   }
   logsnoSessio() {
     const currentDate = new Date();
     const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
-    this.http.post('http://localhost:3080/logs', { user: this.usercorreo, accion: "Ha intentat iniciar sessio", data: data }, { responseType: 'text' }).subscribe({});
+    this.http.post('http://192.168.1.2:3080/logs', { user: this.usercorreo, accion: "Ha intentat iniciar sessio", data: data }, { responseType: 'text' }).subscribe({});
   }
 
 }
