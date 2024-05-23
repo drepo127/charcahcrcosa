@@ -198,8 +198,6 @@ export class CestaComponent implements OnInit {
   calcularPrecioEnMoneda(moneda: string) {
     this.preuTotal = 200;
     switch (moneda) {
-      case 'euros':
-        return this.preuTotal + '€';
       case 'bitcoin':
         if (this.pricebit) {
           const precioEnBitcoin = this.preuTotal / this.pricebit;

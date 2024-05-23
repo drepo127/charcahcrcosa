@@ -86,7 +86,7 @@ export class FormulariComponent {
       for (let i = 0; i < datosuser.length; i++) {
         if (datosuser[i].email === nuevoUsuario.loginEmail && datosuser[i].contrasenya === nuevoUsuario.loginContrasenya) {
           this.username = datosuser[i].user;
-          informacioncoincide = true;
+           informacioncoincide = true;
           break;
         }
       }
