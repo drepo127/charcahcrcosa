@@ -103,7 +103,7 @@ export class TiendaComponent implements OnInit{
         let Descuento = (producte.cantidad_descuento * producte.precio_producto)/100;
         let precioConDescuento = producte.precio_producto - Descuento;
 
-        let precioAEth =  this.precioEcerium * precioConDescuento;
+        let precioAEth =  precioConDescuento / this.precioEcerium;
 
         console.log(precioAEth, precioConDescuento)
         let producto = new Producte(

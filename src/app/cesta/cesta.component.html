@@ -30,7 +30,7 @@
         <p class="descripcion">{{ arraycarro.nom_producte }}</p>
         <p class="cantidad">Cantida producto: {{ arraycarro.cantitat }}</p>
         <p class="precio">{{ arraycarro.preu_unitat }}</p>
-        <button class="boton" (click)="sacarDeLaCesta(arraycarro.nom_producte)">Quitar producto</button>
+        <button class="boton" (click)="sacarDeLaCesta(arraycarro.nom_producte, arraycarro.preu_unitat * arraycarro.cantitat)">Quitar producto</button>
       </div>
     </div>
   </div>
