@@ -11,6 +11,7 @@ import {Productosvendidos} from "../productosvendidos.model";
 import {Producte} from "../producte.model";
 import {resolve} from "@angular/compiler-cli";
 import { ethers } from 'ethers';
+import { Web3 } from 'web3';
 
 interface Alert {
   type: string;
@@ -112,7 +113,7 @@ export class CestaComponent implements OnInit {
     } else {
       try {
         // Asegúrate de que 'preuTotal' esté correctamente formateado como string con los decimales permitidos
-        const valueInWei = ethers.utils.parseUnits(this.preuTotal.toFixed(18), 'ether'); // Ajusta la precisión según lo necesario
+        const valueInWei = Web3.utils.toWei(this.preuTotal.toFixed(18), 'ether'); // Ajusta la precisión según lo necesario
         console.log(valueInWei.toString());
 
         let PromesadePago = new Promise(async (resolve, reject) => {
@@ -122,7 +123,7 @@ export class CestaComponent implements OnInit {
             params: [{
               from: '0xcA38c36c5e7b80CF50a7848085F1e6BBef96c5e8',
               to: '0xCA108c6e1ec14d13403C6bb1DD446AA88a4Dd7Ea',
-              value: valueInWei.toHexString() // Convertir el valor en Wei a una cadena hexadecimal
+              value: valueInWei // Convertir el valor en Wei a una cadena hexadecimal
             }]
             //@ts-ignore
           }).then((response) => {
