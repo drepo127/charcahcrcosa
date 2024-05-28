@@ -67,13 +67,17 @@ aside {
 .prod_dest {
   display: flex;
   flex-direction: column;
-  background: #345d1c;
   padding: 10px;
   margin: 1%;
-  height: max-content;
-  width: 98%;
+  max-width: 100%;
+  max-height: max-content;
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
+  position: relative;
 }
+
+
 .titol1 {
   width: 100%;
   font-size: 30px;
@@ -136,6 +140,7 @@ aside {
   transition-duration: 0.3s;
   background-color: rgba(55, 98, 29, 0.34);
 }
+
 .prod {
   display: flex;
   flex-direction: column;

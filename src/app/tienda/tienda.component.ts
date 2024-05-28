@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CommonModule, NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import { ProductosService } from '../productos.service';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {NgbProgressbarConfig, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
 import {Producte} from "../producte.model";
 import {Cistella} from "../cistella.model";
@@ -33,6 +33,7 @@ interface Producto {
 })
 
 export class TiendaComponent implements OnInit{
+  @Input() urlRandomRana: string | null = null;
   isLoggedIn: boolean | null = false;
   mostrarropa: boolean = false;
   mostrarcomida: boolean = false;
@@ -43,6 +44,11 @@ export class TiendaComponent implements OnInit{
   filtroProductoArray: Filtro[] = [];
   productosFiltrados: Producte[] = [];
   precioEcerium: number = 0;
+  tipoMoneda: String = "ethereum"
+
+  apiKey = 'sRkN2at5CZ9LFc2SUWIuobgAheRGR2V8MZXCT1vhTpBsow20xaecl9lm';
+
+
 
 
 
@@ -56,8 +62,7 @@ export class TiendaComponent implements OnInit{
     config.animated = true;
     //-------------------------------------------------------
 
-    this.getProductes();
-    this.obtenerCriptomoneda();
+
   }
   getFiltro(productosArray: Producte[]){
     for (const producto of productosArray) {
@@ -76,49 +81,7 @@ export class TiendaComponent implements OnInit{
   //
   // }
 
-  obtenerCriptomoneda(){
-    let promesaDelPrecioETH = new Promise (async (resolve, reject) => {
-      this.http.get<any>(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=eur`).subscribe(data => {
-        resolve(data.binancecoin.eur);
-        reject(0);
-      })
-    })
-    return promesaDelPrecioETH;
-  }
-  async getProductes(){
-    await this.obtenerCriptomoneda()
-      .then((result) =>{
-        if (typeof result === "number") {
-          this.precioEcerium = result;
-        }
-      })
-     .catch((error) =>{
-        console.log(error);
-      })
 
-    this.http.get<Producte[]>('http://localhost:3080/obtenirProductes').subscribe((productes) =>{
-      productes.forEach((producte) =>{
-        let imagenUrl = "http://localhost:3080/assets/"+producte.imagen_producto;
-        console.log(imagenUrl);
-        let Descuento = (producte.cantidad_descuento * producte.precio_producto)/100;
-        let precioConDescuento = producte.precio_producto - Descuento;
-
-        let precioAEth =  precioConDescuento / this.precioEcerium;
-
-        console.log(precioAEth, precioConDescuento)
-        let producto = new Producte(
-          producte.id_producto,
-          producte.nombre_producto,
-          producte.descripcion_producto, producte.cantidad,
-          precioAEth, producte.cantidad_descuento,
-          imagenUrl, producte.tipo_producto,
-          0);
-
-        this.productosArray.push(producto);
-      })
-      this.getFiltro(this.productosArray);
-    })
-  }
   aplicarFiltro() {
     let todosFalse = true; // Flag para verificar si todos los filtros están apagados
     let productosFiltradosTemp : Producte[] = []; // Array temporal para almacenar los productos filtrados
@@ -174,6 +137,7 @@ export class TiendaComponent implements OnInit{
     });
     const isLoggedInString = sessionStorage.getItem('isLoggedIn');
     this.isLoggedIn = isLoggedInString ? JSON.parse(isLoggedInString) : false;
+    this.imagenRadonmRanas();
 
   }
   errorMsg(){
@@ -252,8 +216,21 @@ export class TiendaComponent implements OnInit{
     this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion: `Ha añadido a la cesta  ${nuevoProducto.cantidadProducto} de ${nuevoProducto.prodName}`, data: data }, { responseType: 'text' }).subscribe({});
   }
 
+  imagenRadonmRanas() {
+    const headers = new HttpHeaders({
+      Authorization: this.apiKey
+    });
 
-
-
+    this.http.get<any>('https://api.pexels.com/v1/search?query=frog', { headers }).subscribe(
+      (response) => {
+        const photos = response.photos;
+        const randomIndex = Math.floor(Math.random() * photos.length);
+        this.urlRandomRana = photos[randomIndex].src.large;
+      },
+      (error) => {
+        console.error('Error fetching random frog image:', error);
+      }
+    );
+  }
 
 }
