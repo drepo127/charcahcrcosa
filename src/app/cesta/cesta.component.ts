@@ -101,6 +101,7 @@ export class CestaComponent implements OnInit {
   sacarDeLaCesta(nomProducte: string, precioProducto: number){
     this.preuTotal = this.preuTotal - precioProducto;
     this.http.post('http://localhost:3080/eliminarProductoCarrito', {usuari_afegit: this.storedNom, nom_producte:nomProducte}).subscribe({
+
     })
     window.location.reload();
   }

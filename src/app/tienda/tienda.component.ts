@@ -62,7 +62,8 @@ export class TiendaComponent implements OnInit{
     config.animated = true;
     //-------------------------------------------------------
 
-
+    this.getProductes();
+    //this.obtenerCriptomoneda();
   }
   getFiltro(productosArray: Producte[]){
     for (const producto of productosArray) {
@@ -81,7 +82,47 @@ export class TiendaComponent implements OnInit{
   //
   // }
 
+  // obtenerCriptomoneda(){
+  //   let promesaDelPrecioETH = new Promise (async (resolve, reject) => {
+  //     this.http.get<any>(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=eur`).subscribe(data => {
+  //       resolve(data.binancecoin.eur);
+  //       reject(0);
+  //     })
+  //   })
+  //   return promesaDelPrecioETH;
+  // }
+  getProductes(){
+    // await this.obtenerCriptomoneda()
+    //   .then((result) =>{
+    //     if (typeof result === "number") {
+    //       this.precioEcerium = result;
+    //     }
+    //   })
+    //  .catch((error) =>{
+    //     console.log(error);
+    //   })
 
+    this.http.get<Producte[]>('http://localhost:3080/obtenirProductes').subscribe((productes) =>{
+      productes.forEach((producte) =>{
+        let imagenUrl = "http://localhost:3080/assets/"+producte.imagen_producto;
+        console.log(imagenUrl);
+        let Descuento = (producte.cantidad_descuento * producte.precio_producto)/100;
+        let precioConDescuento = producte.precio_producto - Descuento;
+
+        //let precioAEth =  precioConDescuento / this.precioEcerium;
+        let producto = new Producte(
+          producte.id_producto,
+          producte.nombre_producto,
+          producte.descripcion_producto, producte.cantidad,
+          precioConDescuento, producte.cantidad_descuento,
+          imagenUrl, producte.tipo_producto,
+          0);
+
+        this.productosArray.push(producto);
+      })
+      this.getFiltro(this.productosArray);
+    })
+  }
   aplicarFiltro() {
     let todosFalse = true; // Flag para verificar si todos los filtros están apagados
     let productosFiltradosTemp : Producte[] = []; // Array temporal para almacenar los productos filtrados
