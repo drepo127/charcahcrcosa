@@ -4,6 +4,8 @@ import {Router, RouterLink} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import { NgFor } from '@angular/common';
 import {Productesvenuts} from "../productesvenuts.model";
+import { BscscanService } from '../bscscan.service';
+
 
 
 @Component({
@@ -17,10 +19,14 @@ import {Productesvenuts} from "../productesvenuts.model";
   styleUrl: './historial-productes.component.css'
 })
 export class HistorialProductesComponent {
+
+  walletAddress: string = "0xa1751878e76B5cFC9B2617C091fCae7892266343";
+  transacciones: any[] = [];
+  error: any;
   historialProductos: Productesvenuts[] = [];
 
   storedNom: string | null;
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private bscscanService: BscscanService) {
     this.storedNom = sessionStorage.getItem('username');
     this.mirarUser();
   }
@@ -33,6 +39,7 @@ export class HistorialProductesComponent {
 
   ngOnInit(): void {
     this.obtenerProductos();
+    this.obtenerTransacciones();
   }
 
   obtenerProductos(): void {
@@ -47,4 +54,39 @@ export class HistorialProductesComponent {
       }
     });
   }
+  obtenerTransacciones(): void {
+    this.bscscanService.obtenerHistorialTransacciones(this.walletAddress)
+      .subscribe(
+        data => {
+          if (data.status === '1') {
+            this.transacciones = data.result.map((tx: any) => {
+              return {
+                ...tx,
+                timeStamp: this.convertirTimestamp(tx.timeStamp),
+                valueBnb: this.convertirWeiABnb(tx.value) // Añadir la conversión de wei a BNB
+              };
+            });
+            this.error = null;
+          } else {
+            this.error = data.message;
+          }
+        },
+        error => {
+          this.error = `Error en la solicitud HTTP: ${error.status}`;
+        }
+      );
+  }
+
+
+  convertirTimestamp(timestamp: string): string {
+    const date = new Date(parseInt(timestamp) * 1000);
+    return date.toLocaleString();
+  }
+  convertirWeiABnb(wei: string): string {
+    const weiBN = BigInt(wei);
+    const bnb = Number(weiBN) / Math.pow(10, 18);
+    return bnb.toFixed(3); // Ajusta el número de decimales según tus necesidades
+  }
+
+
 }

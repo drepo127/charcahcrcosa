@@ -18,6 +18,8 @@ h2 {
 .product-table td {
   padding: 10px;
   border: 1px solid #ccc;
+  max-width: 200px;
+  overflow-wrap: break-word;
 }
 
 .product-table th {

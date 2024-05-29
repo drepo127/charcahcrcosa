@@ -30,6 +30,30 @@
       <td>{{ producto.cantitat_descompte }}</td>
     </tr>
     </tbody>
-
   </table>
+  <div>
+    <h2>Historial de Transacciones</h2>
+    <table class="product-table">
+      <thead>
+      <tr>
+        <th>Hash TX</th>
+        <th>Numero bloc</th>
+        <th>Remitent</th>
+        <th>Destinatari</th>
+        <th>Valor</th>
+        <th>Data</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tx of transacciones">
+        <td>{{ tx.hash }}</td>
+        <td>{{ tx.blockNumber }}</td>
+        <td>{{ tx.from }}</td>
+        <td>{{ tx.to }}</td>
+        <td>{{ tx.valueBnb }}</td>
+        <td>{{ tx.timeStamp }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

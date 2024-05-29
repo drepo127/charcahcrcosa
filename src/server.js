@@ -428,4 +428,57 @@ app.get('/consultarVentesNoDescompte',  (req, res) => {
   })
 });
 
-
+// app.post('/addTransaccio', async (req, res) => {
+//   const { hash } = req.body;
+//
+//   // Asegúrate de que el hash de la transacción esté presente
+//   if (!hash) {
+//     return res.status(400).send('Faltan parámetros en la solicitud');
+//   }
+//
+//   try {
+//     // Obtener detalles de la transacción usando el hash de la transacción
+//     const transactionDetails = await web3.eth.getTransaction(hash);
+//     if (!transactionDetails) {
+//       return res.status(404).send('Transacción no encontrada');
+//     }
+//
+//     const blockDetails = await web3.eth.getBlock(transactionDetails.blockNumber);
+//
+//     // Crear objeto de transacción para guardar en la base de datos
+//     const transaccio = {
+//       hash: transactionDetails.hash,
+//       blocs: transactionDetails.blockNumber,
+//       address: transactionDetails.from,
+//       data: new Date(blockDetails.timestamp * 1000).toISOString(),
+//       valor: transactionDetails.value,
+//       quant_crypto: web3.utils.fromWei(transactionDetails.value, 'ether'), // Cantidad en BNB
+//       tipus_crypto: 'BNB' // Tipo de criptomoneda
+//     };
+//
+//     // Insertar transacción en la base de datos
+//     const query = 'INSERT INTO transaccio (hash, blocs, address, data, valor, quant_crypto, tipus_crypto) VALUES (?, ?, ?, ?, ?, ?, ?)';
+//     const values = [
+//       transaccio.hash,
+//       transaccio.blocs,
+//       transaccio.address,
+//       transaccio.data,
+//       transaccio.valor,
+//       transaccio.quant_crypto,
+//       transaccio.tipus_crypto
+//     ];
+//
+//     connection.query(query, values, (err, results) => {
+//       if (err) {
+//         console.error('Error insertando la transacción en la base de datos:', err);
+//         return res.status(500).send('Error al guardar la transacción en la base de datos');
+//       }
+//       console.log('Transacción registrada en la base de datos:', transaccio);
+//       res.status(200).send('Transacción registrada correctamente');
+//     });
+//
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Error al procesar la solicitud');
+//   }
+// });

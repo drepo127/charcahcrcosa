@@ -61,7 +61,7 @@ export class CestaComponent implements OnInit {
     this.reset();
 
     const getProductes = () => {
-      this.http.get<Cistella[]>('http://localhost:3080/obtenirCarrito').subscribe((carrito) => {
+      this.http.get<Cistella[]>('http://192.168.1.2:3080/obtenirCarrito').subscribe((carrito) => {
         carrito.forEach((carro) => {
           let productoExistente = this.productosArrayUsuario.find(producto => producto.nom_producte === carro.nom_producte);
           if (productoExistente) {
@@ -100,18 +100,18 @@ export class CestaComponent implements OnInit {
 
   sacarDeLaCesta(nomProducte: string, precioProducto: number){
     this.preuTotal = this.preuTotal - precioProducto;
-    this.http.post('http://localhost:3080/eliminarProductoCarrito', {usuari_afegit: this.storedNom, nom_producte:nomProducte}).subscribe({
+    this.http.post('http://192.168.1.2:3080/eliminarProductoCarrito', {usuari_afegit: this.storedNom, nom_producte:nomProducte}).subscribe({
 
     })
     window.location.reload();
   }
   sacarDeLaCestaalComprar(){
-    this.http.post('http://localhost:3080/eliminarProductoCarritoComprado', {usuari_afegit: this.storedNom}).subscribe({
+    this.http.post('http://192.168.1.2:3080/eliminarProductoCarritoComprado', {usuari_afegit: this.storedNom}).subscribe({
 
     })
   }
   contarStockIDesactivarBoton(){
-    this.http.get<Producte[]>('http://localhost:3080/obtenirProductes').subscribe((productes) =>{
+    this.http.get<Producte[]>('http://192.168.1.2:3080/obtenirProductes').subscribe((productes) =>{
       productes.forEach((producte) =>{
         let nombreProducto = producte.nombre_producto
         let cantidadProducto = producte.cantidad
@@ -127,7 +127,7 @@ export class CestaComponent implements OnInit {
   }
 
   descontarStock(nomProducte: string, cantidadRestar: number ){
-    this.http.post('http://localhost:3080/descontarStock', {nom_producte: nomProducte,cantidad_restar:cantidadRestar}).subscribe({
+    this.http.post('http://192.168.1.2:3080/descontarStock', {nom_producte: nomProducte,cantidad_restar:cantidadRestar}).subscribe({
 
     })
   }
@@ -145,8 +145,8 @@ export class CestaComponent implements OnInit {
           window.ethereum.request({
             method: 'eth_sendTransaction',
             params: [{
-              from: '0xcA38c36c5e7b80CF50a7848085F1e6BBef96c5e8',
-              to: '0xCA108c6e1ec14d13403C6bb1DD446AA88a4Dd7Ea',
+              from: '0xa1751878e76B5cFC9B2617C091fCae7892266343',
+              to: '0xa7fF613E674dB03b05a8AE157B26ea90cC537862',
               value: valueInWei // Convertir el valor en Wei a una cadena hexadecimal
             }]
             //@ts-ignore
@@ -160,31 +160,41 @@ export class CestaComponent implements OnInit {
         });
 
         await PromesadePago
-          .then(async () => {
-            for (const producto of this.productosArrayUsuario) {
-              let preuTotal = producto.preu_unitat * producto.cantitat;
-              console.log(preuTotal);
-              let productovendido = new Productosvendidos(
-                producto.id_producto_cistella,
-                producto.nom_producte,
-                producto.cantitat,
-                preuTotal,
-                producto.descuento_producto,
-                producto.usuari_afegit
-              );
-              this.http.post('http://localhost:3080/comprarproductos', productovendido).subscribe(() => {
-                console.log(producto.nom_producte);
-                this.descontarStock(producto.nom_producte, producto.cantitat);
-              });
-            }
-            this.sacarDeLaCestaalComprar();
-            alert("Gracias por su compra 🥰🥰");
-            window.location.reload();
-          })
-          .catch(async (error) => {
-            console.log(error);
-            alert("No se pudo pagar. Compruebe su conexión a Internet y vuelva a intentarlo.");
-          });
+            .then(async (transactionHash) => {
+              // Llamada al endpoint addTransaccio con el hash de la transacción
+              // const transaccio = { hash: transactionHash };
+              // this.http.post('http://localhost:3080/addTransaccio', transaccio).subscribe(() => {
+              //   console.log("Transacción registrada:", transactionHash);
+              // });
+
+              for (const producto of this.productosArrayUsuario) {
+                let preuTotal = producto.preu_unitat * producto.cantitat;
+                console.log(preuTotal);
+                  let productovendido = new Productosvendidos(
+                    producto.id_producto_cistella,
+                    producto.nom_producte,
+                    producto.cantitat,
+                    preuTotal,
+                    producto.descuento_producto,
+                    producto.usuari_afegit,
+                    "bnb",
+                      // @ts-ignore
+                    (this.pricebnb / preuTotal)
+
+                );
+                this.http.post('http://192.168.1.2:3080/comprarproductos', productovendido).subscribe(() => {
+                  console.log(producto.nom_producte);
+                  this.descontarStock(producto.nom_producte, producto.cantitat);
+                });
+              }
+              this.sacarDeLaCestaalComprar();
+              alert("Gracias por su compra 🥰🥰");
+              window.location.reload();
+            })
+            .catch(async (error) => {
+              console.log(error);
+              alert("No se pudo pagar. Compruebe su conexión a Internet y vuelva a intentarlo.");
+            });
       } catch (error) {
         console.log(error);
         alert("Se produjo un error al procesar la compra.");
@@ -211,12 +221,12 @@ export class CestaComponent implements OnInit {
 
     const currentDate = new Date();
     const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
-    this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion: `Ha Comprat los productos`, data: data }, { responseType: 'text' }).subscribe({});
+    this.http.post('http://192.168.1.2:3080/logs', { user: this.storedNom, accion: `Ha Comprat los productos`, data: data }, { responseType: 'text' }).subscribe({});
   }
   logsQuitarProducto() {
     const currentDate = new Date();
     const data = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
-    this.http.post('http://localhost:3080/logs', { user: this.storedNom, accion:"ha eliminat productes de la cesta", data: data }, { responseType: 'text' }).subscribe({});
+    this.http.post('http://192.168.1.2:3080/logs', { user: this.storedNom, accion:"ha eliminat productes de la cesta", data: data }, { responseType: 'text' }).subscribe({});
   }
 
   getCurrentPrices() {
