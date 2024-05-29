@@ -64,6 +64,7 @@ aside {
 
 
 /*----PRODUCTES----*/
+/*imagen */
 .prod_dest {
   display: flex;
   flex-direction: column;
@@ -76,6 +77,7 @@ aside {
   border-radius: 20px;
   position: relative;
 }
+
 
 
 .titol1 {

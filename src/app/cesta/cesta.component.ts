@@ -244,6 +244,8 @@ export class CestaComponent implements OnInit {
     }, 60000);
   }
 
+
+  //calcula el precio total en la moneda
   calcularPrecioEnMoneda(moneda: string) {
     switch (moneda) {
       case 'bitcoin':

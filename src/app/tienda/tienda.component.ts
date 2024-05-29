@@ -10,7 +10,7 @@ import {Filtro} from "../filtro.model";
 import {response} from "express";
 
 
-
+//Para la imagen
 interface Producto {
   prodName: string;
   prodPreu: number;
